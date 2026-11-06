@@ -2,13 +2,13 @@
 /**
  * The site's forms in the look of the Elementor Pro form widget: contact form
  * (contact page), private-event request (popup on private events) and club
- * sign-up (popup on home). Markup and texts only: sending goes to the platform
- * with Turnstile (spec 62 §10.2, П-17) in the next stage, so the submit button
- * is disabled and nothing leaves the browser.
+ * sign-up (popup on home). Sending goes to the platform with Cloudflare
+ * Turnstile (spec 62 §10.2): src/scripts/site-forms.ts. Without a Turnstile
+ * site key in the build the form says it is unavailable and sends nothing.
  */
 import { ui } from '../lib/i18n.ts';
 import { pagePath } from '../lib/routes.ts';
-import type { LanguageCode } from '../../site.config.ts';
+import { arena, turnstile, type LanguageCode } from '../../site.config.ts';
 
 interface Props {
   lang: LanguageCode;
@@ -17,8 +17,25 @@ interface Props {
 const { lang, kind } = Astro.props;
 const f = ui(lang).forms;
 const id = `vc-form-${kind}`;
+const texts = {
+  unavailable: f.unavailable,
+  sending: f.sending,
+  sent: kind === 'contact' ? f.sentContact : kind === 'private' ? f.sentPrivate : f.sentClub,
+  captchaWait: f.captchaWait,
+  errors: f.errors,
+};
 ---
-<form class="vc-form" id={id} data-form-kind={kind} novalidate>
+<form
+  class="vc-form"
+  id={id}
+  data-form-kind={kind}
+  data-lang={lang}
+  data-api={arena.apiBase}
+  data-feed={arena.feedToken}
+  data-sitekey={turnstile.siteKey}
+  data-texts={JSON.stringify(texts)}
+  novalidate
+>
   {kind === 'contact' ? (
     <>
       <div class="vc-form__field">
@@ -52,7 +69,7 @@ const id = `vc-form-${kind}`;
   )}
   {kind === 'club' && (
     <div class="vc-form__field vc-form__field--full vc-form__consent">
-      <label><input type="checkbox" name="marketing" /> {f.club.optin}</label>
+      <label class="is-required"><input type="checkbox" name="marketing" required /> {f.club.optin}</label>
     </div>
   )}
   <div class="vc-form__field vc-form__field--full vc-form__consent">
@@ -62,7 +79,24 @@ const id = `vc-form-${kind}`;
       {f.consentBefore} <a href={pagePath('terms', lang)}>{f.consentTerms}</a> {f.consentAnd} <a href={pagePath('privacy', lang)}>{f.consentPrivacy}</a> {f.consentAfter}
     </label>
   </div>
+  <div class="vc-form__field vc-form__field--full vc-form__turnstile" data-turnstile></div>
+  <p class="vc-form__status vc-form__field--full" data-form-status role="status" hidden></p>
   <div class="vc-form__field vc-form__field--full vc-form__actions">
-    <button type="submit" class="vc-btn vc-btn--gold" disabled title={f.notConnected}>{kind === 'contact' ? f.sendMessage : f.send}</button>
+    <button type="submit" class="vc-btn vc-btn--gold">{kind === 'contact' ? f.sendMessage : f.send}</button>
   </div>
 </form>
+
+<script>
+  import { createArenaClient } from '../arena/client.ts';
+  import { initSiteForm, loadTurnstileScript } from '../scripts/site-forms.ts';
+
+  document.querySelectorAll<HTMLFormElement>('form[data-form-kind]').forEach((form) => {
+    initSiteForm(form, {
+      client: createArenaClient({ apiBase: form.dataset.api ?? '', feedToken: form.dataset.feed ?? '' }),
+      loadTurnstile: loadTurnstileScript,
+      siteKey: form.dataset.sitekey ?? '',
+      locale: form.dataset.lang ?? 'ru',
+      pageUrl: () => location.origin + location.pathname,
+    });
+  });
+</script>

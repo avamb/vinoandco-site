@@ -54,6 +54,14 @@ export const tracking = {
   ga4Id: env.PUBLIC_GA4_ID || '',
 };
 
+/**
+ * Cloudflare Turnstile (site forms). The SITE key is public; the secret key is
+ * held by the platform. Empty = the forms say they are unavailable and send nothing.
+ */
+export const turnstile = {
+  siteKey: env.PUBLIC_TURNSTILE_SITE_KEY || '',
+};
+
 export const brand = {
   name: 'Vino&Co',
   email: 'info@vinoandco.events',
