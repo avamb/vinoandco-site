@@ -19,6 +19,11 @@ import type {
   CheckoutRecoverResponse,
   ReferralOffer,
   FunnelBeacon,
+  FeedRemovedEvent,
+  MyTicketsSession,
+  MyTicketsOrdersPage,
+  OrganizerContactRequest,
+  MarketingSubscriptionRequest,
 } from './types.ts';
 
 export interface ArenaClientOptions {
@@ -56,11 +61,13 @@ export class ArenaNetworkError extends Error {
 }
 
 interface RequestOptions {
-  method?: 'GET' | 'POST';
+  method?: 'GET' | 'POST' | 'DELETE';
   body?: unknown;
   headers?: Record<string, string>;
   /** Keep the request alive while the page unloads (funnel beacon). */
   keepalive?: boolean;
+  /** `blob`: return the body as a Blob (ticket PDF). */
+  as?: 'json' | 'blob';
 }
 
 export function createArenaClient(opts: ArenaClientOptions) {
@@ -107,6 +114,7 @@ export function createArenaClient(opts: ArenaClientOptions) {
       throw new ArenaApiError(res.status, code, message, details);
     }
     if (res.status === 204) return { status: 204, body: null };
+    if (ro.as === 'blob') return { status: res.status, body: (await res.blob()) as unknown as T };
     return { status: res.status, body: (await res.json()) as T };
   }
 
@@ -116,8 +124,8 @@ export function createArenaClient(opts: ArenaClientOptions) {
 
   // ── Feed ────────────────────────────────────────────────────────────────
 
-  async function listEvents(page = 1, perPage = 100): Promise<FeedEventList> {
-    return get<FeedEventList>(`/v1/public/feeds/${token}/events?page=${page}&per_page=${perPage}`);
+  async function listEvents(page = 1, perPage = 100, includeRemoved = false): Promise<FeedEventList> {
+    return get<FeedEventList>(`/v1/public/feeds/${token}/events?page=${page}&per_page=${perPage}${includeRemoved ? '&include_removed=true' : ''}`);
   }
 
   /** Event detail. The platform wraps it as {"event": {...}}; older answers were bare. */
@@ -134,10 +142,20 @@ export function createArenaClient(opts: ArenaClientOptions) {
    * (spec 62 §9 "Полнота").
    */
   async function fetchSnapshot(perPage = 100): Promise<EventsSnapshot> {
-    const first = await listEvents(1, perPage);
+    // `include_removed` adds the events that left the feed in the last 30 days
+    // (their pages are taken down and answer 410). A platform that does not know
+    // the parameter simply omits the list.
+    const first = await listEvents(1, perPage, true);
     const list: FeedEvent[] = [...first.events];
+    const removed = new Map<string, FeedRemovedEvent>();
+    const takeRemoved = (page: FeedEventList) => {
+      for (const r of page.removed_events ?? []) if (r?.id && !removed.has(r.id)) removed.set(r.id, r);
+    };
+    takeRemoved(first);
     for (let p = 2; p <= first.pagination.total_pages; p++) {
-      list.push(...(await listEvents(p, perPage)).events);
+      const page = await listEvents(p, perPage, true);
+      list.push(...page.events);
+      takeRemoved(page);
     }
     if (list.length !== first.pagination.total) {
       throw new Error(`feed pass incomplete: ${list.length} of ${first.pagination.total}`);
@@ -149,7 +167,9 @@ export function createArenaClient(opts: ArenaClientOptions) {
       seen.add(e.id);
       events.push(await getEvent(e.id));
     }
-    return { fetched_at: new Date().toISOString(), source: 'feed', events };
+    // An event that is both listed and "removed" (republished) is listed.
+    const removedEvents = [...removed.values()].filter((r) => !seen.has(r.id));
+    return { fetched_at: new Date().toISOString(), source: 'feed', events, removed_events: removedEvents };
   }
 
   // ── Checkout (browser) ──────────────────────────────────────────────────
@@ -193,6 +213,48 @@ export function createArenaClient(opts: ArenaClientOptions) {
     }
   }
 
+  // ── My tickets by link (spec 62 §7) ─────────────────────────────────────
+
+  /** E-mails a one-time link. The platform answers 202 whether or not the address has orders. */
+  async function requestMyTicketsLink(body: { email: string; locale: string; page_url: string }): Promise<void> {
+    await request<unknown>(`/v1/public/feeds/${token}/my-tickets/link`, { method: 'POST', body });
+  }
+
+  /** Spends the e-mailed token (once) for a 4-hour session; 410 my_tickets.link_invalid when used, expired or unknown. */
+  async function exchangeMyTicketsToken(linkToken: string): Promise<MyTicketsSession> {
+    return (await request<MyTicketsSession>('/v1/public/my-tickets/session', { method: 'POST', body: { token: linkToken } })).body!;
+  }
+
+  async function myTicketsOrders(sessionToken: string, page = 1): Promise<MyTicketsOrdersPage> {
+    return (await request<MyTicketsOrdersPage>(`/v1/public/my-tickets/orders?page=${page}`, { headers: bearer(sessionToken) })).body!;
+  }
+
+  /** The ticket PDF as a Blob: a plain link cannot carry the bearer header. */
+  async function myTicketsPdf(sessionToken: string, orderId: string, ticketId: string): Promise<Blob> {
+    const path = `/v1/public/my-tickets/orders/${encodeURIComponent(orderId)}/tickets/${encodeURIComponent(ticketId)}/pdf`;
+    return (await request<Blob>(path, { headers: { ...bearer(sessionToken), Accept: 'application/pdf' }, as: 'blob' })).body!;
+  }
+
+  async function revokeMyTicketsSession(sessionToken: string): Promise<void> {
+    await request<null>('/v1/public/my-tickets/session', { method: 'DELETE', headers: bearer(sessionToken) });
+  }
+
+  function bearer(sessionToken: string): Record<string, string> {
+    return { Authorization: `Bearer ${sessionToken}` };
+  }
+
+  // ── Site forms (spec 62 §10.2) ──────────────────────────────────────────
+
+  /** Contact and private-event forms. One Idempotency-Key per submission; 202 {status: queued}. */
+  async function sendOrganizerContact(body: OrganizerContactRequest, idempotencyKey: string): Promise<void> {
+    await request<unknown>(`/v1/public/feeds/${token}/organizer-contact`, { method: 'POST', body, headers: { 'Idempotency-Key': idempotencyKey } });
+  }
+
+  /** Club sign-up (double opt-in); 202 {status: check_email}. */
+  async function subscribeMarketing(body: MarketingSubscriptionRequest, idempotencyKey: string): Promise<void> {
+    await request<unknown>(`/v1/public/feeds/${token}/marketing-subscriptions`, { method: 'POST', body, headers: { 'Idempotency-Key': idempotencyKey } });
+  }
+
   /** Absolute address of a platform-relative path (ticket PDF links). */
   function absolute(path: string): string {
     return /^https?:\/\//i.test(path) ? path : `${base}${path.startsWith('/') ? '' : '/'}${path}`;
@@ -207,7 +269,7 @@ export function createArenaClient(opts: ArenaClientOptions) {
     }
   }
 
-  return { listEvents, getEvent, fetchSnapshot, quote, startCheckout, checkoutStatus, recoverCheckout, referral, funnel, absolute };
+  return { listEvents, getEvent, fetchSnapshot, quote, startCheckout, checkoutStatus, recoverCheckout, referral, funnel, absolute, requestMyTicketsLink, exchangeMyTicketsToken, myTicketsOrders, myTicketsPdf, revokeMyTicketsSession, sendOrganizerContact, subscribeMarketing };
 }
 
 export type ArenaClient = ReturnType<typeof createArenaClient>;

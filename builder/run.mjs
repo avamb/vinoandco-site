@@ -21,6 +21,7 @@ import { fileURLToPath } from 'node:url';
 import { createArenaClient } from '../src/arena/client.ts';
 import { eventSlug } from '../src/arena/lifecycle.ts';
 import { createBuilder } from './lib/builder.mjs';
+import { removedPaths } from '../scripts/removed-events.mjs';
 import { run } from './lib/release.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -51,6 +52,9 @@ function eventPaths(snapshot) {
   return out;
 }
 
+/** Addresses of events that left the feed: no page, 410. */
+const removedEventPaths = (snapshot) => removedPaths(snapshot.removed_events, knownSlugs);
+
 const builder = createBuilder({
   dataDir,
   siteDir,
@@ -61,6 +65,7 @@ const builder = createBuilder({
   log,
   fetchSnapshot: () => client.fetchSnapshot(),
   eventPaths,
+  removedPaths: removedEventPaths,
   async buildSite(snapshotPath) {
     await run(npm, ['run', 'build'], { cwd: appDir, env: { ...env, EVENTS_SNAPSHOT: snapshotPath }, log });
     return join(appDir, 'dist');

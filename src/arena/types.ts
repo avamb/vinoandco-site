@@ -161,6 +161,8 @@ export interface FeedPagination {
 }
 
 export interface FeedEventList {
+  /** Only with `include_removed=true`. */
+  removed_events?: FeedRemovedEvent[];
   events: FeedEvent[];
   pagination: FeedPagination;
 }
@@ -174,6 +176,19 @@ export interface EventsSnapshot {
   fetched_at: string;
   source: 'feed' | 'sample';
   events: FeedEventDetail[];
+  /** Events that left the feed in the last 30 days (`include_removed=true`); absent on older platforms. */
+  removed_events?: FeedRemovedEvent[];
+}
+
+/** An event that left the feed: its page is removed and its address answers 410. */
+export interface FeedRemovedEvent {
+  id: string;
+  display_number: number | null;
+  name: string | null;
+  slug: string | null;
+  status: 'unpublished' | 'cancelled' | 'archived' | 'deleted' | string;
+  removed_at: string;
+  last_session_at: string | null;
 }
 
 /** Platform error envelope. */
@@ -215,11 +230,18 @@ export interface MarketingConsentInput {
   discount?: boolean;
 }
 
-/** Cookie-banner choice passed along with the order (spec 62 §8.1). Pending on the platform. */
-export interface TrackingConsentInput {
-  granted: boolean;
-  version: string;
-  at: string;
+/** Browser tracking context of a checkout (`buyer_context` of checkout/start). Strings are cut by the platform at 256 characters. */
+export interface BuyerContext {
+  fbclid?: string;
+  gclid?: string;
+  fbp?: string;
+  fbc?: string;
+  /** The `_ga` cookie value after `GA1.1.`; only with consent. */
+  ga_client_id?: string;
+  page_url?: string;
+  /** The cookie banner's answer (analytics and advertising together). */
+  tracking_consent: boolean;
+  tracking_consent_text_version?: string;
 }
 
 export interface CheckoutQuoteRequest {
@@ -269,8 +291,8 @@ export interface CheckoutStartRequest {
   marketing_consent?: MarketingConsentInput;
   /** The buyer's tick on the sale terms, when the session's `consent.required` asks for it. */
   consent?: { accepted: boolean; locale?: string };
-  /** pending П-20 / §8.1 */
-  tracking_consent?: TrackingConsentInput;
+  /** Browser identifiers for the platform's server-side conversions (spec 62 §8.1, §8.3). */
+  buyer_context?: BuyerContext;
   /** The total the buyer saw (minor units); pending §5.4 p.3 (409 checkout.price_changed). */
   expected_total?: number;
 }
@@ -284,7 +306,18 @@ export interface CheckoutStartResponse {
   marketing_discount_applied?: boolean;
 }
 
-export type CheckoutPublicStatus = 'pending' | 'paid' | 'failed' | 'expired' | 'cancelled' | 'refunded' | 'manual_review' | string;
+export type CheckoutPublicStatus = 'pending' | 'paid' | 'failed' | 'expired' | 'needs_help' | 'cancelled' | 'refunded' | 'manual_review' | string;
+
+/** The event block of the order status. `start_at` is UTC; render it in `timezone`. */
+export interface CheckoutStatusEvent {
+  event_id: string;
+  session_id: string;
+  name: string;
+  slug?: string | null;
+  start_at: string;
+  venue_name?: string | null;
+  timezone?: string | null;
+}
 
 export interface CheckoutStatusTicket {
   ticket_id: string;
@@ -292,7 +325,7 @@ export interface CheckoutStatusTicket {
   row?: string | null;
   number?: string | null;
   human_code?: string | null;
-  /** Platform-relative path; prefix the API origin. */
+  /** Absolute address on the platform; a relative path (older answers) is prefixed with the API origin. */
   pdf_url?: string | null;
 }
 
@@ -315,6 +348,7 @@ export interface CheckoutStatus {
   total?: number | null;
   currency?: string | null;
   payment_url?: string | null;
+  event?: CheckoutStatusEvent | null;
   items: CheckoutStatusItem[];
   tickets: CheckoutStatusTicket[];
 }
@@ -341,4 +375,69 @@ export interface FunnelBeacon {
   surface: 'external_site' | 'widget' | 'hosted_page' | 'tickets_page';
   utm_source?: string;
   utm_campaign?: string;
+}
+
+// ── "My tickets by link" (spec 62 §7) ───────────────────────────────────────
+
+export interface MyTicketsSession {
+  session_token: string;
+  /** RFC 3339 UTC; the session lives 4 hours. */
+  expires_at: string;
+}
+
+export interface MyTicketsTicket {
+  ticket_id: string;
+  status: string;
+  sector?: string | null;
+  row?: string | null;
+  number?: string | null;
+  tier_name?: string | null;
+  human_code?: string | null;
+  /** Absolute; needs the bearer token, so it is fetched, never linked. */
+  pdf_url: string;
+}
+
+export interface MyTicketsOrder {
+  order_id: string;
+  order_number: number;
+  status: string;
+  total: number;
+  currency: string;
+  paid_at?: string;
+  created_at: string;
+  session_cancelled: boolean;
+  event: CheckoutStatusEvent;
+  tickets: MyTicketsTicket[];
+}
+
+export interface MyTicketsOrdersPage {
+  orders: MyTicketsOrder[];
+  pagination: { page: number; per_page: number; total: number; total_pages: number };
+}
+
+// ── Site forms (spec 62 §10.2) ──────────────────────────────────────────────
+
+export type ContactTopic = 'contact' | 'private_event';
+
+export interface OrganizerContactRequest {
+  topic: ContactTopic;
+  name: string;
+  last_name?: string;
+  email: string;
+  phone?: string;
+  message?: string;
+  consent: boolean;
+  locale: string;
+  turnstile_token: string;
+}
+
+export interface MarketingSubscriptionRequest {
+  email: string;
+  name?: string;
+  phone?: string;
+  locale: string;
+  consent: boolean;
+  text_version: string;
+  page_url?: string;
+  turnstile_token: string;
 }

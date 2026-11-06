@@ -2,7 +2,7 @@
  * General-admission cart rules shared by every site's purchase modal (spec 62
  * §5.1, §5.4). Pure functions; the modal only renders what they return.
  */
-import type { CheckoutStartRequest, FeedSession, FeedTier, GaItem } from './types.ts';
+import type { FeedSession, FeedTier, GaItem } from './types.ts';
 
 /** The modal never sells more than this many tickets in one order (WP: max 10). */
 export const MAX_TICKETS = 10;
@@ -97,7 +97,7 @@ export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function createAttemptKeys(newKey: () => string = defaultKey) {
   let current: { key: string; fingerprint: string } | null = null;
   return {
-    keyFor(body: CheckoutStartRequest): string {
+    keyFor(body: unknown): string {
       const fingerprint = JSON.stringify(body);
       if (!current || current.fingerprint !== fingerprint) current = { key: newKey(), fingerprint };
       return current.key;

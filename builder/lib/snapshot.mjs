@@ -47,7 +47,13 @@ export function contentHash(snapshot) {
     const id = mediaIdOf(s);
     return id ? `media:${id}` : s;
   });
-  return createHash('sha256').update(JSON.stringify(canonical(stable))).digest('hex');
+  // A removal changes the site (the address answers 410), so it counts; its time does not.
+  // Left out entirely when there is none, so a hash from before removals existed still matches.
+  const removed = (snapshot?.removed_events ?? [])
+    .map((r) => ({ id: r.id, status: r.status, slug: r.slug ?? null, n: r.display_number ?? null }))
+    .sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  const payload = removed.length ? { events: stable, removed } : stable;
+  return createHash('sha256').update(JSON.stringify(canonical(payload))).digest('hex');
 }
 
 /** Every platform media file the snapshot links to: [{ id, url }]. */
@@ -94,7 +100,13 @@ export function checkCompleteness(prev, next, { allowShrink = false } = {}) {
   const missing = prevCount - live.length;
   if (allowShrink) return { ok: true, reason: `${missing} event(s) fewer, allowed by the operator flag` };
   if (explicit >= missing) return { ok: true, reason: `${missing} event(s) taken down explicitly` };
-  return { ok: false, reason: `feed has ${live.length} event(s), the published build had ${prevCount}; no explicit take-down` };
+  // The platform lists the events that left the feed (`removed_events`): a shrink is fine
+  // when every event of the published build that is no longer listed is named there.
+  const liveIds = new Set(live.map((e) => e.id));
+  const removedIds = new Set((next?.removed_events ?? []).map((r) => r.id));
+  const unexplained = (prev?.events ?? []).filter((e) => !liveIds.has(e.id) && !removedIds.has(e.id));
+  if (unexplained.length === 0) return { ok: true, reason: `${missing} event(s) removed, named in removed_events` };
+  return { ok: false, reason: `feed has ${live.length} event(s), the published build had ${prevCount}; no explicit take-down for ${unexplained.length}` };
 }
 
 /** A session is over at its end, or 6 h after its start when the end is missing (§6.1). */

@@ -6,6 +6,7 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, unlinkSync, 
 import { join, resolve } from 'node:path';
 import { checkCompleteness, contentHash, mediaRefs, nextScheduledBuild, rewriteMedia } from './snapshot.mjs';
 import { health, readState, retryDelayMs, writeState } from './state.mjs';
+import { mergeRemoved } from '../../scripts/removed-events.mjs';
 import { syncMedia } from './media.mjs';
 import { changedPaths, currentRelease, pageHashes, pruneReleases, stageRelease, switchCurrent, verifyRelease } from './release.mjs';
 import { purgeCloudflare, purgeUrls } from './purge.mjs';
@@ -20,6 +21,7 @@ export const POLL_MS = 2 * 60_000;
  * @param {(snapshotPath: string) => Promise<string>} o.buildSite  builds, returns the dist folder
  * @param {(releaseDir: string) => Promise<void>} o.checkSite      the site's own checks against a release
  * @param {(snapshot: object) => string[]} o.eventPaths            pages that must exist for a snapshot
+ * @param {(snapshot: object) => string[]} [o.removedPaths]        addresses of removed events: no page, answer 410
  * @param {string} o.siteUrl
  */
 export function createBuilder(o) {
@@ -62,6 +64,9 @@ export function createBuilder(o) {
       save();
       return { changed: false, error: e };
     }
+    // Removals outlive the platform 30-day list: the registry in state.json keeps them.
+    state.removed = mergeRemoved(state.removed, snap);
+    snap = { ...snap, removed_events: state.removed };
     latest = snap;
     writeFileSync(join(snapDir, 'latest.json'), JSON.stringify(snap));
     state.last_successful_poll_at = iso();
@@ -119,7 +124,7 @@ export function createBuilder(o) {
       staged = stageRelease(dist, o.siteDir, mediaDir, files, o.releaseName?.());
       await o.checkSite(staged);
       const shrinking = Boolean(complete.reason);
-      const check = verifyRelease(staged, { eventPaths: o.eventPaths(snap), minPages: shrinking ? 0 : state.published_pages ?? 0 });
+      const check = verifyRelease(staged, { eventPaths: o.eventPaths(snap), removedPaths: o.removedPaths?.(snap) ?? [], minPages: shrinking ? 0 : state.published_pages ?? 0 });
       if (!check.ok) throw new Error(`release check failed: ${check.errors.slice(0, 10).join('; ')}`);
 
       const prev = currentRelease(o.siteDir);

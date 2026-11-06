@@ -28,7 +28,7 @@ describe('feed', () => {
     });
     const snap = await c.fetchSnapshot(2);
     expect(snap.events.map((e) => e.id)).toEqual(['a', 'b', 'c']);
-    expect(calls[0].url).toBe('https://api.test/v1/public/feeds/tok/events?page=1&per_page=2');
+    expect(calls[0].url).toBe('https://api.test/v1/public/feeds/tok/events?page=1&per_page=2&include_removed=true');
   });
 
   it('refuses an incomplete pass', async () => {

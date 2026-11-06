@@ -154,12 +154,19 @@ export function stageRelease(distDir, siteDir, mediaDir, mediaFiles, name = rele
  * every listed event has its page in each language, every media file the
  * pages link to is present, and the page count did not drop without reason.
  */
-export function verifyRelease(dir, { eventPaths = [], minPages = 0 } = {}) {
+export function verifyRelease(dir, { eventPaths = [], removedPaths = [], minPages = 0 } = {}) {
   const errors = [];
   const pages = pageCount(dir);
   if (pages < minPages) errors.push(`only ${pages} pages, the published release had ${minPages}`);
   for (const p of eventPaths) {
     if (!existsSync(join(dir, decodeURIComponent(p), 'index.html'))) errors.push(`missing event page ${p}`);
+  }
+  // A removed event has no page, and its address answers 410 when the release carries the nginx rules.
+  const rulesFile = join(dir, '.nginx', 'redirects.conf');
+  const rules = existsSync(rulesFile) ? readFileSync(rulesFile, 'utf8') : null;
+  for (const p of removedPaths) {
+    if (existsSync(join(dir, decodeURIComponent(p), 'index.html'))) errors.push(`removed event still has a page ${p}`);
+    else if (rules !== null && !rules.includes(`location = ${p} { return 410; }`)) errors.push(`removed event ${p} has no 410 rule`);
   }
   const media = new Set();
   const walk = (d) => {

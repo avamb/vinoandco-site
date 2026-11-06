@@ -24,6 +24,8 @@ export function emptyState() {
     consecutive_failures: 0,
     next_retry_at: null,
     last_purge: null,
+    // Events that left the feed (id, slug, status, removed_at): their pages answer 410 for good.
+    removed: [],
   };
 }
 
