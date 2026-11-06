@@ -14,7 +14,7 @@ const c = legalContent(lang, name);
 ---
 <Base lang={lang} title={c.title} description={c.description} alternates={pagePaths[name]}>
   <article class="vc-legal">
-    {c.h1 && <h1>{c.h1}</h1>}
+    {c.h1 ? <h1>{c.h1}</h1> : <h1 class="sr-only">{c.title.replace(/\s+[—–]\s+Vino&Co$/, '')}</h1>}
     <Fragment set:html={c.html} />
   </article>
 </Base>

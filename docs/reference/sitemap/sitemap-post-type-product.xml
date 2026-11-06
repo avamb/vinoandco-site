@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://vinoandco.events/wp-content/plugins/slim-seo/src/Sitemaps/style.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+	<url>
+		<loc>https://vinoandco.events/event/izrail-takie-raznye-krasnye/</loc>
+		<lastmod>2026-10-25T00:57:03+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/10/bil24-poster-3601-e85a5d6f57e8542461e55b57b1b6c32c.png</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/izrail-takie-raznye-krasnye/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/izrail-takie-raznye-krasnye/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/izrail-takie-raznye-belye/</loc>
+		<lastmod>2026-10-23T19:57:05+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/10/bil24-poster-3583-d88e8165f926e99b7b30c303c2fbeb9c.png</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/izrail-takie-raznye-belye/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/izrail-takie-raznye-belye/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/premera-vina-vpervye-v-beer-sheve/</loc>
+		<lastmod>2026-11-07T00:17:03+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/09/bil24-poster-3294-c6166b7b1471297b4964a790da1af3ed.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/premera-vina-vpervye-v-beer-sheve/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/premera-vina-vpervye-v-beer-sheve/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/premera-vina-v-tel-avive/</loc>
+		<lastmod>2026-11-07T00:17:03+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/09/bil24-poster-3277-4bb96d09715ac95e7a28c2809cd2896c.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/premera-vina-v-tel-avive/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/premera-vina-v-tel-avive/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/premera-vina-v-hajfe/</loc>
+		<lastmod>2026-10-09T01:57:03+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/10/bil24-poster-3047-1f210336f6abd944e155e42d916ac30d.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/premera-vina-v-hajfe/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/premera-vina-v-hajfe/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/vinnyj-kviz-na-kryshe/</loc>
+		<lastmod>2026-09-02T18:04:12+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/09/bil24-poster-3027-d20c3842ba9220eaacf56dd207de5c95.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vinnyj-kviz-na-kryshe/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vinnyj-kviz-na-kryshe/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/more-opera-vino-i-dzhaz-2/</loc>
+		<lastmod>2026-10-30T02:57:03+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/10/bil24-poster-3000-06035b83426c10d3ed8e84cd424b4023.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/more-opera-vino-i-dzhaz-2/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/more-opera-vino-i-dzhaz-2/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/enogastronomicheskij-uzhin-rimskaya-trapeza/</loc>
+		<lastmod>2026-10-18T01:57:02+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/09/bil24-poster-2888-af31370b7a289005539a6d13c6d5f4be.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/enogastronomicheskij-uzhin-rimskaya-trapeza/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/enogastronomicheskij-uzhin-rimskaya-trapeza/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/ejnat-klyajn-i-mark-tov-predstavlyayut-enogastronomicheskij-vecher-kak-pili-mushketyory/</loc>
+		<lastmod>2026-06-24T12:56:28+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/06/bil24-poster-2852-b6dae44c215b4e2fdf10306a380ba458.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ejnat-klyajn-i-mark-tov-predstavlyayut-enogastronomicheskij-vecher-kak-pili-mushketyory/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ejnat-klyajn-i-mark-tov-predstavlyayut-enogastronomicheskij-vecher-kak-pili-mushketyory/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/kuvshin-i-amfora-vinnyj-vecher-s-ejnat-klyajn/</loc>
+		<lastmod>2026-06-24T12:56:29+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/06/bil24-poster-2785-99226faeaca4eacdddff496efdc30f2e.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/kuvshin-i-amfora-vinnyj-vecher-s-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/kuvshin-i-amfora-vinnyj-vecher-s-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/vina-hudozhnikov-c-ejnat-klyajn/</loc>
+		<lastmod>2026-06-10T18:08:28+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/05/bil24-poster-2718-89ce552be5f0605a48c9463e49778d1e.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vina-hudozhnikov-c-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vina-hudozhnikov-c-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/vino-i-chaj-vstrecha-dvuh-mirov-v-muzee-rishon-le-cziona-2/</loc>
+		<lastmod>2026-06-10T18:08:27+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/05/bil24-poster-2710-bc8e579d98716e9f71c36711b9be43ce.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-i-chaj-vstrecha-dvuh-mirov-v-muzee-rishon-le-cziona-2/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-i-chaj-vstrecha-dvuh-mirov-v-muzee-rishon-le-cziona-2/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/%d7%a4%d7%a1%d7%98%d7%99%d7%91%d7%9c-%d7%99%d7%99%d7%9f-%d7%95%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94-%d7%91%d7%92%d7%9f-%d7%9c%d7%90%d7%95%d7%9e%d7%99-%d7%91%d7%99%d7%aa-%d7%92%d7%95%d7%91/</loc>
+		<lastmod>2026-05-29T10:54:28+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/05/bil24-poster-2507-cba5e80fa681dda6f73b4f480ea10b1e.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/phstybl-yy-wmwzykh-bg-lwmy-byth-gwbry/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/%d7%a4%d7%a1%d7%98%d7%99%d7%91%d7%9c-%d7%99%d7%99%d7%9f-%d7%95%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94-%d7%91%d7%92%d7%9f-%d7%9c%d7%90%d7%95%d7%9e%d7%99-%d7%91%d7%99%d7%aa-%d7%92%d7%95%d7%91/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/%d7%a4%d7%a1%d7%98%d7%99%d7%91%d7%9c-%d7%99%d7%99%d7%9f-%d7%95%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94-%d7%91%d7%92%d7%9f-%d7%9c%d7%90%d7%95%d7%9e%d7%99-%d7%91%d7%99%d7%aa-%d7%92%d7%95%d7%91/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/phstybl-yy-wmwzykh-bg-lwmy-byth-gwbry/</loc>
+		<lastmod>2026-05-29T07:54:24+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/phstybl-yy-wmwzykh-bg-lwmy-byth-gwbry/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/%d7%a4%d7%a1%d7%98%d7%99%d7%91%d7%9c-%d7%99%d7%99%d7%9f-%d7%95%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94-%d7%91%d7%92%d7%9f-%d7%9c%d7%90%d7%95%d7%9e%d7%99-%d7%91%d7%99%d7%aa-%d7%92%d7%95%d7%91/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/%d7%a4%d7%a1%d7%98%d7%99%d7%91%d7%9c-%d7%99%d7%99%d7%9f-%d7%95%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94-%d7%91%d7%92%d7%9f-%d7%9c%d7%90%d7%95%d7%9e%d7%99-%d7%91%d7%99%d7%aa-%d7%92%d7%95%d7%91/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/belyj-vecher-na-shavuot-s-ejnat-klyajn/</loc>
+		<lastmod>2026-05-23T13:37:38+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/04/bil24-poster-2359-c094bd66fe4daf18f4913844a4e9a63a.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/belyj-vecher-na-shavuot-s-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/belyj-vecher-na-shavuot-s-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/festival-muzyki-i-vina-v-naczionalnom-parke-bejt-guvrin/</loc>
+		<lastmod>2026-05-29T10:52:39+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2026/05/bil24-poster-2310-003f26adc38166308cdc766ed4b9ac92.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/festival-muzyki-i-vina-v-naczionalnom-parke-bejt-guvrin/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/festival-muzyki-i-vina-v-naczionalnom-parke-bejt-guvrin/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/ejnat-i-andrej-sobirayut-druzej-v-hajfe/</loc>
+		<lastmod>2026-01-29T21:26:19+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/12/friends-soldout_site-big_640x670.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/einat-and-andrey-gather-friends-in-haifa/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/ynth-wndryy-mkhnsy-xbry-bxyphh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ejnat-i-andrej-sobirayut-druzej-v-hajfe/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ejnat-i-andrej-sobirayut-druzej-v-hajfe/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/einat-and-andrey-gather-friends-in-haifa/</loc>
+		<lastmod>2025-12-20T13:16:53+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/einat-and-andrey-gather-friends-in-haifa/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/ynth-wndryy-mkhnsy-xbry-bxyphh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ejnat-i-andrej-sobirayut-druzej-v-hajfe/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ejnat-i-andrej-sobirayut-druzej-v-hajfe/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/ynth-wndryy-mkhnsy-xbry-bxyphh/</loc>
+		<lastmod>2025-12-20T13:16:53+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/einat-and-andrey-gather-friends-in-haifa/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/ynth-wndryy-mkhnsy-xbry-bxyphh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ejnat-i-andrej-sobirayut-druzej-v-hajfe/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ejnat-i-andrej-sobirayut-druzej-v-hajfe/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe/</loc>
+		<lastmod>2025-12-19T16:06:36+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/12/bil24-poster-1458-65d5e4940c882642fda995df120fef93.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-as-a-miracle-a-hanukkah-tasting-with-the-best-view-in-haifa/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yy-khns-tymth-xnwkhh-hnw-htwb-bywthr-bxyphh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/wine-as-a-miracle-a-hanukkah-tasting-with-the-best-view-in-haifa/</loc>
+		<lastmod>2025-12-07T20:22:14+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-as-a-miracle-a-hanukkah-tasting-with-the-best-view-in-haifa/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yy-khns-tymth-xnwkhh-hnw-htwb-bywthr-bxyphh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/yy-khns-tymth-xnwkhh-hnw-htwb-bywthr-bxyphh/</loc>
+		<lastmod>2025-12-07T20:22:14+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-as-a-miracle-a-hanukkah-tasting-with-the-best-view-in-haifa/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yy-khns-tymth-xnwkhh-hnw-htwb-bywthr-bxyphh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/new-wines-party-v-tel-avive/</loc>
+		<lastmod>2025-12-06T18:35:18+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-892-19156d3a65f11f1804bf6f580ba32ac6.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/new-wines-party-in-tel-aviv/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/msybth-yynwth-xdshy-bthl-byb/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/new-wines-party-v-tel-avive/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/new-wines-party-v-tel-avive/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/new-wines-party-in-tel-aviv/</loc>
+		<lastmod>2025-11-13T14:40:32+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/new-wines-party-in-tel-aviv/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/msybth-yynwth-xdshy-bthl-byb/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/new-wines-party-v-tel-avive/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/new-wines-party-v-tel-avive/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/msybth-yynwth-xdshy-bthl-byb/</loc>
+		<lastmod>2025-11-13T14:40:32+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/new-wines-party-in-tel-aviv/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/msybth-yynwth-xdshy-bthl-byb/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/new-wines-party-v-tel-avive/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/new-wines-party-v-tel-avive/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj/</loc>
+		<lastmod>2025-12-02T17:04:24+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-889-2ebde4e16425a71b439c23875df84800.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-in-arab-traditions-with-dr-dina-lisnyanskaya/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yy-bmswrwth-hrbywth-dr-dynh-lysnynsky/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/wine-in-arab-traditions-with-dr-dina-lisnyanskaya/</loc>
+		<lastmod>2025-11-13T14:40:31+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-in-arab-traditions-with-dr-dina-lisnyanskaya/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yy-bmswrwth-hrbywth-dr-dynh-lysnynsky/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/yy-bmswrwth-hrbywth-dr-dynh-lysnynsky/</loc>
+		<lastmod>2025-11-13T14:40:31+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-in-arab-traditions-with-dr-dina-lisnyanskaya/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yy-bmswrwth-hrbywth-dr-dynh-lysnynsky/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/prednovogodnyaya-vecherinka-beatsbubbles-v-netanii/</loc>
+		<lastmod>2025-12-28T18:50:34+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-885-9d390fd7a64eee98d19dc21bdbc245b0.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/pre-new-year-beatsbubbles-party-in-netanya/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/msybth-beatsbubbles-lkrth-hshnh-hxdshh-bnthnyh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/prednovogodnyaya-vecherinka-beatsbubbles-v-netanii/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/prednovogodnyaya-vecherinka-beatsbubbles-v-netanii/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/pre-new-year-beatsbubbles-party-in-netanya/</loc>
+		<lastmod>2025-11-13T14:27:55+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/pre-new-year-beatsbubbles-party-in-netanya/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/msybth-beatsbubbles-lkrth-hshnh-hxdshh-bnthnyh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/prednovogodnyaya-vecherinka-beatsbubbles-v-netanii/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/prednovogodnyaya-vecherinka-beatsbubbles-v-netanii/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/msybth-beatsbubbles-lkrth-hshnh-hxdshh-bnthnyh/</loc>
+		<lastmod>2025-11-13T14:27:55+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/pre-new-year-beatsbubbles-party-in-netanya/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/msybth-beatsbubbles-lkrth-hshnh-hxdshh-bnthnyh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/prednovogodnyaya-vecherinka-beatsbubbles-v-netanii/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/prednovogodnyaya-vecherinka-beatsbubbles-v-netanii/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/new-wines-party-v-ierusalime/</loc>
+		<lastmod>2025-11-28T21:54:34+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-863-860a5a96ddced49b0ed06d2e8df85788.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/new-wines-party-in-jerusalem/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/msybth-yynwth-xdshy-byrwshly/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/new-wines-party-v-ierusalime/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/new-wines-party-v-ierusalime/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/new-wines-party-in-jerusalem/</loc>
+		<lastmod>2025-11-01T14:37:21+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/new-wines-party-in-jerusalem/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/msybth-yynwth-xdshy-byrwshly/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/new-wines-party-v-ierusalime/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/new-wines-party-v-ierusalime/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/msybth-yynwth-xdshy-byrwshly/</loc>
+		<lastmod>2025-11-01T14:37:21+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/new-wines-party-in-jerusalem/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/msybth-yynwth-xdshy-byrwshly/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/new-wines-party-v-ierusalime/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/new-wines-party-v-ierusalime/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/vino-v-iudaizme-s-ejnat-klyajn/</loc>
+		<lastmod>2025-11-17T14:56:17+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-860-70cd98937e81e1450148bb0310c12877.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-in-judaism-with-einat-klein/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yy-byhdwth-ynth-klyy/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-v-iudaizme-s-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-v-iudaizme-s-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/wine-in-judaism-with-einat-klein/</loc>
+		<lastmod>2025-11-01T14:37:21+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-in-judaism-with-einat-klein/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yy-byhdwth-ynth-klyy/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-v-iudaizme-s-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-v-iudaizme-s-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/yy-byhdwth-ynth-klyy/</loc>
+		<lastmod>2025-11-01T14:37:21+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-in-judaism-with-einat-klein/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yy-byhdwth-ynth-klyy/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vino-v-iudaizme-s-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vino-v-iudaizme-s-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/soiree-botanique-ot-shef-povara-aviva-elbo-v-shavuot/</loc>
+		<lastmod>2025-10-12T20:44:12+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/forest_2000x1161_site.webp</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/botanical-soiree-by-chef-aviv-elbo-in-shavuot/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/soiree-botanique-shl-hsh-byb-lbw-bshbwwth/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/soiree-botanique-ot-shef-povara-aviva-elbo-v-shavuot/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/soiree-botanique-ot-shef-povara-aviva-elbo-v-shavuot/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/botanical-soiree-by-chef-aviv-elbo-in-shavuot/</loc>
+		<lastmod>2025-10-12T17:44:10+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/botanical-soiree-by-chef-aviv-elbo-in-shavuot/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/soiree-botanique-shl-hsh-byb-lbw-bshbwwth/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/soiree-botanique-ot-shef-povara-aviva-elbo-v-shavuot/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/soiree-botanique-ot-shef-povara-aviva-elbo-v-shavuot/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/soiree-botanique-shl-hsh-byb-lbw-bshbwwth/</loc>
+		<lastmod>2025-10-12T17:44:10+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/botanical-soiree-by-chef-aviv-elbo-in-shavuot/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/soiree-botanique-shl-hsh-byb-lbw-bshbwwth/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/soiree-botanique-ot-shef-povara-aviva-elbo-v-shavuot/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/soiree-botanique-ot-shef-povara-aviva-elbo-v-shavuot/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/starejshie-vinodelni-izrailya-vinnoe-puteshestvie-vo-vremeni/</loc>
+		<lastmod>2025-10-12T20:44:09+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/3610_2095site-scaled-1.webp</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/israels-oldest-wineries-a-wine-journey-through-time/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/ykby-yshrl-hthyky-bywthr-ms-yy-bzm/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/starejshie-vinodelni-izrailya-vinnoe-puteshestvie-vo-vremeni/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/starejshie-vinodelni-izrailya-vinnoe-puteshestvie-vo-vremeni/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/israels-oldest-wineries-a-wine-journey-through-time/</loc>
+		<lastmod>2025-10-12T17:44:07+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/israels-oldest-wineries-a-wine-journey-through-time/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/ykby-yshrl-hthyky-bywthr-ms-yy-bzm/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/starejshie-vinodelni-izrailya-vinnoe-puteshestvie-vo-vremeni/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/starejshie-vinodelni-izrailya-vinnoe-puteshestvie-vo-vremeni/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/ykby-yshrl-hthyky-bywthr-ms-yy-bzm/</loc>
+		<lastmod>2025-10-12T17:44:07+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/israels-oldest-wineries-a-wine-journey-through-time/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/ykby-yshrl-hthyky-bywthr-ms-yy-bzm/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/starejshie-vinodelni-izrailya-vinnoe-puteshestvie-vo-vremeni/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/starejshie-vinodelni-izrailya-vinnoe-puteshestvie-vo-vremeni/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt/</loc>
+		<lastmod>2025-10-12T20:44:05+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/site.webp</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/negev-desert-wines-a-tasting-of-wines-that-shouldnt-exist/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yynwth-mdbr-hngb-tymth-yynwth-shl-hyw-mwry-lhywth/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/negev-desert-wines-a-tasting-of-wines-that-shouldnt-exist/</loc>
+		<lastmod>2025-10-12T17:44:03+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/negev-desert-wines-a-tasting-of-wines-that-shouldnt-exist/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yynwth-mdbr-hngb-tymth-yynwth-shl-hyw-mwry-lhywth/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/yynwth-mdbr-hngb-tymth-yynwth-shl-hyw-mwry-lhywth/</loc>
+		<lastmod>2025-10-12T17:44:03+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/negev-desert-wines-a-tasting-of-wines-that-shouldnt-exist/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/yynwth-mdbr-hngb-tymth-yynwth-shl-hyw-mwry-lhywth/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/uzhin-posle-novogo-goda-s-andreem-makarevichem-i-ejnat-klyajn/</loc>
+		<lastmod>2025-10-12T20:44:02+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/vino_co_03_01_site01.webp</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/new-years-dinner-with-andrey-makarevich-and-einat-klein/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/rwxth-rb-xry-rsh-hshnh-ndryy-mkrby-wynth-klyy/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/uzhin-posle-novogo-goda-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/uzhin-posle-novogo-goda-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/new-years-dinner-with-andrey-makarevich-and-einat-klein/</loc>
+		<lastmod>2025-10-12T17:43:59+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/new-years-dinner-with-andrey-makarevich-and-einat-klein/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/rwxth-rb-xry-rsh-hshnh-ndryy-mkrby-wynth-klyy/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/uzhin-posle-novogo-goda-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/uzhin-posle-novogo-goda-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/rwxth-rb-xry-rsh-hshnh-ndryy-mkrby-wynth-klyy/</loc>
+		<lastmod>2025-10-12T17:43:59+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/new-years-dinner-with-andrey-makarevich-and-einat-klein/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/rwxth-rb-xry-rsh-hshnh-ndryy-mkrby-wynth-klyy/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/uzhin-posle-novogo-goda-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/uzhin-posle-novogo-goda-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/andrej-makarevich-i-einat-klein-priglashayut-vas-v-nyu-jork/</loc>
+		<lastmod>2025-10-12T20:43:55+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/einatwinery_800x800_b48f90d8-6a51-4b93-9e7d-aab0f27b984a.webp</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/andrey-makarevich-and-einat-klein-invite-you-to-new-york/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/ndry-mkrby-wynth-klyy-mzmyny-thkh-lnyw-ywrk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/andrej-makarevich-i-einat-klein-priglashayut-vas-v-nyu-jork/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/andrej-makarevich-i-einat-klein-priglashayut-vas-v-nyu-jork/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/andrey-makarevich-and-einat-klein-invite-you-to-new-york/</loc>
+		<lastmod>2025-10-12T17:43:53+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/andrey-makarevich-and-einat-klein-invite-you-to-new-york/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/ndry-mkrby-wynth-klyy-mzmyny-thkh-lnyw-ywrk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/andrej-makarevich-i-einat-klein-priglashayut-vas-v-nyu-jork/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/andrej-makarevich-i-einat-klein-priglashayut-vas-v-nyu-jork/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/ndry-mkrby-wynth-klyy-mzmyny-thkh-lnyw-ywrk/</loc>
+		<lastmod>2025-10-12T17:43:53+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/andrey-makarevich-and-einat-klein-invite-you-to-new-york/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/ndry-mkrby-wynth-klyy-mzmyny-thkh-lnyw-ywrk/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/andrej-makarevich-i-einat-klein-priglashayut-vas-v-nyu-jork/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/andrej-makarevich-i-einat-klein-priglashayut-vas-v-nyu-jork/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/ashdod-andrej-makarevich-i-ejnat-klyajn-predstavlyayut-novoe-vino/</loc>
+		<lastmod>2025-10-12T20:43:52+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/301267409_10160465759489090_2514220844593348999_n_1_7a986167-29b9-4bcf-a8df-d226d1a83282.webp</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/ashdod-andrei-makarevich-and-einat-klein-present-a-new-wine/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/shdwd-ndryy-mkrby-wynth-klyy-msygy-yy-xdsh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ashdod-andrej-makarevich-i-ejnat-klyajn-predstavlyayut-novoe-vino/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ashdod-andrej-makarevich-i-ejnat-klyajn-predstavlyayut-novoe-vino/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/ashdod-andrei-makarevich-and-einat-klein-present-a-new-wine/</loc>
+		<lastmod>2025-10-12T17:43:50+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/ashdod-andrei-makarevich-and-einat-klein-present-a-new-wine/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/shdwd-ndryy-mkrby-wynth-klyy-msygy-yy-xdsh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ashdod-andrej-makarevich-i-ejnat-klyajn-predstavlyayut-novoe-vino/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ashdod-andrej-makarevich-i-ejnat-klyajn-predstavlyayut-novoe-vino/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/shdwd-ndryy-mkrby-wynth-klyy-msygy-yy-xdsh/</loc>
+		<lastmod>2025-10-12T17:43:50+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/ashdod-andrei-makarevich-and-einat-klein-present-a-new-wine/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/shdwd-ndryy-mkrby-wynth-klyy-msygy-yy-xdsh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ashdod-andrej-makarevich-i-ejnat-klyajn-predstavlyayut-novoe-vino/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ashdod-andrej-makarevich-i-ejnat-klyajn-predstavlyayut-novoe-vino/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/ne-novyj-god-andrej-makarevich-i-ejnat-klyajn-gotovyat-vmeste-s-vami/</loc>
+		<lastmod>2025-10-12T20:43:48+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/cover2smak.webp</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/not-new-years-andrey-makarevich-and-einat-klein-cook-with-you/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/l-rsh-hshnh-ndryy-mkrby-wynth-klyy-mbshly-yxd-ythkh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ne-novyj-god-andrej-makarevich-i-ejnat-klyajn-gotovyat-vmeste-s-vami/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ne-novyj-god-andrej-makarevich-i-ejnat-klyajn-gotovyat-vmeste-s-vami/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/not-new-years-andrey-makarevich-and-einat-klein-cook-with-you/</loc>
+		<lastmod>2025-10-12T17:43:46+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/not-new-years-andrey-makarevich-and-einat-klein-cook-with-you/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/l-rsh-hshnh-ndryy-mkrby-wynth-klyy-mbshly-yxd-ythkh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ne-novyj-god-andrej-makarevich-i-ejnat-klyajn-gotovyat-vmeste-s-vami/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ne-novyj-god-andrej-makarevich-i-ejnat-klyajn-gotovyat-vmeste-s-vami/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/l-rsh-hshnh-ndryy-mkrby-wynth-klyy-mbshly-yxd-ythkh/</loc>
+		<lastmod>2025-10-12T17:43:46+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/not-new-years-andrey-makarevich-and-einat-klein-cook-with-you/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/l-rsh-hshnh-ndryy-mkrby-wynth-klyy-mbshly-yxd-ythkh/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/ne-novyj-god-andrej-makarevich-i-ejnat-klyajn-gotovyat-vmeste-s-vami/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/ne-novyj-god-andrej-makarevich-i-ejnat-klyajn-gotovyat-vmeste-s-vami/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/pobedit-somnenij-net-svet-tel-aviv/</loc>
+		<lastmod>2025-10-12T20:43:45+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/472a62a5-fc3b-4fb5-2b5e0-c5be15355e1a.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/light-will-win-no-doubt-tel-aviv/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/hwr-ynsx-y-sphk-thl-byb/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/pobedit-somnenij-net-svet-tel-aviv/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/pobedit-somnenij-net-svet-tel-aviv/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/light-will-win-no-doubt-tel-aviv/</loc>
+		<lastmod>2025-10-12T17:43:43+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/light-will-win-no-doubt-tel-aviv/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/hwr-ynsx-y-sphk-thl-byb/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/pobedit-somnenij-net-svet-tel-aviv/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/pobedit-somnenij-net-svet-tel-aviv/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/hwr-ynsx-y-sphk-thl-byb/</loc>
+		<lastmod>2025-10-12T17:43:43+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/light-will-win-no-doubt-tel-aviv/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/hwr-ynsx-y-sphk-thl-byb/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/pobedit-somnenij-net-svet-tel-aviv/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/pobedit-somnenij-net-svet-tel-aviv/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/</loc>
+		<lastmod>2025-10-12T20:43:39+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/6101c8a0-95cb-47ee-88aa-84bbaeecb84d.jpg</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/a-non-wine-story-from-the-cup-of-prophets-to-your-glass/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/syphwr-l-thmy-mgby-hnbyy-lkhws-shl/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/a-non-wine-story-from-the-cup-of-prophets-to-your-glass/</loc>
+		<lastmod>2025-10-12T17:43:37+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/a-non-wine-story-from-the-cup-of-prophets-to-your-glass/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/syphwr-l-thmy-mgby-hnbyy-lkhws-shl/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/syphwr-l-thmy-mgby-hnbyy-lkhws-shl/</loc>
+		<lastmod>2025-10-12T17:43:37+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/a-non-wine-story-from-the-cup-of-prophets-to-your-glass/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/syphwr-l-thmy-mgby-hnbyy-lkhws-shl/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/</loc>
+		<lastmod>2025-10-12T20:43:36+03:00</lastmod>
+		<image:image>
+			<image:loc>https://vinoandco.events/wp-content/uploads/2025/10/77a8b99a-d1fe-4608-bb86-3f1bd0e1815e.webp</image:loc>
+		</image:image>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-premiere-with-andrey-makarevich-and-einat-klein/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/bkhwrh-shl-yy-ndryy-mkrby-wynth-klyy/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/en/event/wine-premiere-with-andrey-makarevich-and-einat-klein/</loc>
+		<lastmod>2025-10-12T17:43:33+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-premiere-with-andrey-makarevich-and-einat-klein/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/bkhwrh-shl-yy-ndryy-mkrby-wynth-klyy/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+	</url>
+	<url>
+		<loc>https://vinoandco.events/he/event/bkhwrh-shl-yy-ndryy-mkrby-wynth-klyy/</loc>
+		<lastmod>2025-10-12T17:43:33+00:00</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="https://vinoandco.events/en/event/wine-premiere-with-andrey-makarevich-and-einat-klein/"/>
+		<xhtml:link rel="alternate" hreflang="he" href="https://vinoandco.events/he/event/bkhwrh-shl-yy-ndryy-mkrby-wynth-klyy/"/>
+		<xhtml:link rel="alternate" hreflang="ru" href="https://vinoandco.events/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="https://vinoandco.events/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/"/>
+	</url>
+</urlset>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://vinoandco.events/wp-content/plugins/slim-seo/src/Sitemaps/style.xsl"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<sitemap>
+		<loc>https://vinoandco.events/sitemap-post-type-page.xml</loc>
+	</sitemap>
+	<sitemap>
+		<loc>https://vinoandco.events/sitemap-post-type-product.xml</loc>
+	</sitemap>
+	<sitemap>
+		<loc>https://vinoandco.events/sitemap-taxonomy-product_cat.xml</loc>
+	</sitemap>
+	<sitemap>
+		<loc>https://vinoandco.events/sitemap-taxonomy-product_tag.xml</loc>
+	</sitemap>
+</sitemapindex>

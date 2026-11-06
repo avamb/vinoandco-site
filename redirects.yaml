@@ -1,0 +1,191 @@
+# Every address of the WordPress site and what the new site answers for it
+# (spec 62 §4). The redirect check (npm run check:redirects) compares the built
+# site with this file; it does not demand "no 404 anywhere", it demands the
+# expected code for every listed address.
+#
+#   from   old path (exact match; a trailing /* means "this prefix")
+#   code   200 = page exists in the new site, 301 = redirect to `to`, 410 = gone
+#   to     target of a 301 (site path)
+#   note   why
+#
+# Source of the list: the WordPress sitemaps saved in docs/reference/sitemap/
+# (Slim SEO, 2026-11-06). Query strings (?p=<id>, ?add-to-cart=…) are handled by
+# nginx rules generated from this file, not listed one by one.
+#
+# Transition period (spec 62 §4.1, §14.2): requests to /payment-successful/ and
+# /my-account/ (all languages) that carry OLD order parameters (order_id,
+# order_key, WP password-reset links) are routed to WordPress by Traefik, not
+# by this site. Everything else on those paths gets the 301 below. After
+# WordPress is stopped the 301 applies always.
+
+pages:
+  # Same address, same page (code 200).
+  - { from: /, code: 200 }
+  - { from: /en/, code: 200 }
+  - { from: /he/, code: 200 }
+  - { from: /upcoming-events/, code: 200 }
+  - { from: /en/upcoming-events/, code: 200 }
+  - { from: /he/yrwy-krwby/, code: 200 }
+  - { from: /past-events/, code: 200 }
+  - { from: /en/past-events/, code: 200 }
+  - { from: /he/yrwy-kwdmy/, code: 200 }
+  - { from: /private-events/, code: 200 }
+  - { from: /en/private-events/, code: 200 }
+  - { from: /he/yrwy-phrtyy/, code: 200 }
+  - { from: /about-us/, code: 200 }
+  - { from: /en/about-us/, code: 200 }
+  - { from: /he/wdwthynw/, code: 200 }
+  - { from: /contact-us/, code: 200 }
+  - { from: /en/contact-us/, code: 200 }
+  - { from: /he/swr-kshr/, code: 200 }
+  - { from: /terms-conditions/, code: 200 }
+  - { from: /en/terms-conditions/, code: 200 }
+  - { from: /he/thny-whgblwth/, code: 200 }
+  - { from: /privacy-policy/, code: 200 }
+  - { from: /en/privacy-policy/, code: 200 }
+  - { from: /he/mdynywth-phrtywth/, code: 200 }
+  - { from: /refund_returns/, code: 200 }
+  - { from: /en/return-policy/, code: 200 }
+  - { from: /he/mdynywth-hxzrwth/, code: 200 }
+  - { from: /sitemap.xml, code: 200 }
+  - { from: /robots.txt, code: 200 }
+
+redirects:
+  # Personal pages moved to new paths (spec 62 §4.1).
+  - { from: /payment-successful/, code: 301, to: /order-status/, note: "WooCommerce thank-you page" }
+  - { from: /en/payment-successful/, code: 301, to: /en/order-status/ }
+  - { from: /he/hthshlw-hslyx/, code: 301, to: /he/order-status/ }
+  - { from: /my-account/, code: 301, to: /my-tickets/, note: "WooCommerce account -> My tickets by link (Р-9)" }
+  - { from: /en/my-account/, code: 301, to: /en/my-tickets/ }
+  - { from: /he/hxshbw-shly/, code: 301, to: /he/my-tickets/ }
+  # WordPress leftovers: carts, checkouts and shop go to upcoming events,
+  # test pages to the home page, the stray Russian page with a Hebrew slug to past events.
+  - { from: /cart/, code: 301, to: /upcoming-events/ }
+  - { from: /en/cart/, code: 301, to: /en/upcoming-events/ }
+  - { from: /he/sl-knywth/, code: 301, to: /he/yrwy-krwby/ }
+  - { from: /cart-2/, code: 301, to: /upcoming-events/ }
+  - { from: /en/cart-2/, code: 301, to: /en/upcoming-events/ }
+  - { from: /he/sl-knywth-2/, code: 301, to: /he/yrwy-krwby/ }
+  - { from: /cart-3/, code: 301, to: /upcoming-events/ }
+  - { from: /sl-knywth-3-2/, code: 301, to: /upcoming-events/ }
+  - { from: /basket/, code: 301, to: /upcoming-events/ }
+  - { from: /en/basket/, code: 301, to: /en/upcoming-events/ }
+  - { from: /he/sl-knywth-3/, code: 301, to: /he/yrwy-krwby/ }
+  - { from: /basket-2/, code: 301, to: /upcoming-events/ }
+  - { from: /checkout/, code: 301, to: /upcoming-events/ }
+  - { from: /en/checkout/, code: 301, to: /en/upcoming-events/ }
+  - { from: /he/hshlmth-hzmnh/, code: 301, to: /he/yrwy-krwby/ }
+  - { from: /checkout-2/, code: 301, to: /upcoming-events/ }
+  - { from: /check-out/, code: 301, to: /upcoming-events/ }
+  - { from: /en/check-out/, code: 301, to: /en/upcoming-events/ }
+  - { from: /he/thshlw/, code: 301, to: /he/yrwy-krwby/ }
+  - { from: /shop/, code: 301, to: /upcoming-events/ }
+  - { from: /en/shop/, code: 301, to: /en/upcoming-events/ }
+  - { from: /he/xnwth/, code: 301, to: /he/yrwy-krwby/ }
+  - { from: /loop-test/, code: 301, to: / }
+  - { from: /en/loop-test/, code: 301, to: /en/ }
+  - { from: /he/bdykth-lwlh/, code: 301, to: /he/ }
+  - { from: /yrwy-kwdmy/, code: 301, to: /past-events/ }
+  # Product tags and categories go to the matching list.
+  - { from: "/product-tag/upcoming/", code: 301, to: /upcoming-events/ }
+  - { from: "/en/product-tag/upcoming/", code: 301, to: /en/upcoming-events/ }
+  - { from: "/he/product-tag/krwb/", code: 301, to: /he/yrwy-krwby/ }
+  - { from: "/product-tag/past/", code: 301, to: /past-events/ }
+  - { from: "/en/product-tag/past/", code: 301, to: /en/past-events/ }
+  - { from: "/he/product-tag/past/", code: 301, to: /he/yrwy-kwdmy/ }
+  - { from: "/product-tag/*", code: 301, to: /upcoming-events/ }
+  - { from: "/en/product-tag/*", code: 301, to: /en/upcoming-events/ }
+  - { from: "/he/product-tag/*", code: 301, to: /he/yrwy-krwby/ }
+  - { from: "/product-category/*", code: 301, to: /upcoming-events/ }
+  - { from: "/en/product-category/*", code: 301, to: /en/upcoming-events/ }
+  - { from: "/he/product-category/*", code: 301, to: /he/yrwy-krwby/ }
+
+gone:
+  # WordPress internals: answer 410, never the 404 page.
+  - { from: "/wp-admin/*", code: 410 }
+  - { from: /wp-login.php, code: 410 }
+  - { from: /xmlrpc.php, code: 410 }
+  - { from: "/wp-json/*", code: 410 }
+  - { from: /wp-sitemap.xml, code: 410, note: "answered 404 on WordPress too" }
+  - { from: "/sitemap-*.xml", code: 410, note: "Slim SEO sub-sitemaps; /sitemap.xml is rebuilt" }
+  - { from: "/feed/*", code: 410 }
+  # Uploads: event posters get a 301 to the new image address once the builder
+  # has downloaded them (list generated from the WP export); everything else is gone.
+  - { from: "/wp-content/*", code: 410 }
+  - { from: "/wp-includes/*", code: 410 }
+
+events:
+  # WordPress event (product) pages, one product = one session (spec 62 §4).
+  # Each gets either code 200 (the platform event has the same slug), or a 301 to
+  # /event/<platform slug>/?session=<id>, or — for the 27 Bil24-era products that
+  # are not on the platform — a 301 to the past-events list or a static page.
+  # The table "WP slug -> platform event and session" is built once from the
+  # WordPress database (_bil24_action_id / _lops_arena_* meta). Until then every
+  # entry is `pending` and the check reports it without failing.
+  - { from: "/event/izrail-takie-raznye-krasnye/", code: pending }
+  - { from: "/event/izrail-takie-raznye-belye/", code: pending }
+  - { from: "/event/premera-vina-vpervye-v-beer-sheve/", code: pending }
+  - { from: "/event/premera-vina-v-tel-avive/", code: pending }
+  - { from: "/event/premera-vina-v-hajfe/", code: pending }
+  - { from: "/event/vinnyj-kviz-na-kryshe/", code: pending }
+  - { from: "/event/more-opera-vino-i-dzhaz-2/", code: pending }
+  - { from: "/event/enogastronomicheskij-uzhin-rimskaya-trapeza/", code: pending }
+  - { from: "/event/ejnat-klyajn-i-mark-tov-predstavlyayut-enogastronomicheskij-vecher-kak-pili-mushketyory/", code: pending }
+  - { from: "/event/kuvshin-i-amfora-vinnyj-vecher-s-ejnat-klyajn/", code: pending }
+  - { from: "/event/vina-hudozhnikov-c-ejnat-klyajn/", code: pending }
+  - { from: "/event/vino-i-chaj-vstrecha-dvuh-mirov-v-muzee-rishon-le-cziona-2/", code: pending }
+  - { from: "/event/%d7%a4%d7%a1%d7%98%d7%99%d7%91%d7%9c-%d7%99%d7%99%d7%9f-%d7%95%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94-%d7%91%d7%92%d7%9f-%d7%9c%d7%90%d7%95%d7%9e%d7%99-%d7%91%d7%99%d7%aa-%d7%92%d7%95%d7%91/", code: pending }
+  - { from: "/he/event/phstybl-yy-wmwzykh-bg-lwmy-byth-gwbry/", code: pending }
+  - { from: "/event/belyj-vecher-na-shavuot-s-ejnat-klyajn/", code: pending }
+  - { from: "/event/festival-muzyki-i-vina-v-naczionalnom-parke-bejt-guvrin/", code: pending }
+  - { from: "/event/ejnat-i-andrej-sobirayut-druzej-v-hajfe/", code: pending }
+  - { from: "/en/event/einat-and-andrey-gather-friends-in-haifa/", code: pending }
+  - { from: "/he/event/ynth-wndryy-mkhnsy-xbry-bxyphh/", code: pending }
+  - { from: "/event/vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe/", code: pending }
+  - { from: "/en/event/wine-as-a-miracle-a-hanukkah-tasting-with-the-best-view-in-haifa/", code: pending }
+  - { from: "/he/event/yy-khns-tymth-xnwkhh-hnw-htwb-bywthr-bxyphh/", code: pending }
+  - { from: "/event/new-wines-party-v-tel-avive/", code: pending }
+  - { from: "/en/event/new-wines-party-in-tel-aviv/", code: pending }
+  - { from: "/he/event/msybth-yynwth-xdshy-bthl-byb/", code: pending }
+  - { from: "/event/vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj/", code: pending }
+  - { from: "/en/event/wine-in-arab-traditions-with-dr-dina-lisnyanskaya/", code: pending }
+  - { from: "/he/event/yy-bmswrwth-hrbywth-dr-dynh-lysnynsky/", code: pending }
+  - { from: "/event/prednovogodnyaya-vecherinka-beatsbubbles-v-netanii/", code: pending }
+  - { from: "/en/event/pre-new-year-beatsbubbles-party-in-netanya/", code: pending }
+  - { from: "/he/event/msybth-beatsbubbles-lkrth-hshnh-hxdshh-bnthnyh/", code: pending }
+  - { from: "/event/new-wines-party-v-ierusalime/", code: pending }
+  - { from: "/en/event/new-wines-party-in-jerusalem/", code: pending }
+  - { from: "/he/event/msybth-yynwth-xdshy-byrwshly/", code: pending }
+  - { from: "/event/vino-v-iudaizme-s-ejnat-klyajn/", code: pending }
+  - { from: "/en/event/wine-in-judaism-with-einat-klein/", code: pending }
+  - { from: "/he/event/yy-byhdwth-ynth-klyy/", code: pending }
+  - { from: "/event/soiree-botanique-ot-shef-povara-aviva-elbo-v-shavuot/", code: pending }
+  - { from: "/en/event/botanical-soiree-by-chef-aviv-elbo-in-shavuot/", code: pending }
+  - { from: "/he/event/soiree-botanique-shl-hsh-byb-lbw-bshbwwth/", code: pending }
+  - { from: "/event/starejshie-vinodelni-izrailya-vinnoe-puteshestvie-vo-vremeni/", code: pending }
+  - { from: "/en/event/israels-oldest-wineries-a-wine-journey-through-time/", code: pending }
+  - { from: "/he/event/ykby-yshrl-hthyky-bywthr-ms-yy-bzm/", code: pending }
+  - { from: "/event/vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt/", code: pending }
+  - { from: "/en/event/negev-desert-wines-a-tasting-of-wines-that-shouldnt-exist/", code: pending }
+  - { from: "/he/event/yynwth-mdbr-hngb-tymth-yynwth-shl-hyw-mwry-lhywth/", code: pending }
+  - { from: "/event/uzhin-posle-novogo-goda-s-andreem-makarevichem-i-ejnat-klyajn/", code: pending }
+  - { from: "/en/event/new-years-dinner-with-andrey-makarevich-and-einat-klein/", code: pending }
+  - { from: "/he/event/rwxth-rb-xry-rsh-hshnh-ndryy-mkrby-wynth-klyy/", code: pending }
+  - { from: "/event/andrej-makarevich-i-einat-klein-priglashayut-vas-v-nyu-jork/", code: pending }
+  - { from: "/en/event/andrey-makarevich-and-einat-klein-invite-you-to-new-york/", code: pending }
+  - { from: "/he/event/ndry-mkrby-wynth-klyy-mzmyny-thkh-lnyw-ywrk/", code: pending }
+  - { from: "/event/ashdod-andrej-makarevich-i-ejnat-klyajn-predstavlyayut-novoe-vino/", code: pending }
+  - { from: "/en/event/ashdod-andrei-makarevich-and-einat-klein-present-a-new-wine/", code: pending }
+  - { from: "/he/event/shdwd-ndryy-mkrby-wynth-klyy-msygy-yy-xdsh/", code: pending }
+  - { from: "/event/ne-novyj-god-andrej-makarevich-i-ejnat-klyajn-gotovyat-vmeste-s-vami/", code: pending }
+  - { from: "/en/event/not-new-years-andrey-makarevich-and-einat-klein-cook-with-you/", code: pending }
+  - { from: "/he/event/l-rsh-hshnh-ndryy-mkrby-wynth-klyy-mbshly-yxd-ythkh/", code: pending }
+  - { from: "/event/pobedit-somnenij-net-svet-tel-aviv/", code: pending }
+  - { from: "/en/event/light-will-win-no-doubt-tel-aviv/", code: pending }
+  - { from: "/he/event/hwr-ynsx-y-sphk-thl-byb/", code: pending }
+  - { from: "/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/", code: pending }
+  - { from: "/en/event/a-non-wine-story-from-the-cup-of-prophets-to-your-glass/", code: pending }
+  - { from: "/he/event/syphwr-l-thmy-mgby-hnbyy-lkhws-shl/", code: pending }
+  - { from: "/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/", code: pending }
+  - { from: "/en/event/wine-premiere-with-andrey-makarevich-and-einat-klein/", code: pending }
+  - { from: "/he/event/bkhwrh-shl-yy-ndryy-mkrby-wynth-klyy/", code: pending }
