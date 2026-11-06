@@ -1,0 +1,29 @@
+{
+  "wp_id": 2359,
+  "date": "2026-05-22T19:00",
+  "city": "Kerem Maharal",
+  "venue": "Sdot Israel",
+  "address": "Kerem Maharal, 3084000, Israel",
+  "poster": "/_site/img/past/wp-2359.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2026/04/bil24-poster-2359-c094bd66fe4daf18f4913844a4e9a63a.jpg",
+  "slug": {
+    "ru": "belyj-vecher-na-shavuot-s-ejnat-klyajn",
+    "en": "belyj-vecher-na-shavuot-s-ejnat-klyajn",
+    "he": "belyj-vecher-na-shavuot-s-ejnat-klyajn"
+  },
+  "translated": {
+    "ru": true,
+    "en": false,
+    "he": false
+  },
+  "title": {
+    "ru": "Белый вечер на Шавуот с Эйнат Кляйн",
+    "en": "Белый вечер на Шавуот с Эйнат Кляйн",
+    "he": "Белый вечер на Шавуот с Эйнат Кляйн"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

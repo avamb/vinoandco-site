@@ -303,6 +303,9 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-past__item { display: block; position: relative; }
 .vc-past__item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px; }
 .vc-past__item span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.vc-past__item--noimg { display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; padding: 20px; border-radius: 8px; background: var(--vc-primary); color: #fff; text-align: center; text-decoration: none; }
+.vc-past__item--noimg span { position: static; width: auto; height: auto; overflow: visible; clip: auto; font-size: 18px; }
+.vc-event__back { margin-top: 30px; }
 
 @media (max-width: 1024px) {
   .vc-events { grid-template-columns: repeat(2, 1fr); }

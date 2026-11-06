@@ -1,0 +1,29 @@
+{
+  "wp_id": 662,
+  "date": null,
+  "city": "",
+  "venue": "",
+  "address": "",
+  "poster": "/_site/img/past/wp-662.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/10/6101c8a0-95cb-47ee-88aa-84bbaeecb84d.jpg",
+  "slug": {
+    "ru": "nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal",
+    "en": "a-non-wine-story-from-the-cup-of-prophets-to-your-glass",
+    "he": "syphwr-l-thmy-mgby-hnbyy-lkhws-shl"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "НеВинная История: из чаши пророков в ваш бокал",
+    "en": "A Non-Wine Story: From the Cup of Prophets to Your Glass",
+    "he": "סיפור לא תמים: מגביע הנביאים לכוס שלך"
+  },
+  "description_html": {
+    "ru": "<p><div>Вино в традиции Израиля всегда занимало особое место: без него невозможен ни один праздник, ни одно торжество, более того, в древнем мире Израиль слыл величайшим винным регионом, снабжавшим лучшим вином императоров, царей и прочих любителей напитка.</div><br><div>Тема вина красной нитью проходит через весь ТАНАХ, широко обсуждается в Талмуде и занимает отдельное место в произведениях большинства еврейских философов. Что и говорить, даже законы кашрута выделяют \"винную тему\", затрагивая все ее аспекты: от разбивки виноградников до откупоривания бутылки.</div></p>",
+    "en": "<p><div>Wine has always held a special place in the tradition of Israel: no holiday or celebration is possible without it. Moreover, in the ancient world, Israel was known as the greatest wine region, supplying the best wine to emperors, kings, and other lovers of the drink.</div><br><div>The theme of wine runs like a red thread through the entire Tanakh, is widely discussed in the Talmud, and occupies a special place in the works of most Jewish philosophers. Needless to say, even the laws of Kashrut single out the \"wine theme,\" addressing all its aspects: from the division of vineyards to the uncorking of the bottle. </div></p>",
+    "he": "<p><div>יין במסורת ישראל תמיד תפס מקום מיוחד: בלעדיו אין חג ואין שמחה, יתרה מזאת, בעולם העתיק ישראל נחשבה לאזור היין הגדול ביותר, שסיפק את היין הטוב ביותר לקיסרים, מלכים ושאר חובבי המשקה.</div><br><div>נושא היין עובר כחוט השני דרך כל התנ\"ך, נדון בהרחבה בתלמוד ותופס מקום מיוחד בכתביהם של רוב הפילוסופים היהודים. מה עוד אפשר לומר, אפילו חוקי הכשרות מדגישים את \"נושא היין\", ומתייחסים לכל ההיבטים שלו: מנטיעת הכרמים ועד פתיחת הבקבוק.</div></p>"
+  }
+}

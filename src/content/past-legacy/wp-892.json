@@ -1,0 +1,29 @@
+{
+  "wp_id": 892,
+  "date": "2025-12-05T20:00",
+  "city": "Tel Aviv",
+  "venue": "Eretz Israel Museum",
+  "address": "Chaim Levanon St 2, Tel Aviv-Yafo, Israel",
+  "poster": "/_site/img/past/wp-892.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-892-19156d3a65f11f1804bf6f580ba32ac6.jpg",
+  "slug": {
+    "ru": "new-wines-party-v-tel-avive",
+    "en": "new-wines-party-in-tel-aviv",
+    "he": "msybth-yynwth-xdshy-bthl-byb"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "New Wines Party в Тель-Авиве",
+    "en": "New Wines Party in Tel Aviv",
+    "he": "מסיבת יינות חדשים בתל אביב"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

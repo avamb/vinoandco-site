@@ -1,0 +1,29 @@
+{
+  "wp_id": 669,
+  "date": null,
+  "city": "",
+  "venue": "",
+  "address": "",
+  "poster": null,
+  "poster_source": null,
+  "slug": {
+    "ru": "andrej-makarevich-i-ejnat-klyajn-v-ta-vecher-novogo-vina",
+    "en": "andrey-makarevich-and-einat-klein-in-tel-aviv-an-evening-of-new-wine",
+    "he": "ndryy-mkrby-wynth-klyy-bthl-byb-rb-yy-xdsh"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "Андрей Макаревич и Эйнат Кляйн в ТА: вечер нового вина",
+    "en": "Andrey Makarevich and Einat Klein in Tel Aviv: An evening of new wine",
+    "he": "אנדריי מקארביץ' ועינת קליין בתל אביב: ערב יין חדש"
+  },
+  "description_html": {
+    "ru": "<p><p dir=\"ltr\"><b>Андрей Макаревич и Эйнат Кляйн представляют свои новые вина в Тель-Авиве!</b></p><br><p dir=\"ltr\">Друзья, это был непростой год и тяжелое его завершение. Еще осенью мы подготовили для вас несколько винных мероприятий, однако решили перенести их на лучшие времена. Времена эти, разумеется, все еще впереди, однако мы верим в хорошее. А также, три месяца спустя после начала войны, решили не откладывать жизнь “на потом” и собрать друзей, любителей вина и хорошей музыки, чтобы провести вечер вместе.</p></p>",
+    "en": "<p><p dir=\"ltr\"><b>Andrey Makarevich and Einat Klein present their new wines in Tel Aviv!</b></p><br><p dir=\"ltr\">Friends, it's been a tough year with a difficult ending. Back in the fall, we prepared several wine events for you, but decided to postpone them to better times. These times are, of course, still ahead, but we believe in the good. And also, three months after the start of the war, we decided not to put life \"on hold\" and gather friends, wine lovers and good music lovers to spend an evening together.   </p></p>",
+    "he": "<p><p dir=\"ltr\"><b>אנדריי מקארביץ' ועינת קליין מציגים את היינות החדשים שלהם בתל אביב!</b></p><br><p dir=\"ltr\">חברים, זו הייתה שנה לא פשוטה וסיום קשה שלה. עוד בסתיו הכנו עבורכם כמה אירועי יין, אך החלטנו לדחות אותם לזמנים טובים יותר. הזמנים האלה, כמובן, עדיין לפנינו, אבל אנחנו מאמינים בטוב. וגם, שלושה חודשים לאחר תחילת המלחמה, החלטנו לא לדחות את החיים \"למאוחר יותר\" ולאסוף חברים, חובבי יין ומוזיקה טובה, כדי לבלות ערב יחד.   </p></p>"
+  }
+}

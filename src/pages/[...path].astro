@@ -14,14 +14,17 @@ import LegalPage from '../components/pages/LegalPage.astro';
 import OrderStatusPage from '../components/pages/OrderStatusPage.astro';
 import MyTicketsPage from '../components/pages/MyTicketsPage.astro';
 import EventPage from '../components/pages/EventPage.astro';
+import LegacyEventPage from '../components/pages/LegacyEventPage.astro';
 import NotFoundPage from '../components/pages/NotFoundPage.astro';
 import { languages, type LanguageCode } from '../../site.config.ts';
 import { eventPath, notFoundPath, pagePaths, toParam, type PageKey } from '../lib/routes.ts';
 import { siteEvents, type SiteEvent } from '../lib/events.ts';
+import { legacyEvents, type LegacyEvent } from '../lib/legacy.ts';
 
 type Route =
   | { kind: 'page'; key: PageKey; lang: LanguageCode }
   | { kind: 'event'; event: SiteEvent; lang: LanguageCode }
+  | { kind: 'legacy'; event: LegacyEvent; lang: LanguageCode }
   | { kind: '404'; lang: LanguageCode };
 
 export const getStaticPaths = (() => {
@@ -31,6 +34,16 @@ export const getStaticPaths = (() => {
   }
   for (const event of siteEvents()) {
     for (const l of languages) out.push({ params: { path: toParam(eventPath(event.slug, l.code)) }, props: { route: { kind: 'event', event, lang: l.code } } });
+  }
+  // Bil24-era past events keep their WordPress addresses (a platform event with the same slug wins).
+  const taken = new Set(out.map((o) => o.params.path));
+  for (const event of legacyEvents()) {
+    for (const l of languages) {
+      const path = toParam(eventPath(event.slug[l.code], l.code));
+      if (taken.has(path)) continue;
+      taken.add(path);
+      out.push({ params: { path }, props: { route: { kind: 'legacy', event, lang: l.code } } });
+    }
   }
   // ru 404 is src/pages/404.astro; en and he get their own copy for nginx.
   for (const l of languages.filter((x) => x.code !== 'ru')) {
@@ -43,6 +56,7 @@ const { route } = Astro.props as { route: Route };
 const lang = route.lang;
 ---
 {route.kind === 'event' && <EventPage lang={lang} event={route.event} />}
+{route.kind === 'legacy' && <LegacyEventPage lang={lang} event={route.event} />}
 {route.kind === '404' && <NotFoundPage lang={lang} />}
 {route.kind === 'page' && route.key === 'home' && <HomePage lang={lang} />}
 {route.kind === 'page' && route.key === 'upcoming' && <UpcomingPage lang={lang} />}

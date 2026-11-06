@@ -1,0 +1,29 @@
+{
+  "wp_id": 2718,
+  "date": "2026-06-18T16:00",
+  "city": "Tel Aviv",
+  "venue": "Rothschild 69 Gallery",
+  "address": "Sderot Rothschild 69, Tel Aviv-Jaffa",
+  "poster": "/_site/img/past/wp-2718.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2026/05/bil24-poster-2718-89ce552be5f0605a48c9463e49778d1e.jpg",
+  "slug": {
+    "ru": "vina-hudozhnikov-c-ejnat-klyajn",
+    "en": "vina-hudozhnikov-c-ejnat-klyajn",
+    "he": "vina-hudozhnikov-c-ejnat-klyajn"
+  },
+  "translated": {
+    "ru": true,
+    "en": false,
+    "he": false
+  },
+  "title": {
+    "ru": "Вина художников c Эйнат Кляйн",
+    "en": "Вина художников c Эйнат Кляйн",
+    "he": "Вина художников c Эйнат Кляйн"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

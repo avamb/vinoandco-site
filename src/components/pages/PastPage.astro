@@ -1,14 +1,14 @@
 ---
 /**
- * Past events (Elementor page 494 / 1700 en / 1707 he): posters of the
- * platform's finished events (newest first, linking to their pages), then the
- * static Bil24-era cards from src/content/past-legacy/.
+ * Past events (Elementor page 494 / 1700 en / 1707 he): posters of every
+ * finished event, newest first — the platform's past events and the Bil24-era
+ * ones from src/content/past-legacy/ in one list — each linking to its page.
  */
 import Base from '../../layouts/Base.astro';
 import PageHero from '../PageHero.astro';
 import { blocksContent } from '../../lib/content.ts';
-import { pastEvents } from '../../lib/events.ts';
-import { legacyEvents } from '../../lib/legacy.ts';
+import { formatDate, formatTime, pastEvents } from '../../lib/events.ts';
+import { legacyEvents, legacySortKey } from '../../lib/legacy.ts';
 import { eventPath, pagePaths } from '../../lib/routes.ts';
 import type { LanguageCode } from '../../../site.config.ts';
 
@@ -17,25 +17,26 @@ interface Props {
 }
 const { lang } = Astro.props;
 const c = blocksContent(lang, 'past');
-const events = pastEvents();
-const legacy = legacyEvents();
+const items = [
+  ...pastEvents().map((e) => ({
+    key: e.primary ? `${formatDate(e.primary.start_at, e.timezone)}T${formatTime(e.primary.start_at, e.timezone)}` : '0000',
+    href: eventPath(e.slug, lang),
+    poster: e.poster,
+    title: e.name,
+  })),
+  ...legacyEvents().map((e) => ({ key: legacySortKey(e), href: eventPath(e.slug[lang], lang), poster: e.poster, title: e.title[lang] })),
+].sort((a, b) => b.key.localeCompare(a.key));
 ---
 <Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.past}>
   <PageHero bg="vc-bg-past" title={c.h1} short>
     {c.h2[0] && <p>{c.h2[0]}</p>}
   </PageHero>
   <div class="vc-past">
-    {events.map((e) => (
-      <a class="vc-past__item" href={eventPath(e.slug, lang)}>
-        {e.poster && <img src={e.poster} alt={`${e.name} – Poster`} loading="lazy" />}
-        <span>{e.name}</span>
+    {items.map((e) => (
+      <a class:list={['vc-past__item', { 'vc-past__item--noimg': !e.poster }]} href={e.href}>
+        {e.poster && <img src={e.poster} alt={`${e.title} – Poster`} width="450" height="450" loading="lazy" />}
+        <span>{e.title}</span>
       </a>
-    ))}
-    {legacy.map((e) => (
-      <div class="vc-past__item">
-        <img src={e.poster} alt={`${e.title[lang]} – Poster`} loading="lazy" />
-        <span>{e.title[lang]}</span>
-      </div>
     ))}
   </div>
 </Base>

@@ -1,0 +1,29 @@
+{
+  "wp_id": 660,
+  "date": null,
+  "city": "",
+  "venue": "",
+  "address": "",
+  "poster": "/_site/img/past/wp-660.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/10/77a8b99a-d1fe-4608-bb86-3f1bd0e1815e.webp",
+  "slug": {
+    "ru": "premera-vina-s-andreem-makarevichem-i-ejnat-klyajn",
+    "en": "wine-premiere-with-andrey-makarevich-and-einat-klein",
+    "he": "bkhwrh-shl-yy-ndryy-mkrby-wynth-klyy"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "Премьера вина с Андреем Макаревичем и Эйнат Кляйн",
+    "en": "Wine premiere with Andrey Makarevich and Einat Klein",
+    "he": "בכורה של יין עם אנדריי מקארביץ' ועינת קליין"
+  },
+  "description_html": {
+    "ru": "<p><b>31 июля</b> нас ожидает главное винное событие лета - презентация и дегустация вина, созданного творческим дуэтом <b>Эйнат Кляйн и Андрея Макаревича</b>.</p><p>Событие пройдет в помещении <b>Музея еврейского народа (АНУ)</b> и будет наполнено сюрпризами: во-первых, выступление Андрея Макаревича, который поделится с вами своей историей отношений с вином. Во-вторых, лекцией и дегустацией Эйнат Кляйн, которая презентует вам новое вино и поделится своими историями о виноделии. И в-третьих, каждый участник сможет унести с собой кое-что в коллекцию и просто на добрую память, включая пару бутылок вина</p>",
+    "en": "<p>On <b>July 31</b>, the main wine event of the summer awaits us - the presentation and tasting of wine created by the creative duo of <b>Einat Klein and Andrey Makarevich</b>.</p><p>The event will take place in the <b>Museum of the Jewish People (ANU)</b> and will be filled with surprises: firstly, a performance by Andrey Makarevich, who will share his history of relations with wine. Secondly, a lecture and tasting by Einat Klein, who will present you with a new wine and share her stories about winemaking. And thirdly, each participant will be able to take something with them for their collection and simply as a keepsake, including a couple of bottles of wine</p>",
+    "he": "<p><b>ב-31 ביולי</b> מחכה לנו אירוע היין המרכזי של הקיץ - הצגה וטעימה של יין שנוצר על ידי הצמד היוצר <b>עינת קליין ואנדריי מקארביץ'</b>.</p><p>האירוע יתקיים במתחם <b>מוזיאון העם היהודי (אנו)</b> ויהיה מלא הפתעות: ראשית, הופעה של אנדריי מקארביץ' שיחלוק איתכם את סיפור יחסיו עם היין. שנית, הרצאה וטעימה של עינת קליין שתציג לכם את היין החדש ותחלוק את סיפוריה על יקבות. ושלישית, כל משתתף יוכל לקחת איתו משהו לאוסף ופשוט לזכרון טוב, כולל זוג בקבוקי יין</p>"
+  }
+}

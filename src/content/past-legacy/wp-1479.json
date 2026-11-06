@@ -1,0 +1,29 @@
+{
+  "wp_id": 1479,
+  "date": "2026-01-29T20:00",
+  "city": "Haifa",
+  "venue": "Gig house Jazz club",
+  "address": "Eliyahu Khakim St 6, Haifa, 3543006, Israel",
+  "poster": "/_site/img/past/wp-1479.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/12/friends-soldout_site-big_640x670.jpg",
+  "slug": {
+    "ru": "ejnat-i-andrej-sobirayut-druzej-v-hajfe",
+    "en": "einat-and-andrey-gather-friends-in-haifa",
+    "he": "ynth-wndryy-mkhnsy-xbry-bxyphh"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "Эйнат и Андрей собирают друзей в Хайфе",
+    "en": "Einat and Andrey gather friends in Haifa",
+    "he": "עינת ואנדריי מכנסים חברים בחיפה"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "wp_id": 2507,
+  "date": "2026-05-28T19:00",
+  "city": "Beit Guvrin",
+  "venue": "Bell Caves",
+  "address": "Beit Guvrin-Maresha Parking",
+  "poster": "/_site/img/past/wp-2507.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2026/05/bil24-poster-2507-cba5e80fa681dda6f73b4f480ea10b1e.jpg",
+  "slug": {
+    "ru": "פסטיבל-יין-ומוזיקה-בגן-לאומי-בית-גוב",
+    "en": "פסטיבל-יין-ומוזיקה-בגן-לאומי-בית-גוב",
+    "he": "phstybl-yy-wmwzykh-bg-lwmy-byth-gwbry"
+  },
+  "translated": {
+    "ru": true,
+    "en": false,
+    "he": true
+  },
+  "title": {
+    "ru": "פסטיבל יין ומוזיקה בגן לאומי בית גוברין",
+    "en": "פסטיבל יין ומוזיקה בגן לאומי בית גוברין",
+    "he": "פסטיבל יין ומוזיקה בגן לאומי בית גוברין"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

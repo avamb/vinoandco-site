@@ -1,0 +1,29 @@
+{
+  "wp_id": 2710,
+  "date": "2026-06-11T20:01",
+  "city": "Rishon LeZion",
+  "venue": "Rishon Lezion Museum",
+  "address": "Akhad ha-Am St 2, Rishon LeZion",
+  "poster": "/_site/img/past/wp-2710.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2026/05/bil24-poster-2710-bc8e579d98716e9f71c36711b9be43ce.jpg",
+  "slug": {
+    "ru": "vino-i-chaj-vstrecha-dvuh-mirov-v-muzee-rishon-le-cziona-2",
+    "en": "vino-i-chaj-vstrecha-dvuh-mirov-v-muzee-rishon-le-cziona-2",
+    "he": "vino-i-chaj-vstrecha-dvuh-mirov-v-muzee-rishon-le-cziona-2"
+  },
+  "translated": {
+    "ru": true,
+    "en": false,
+    "he": false
+  },
+  "title": {
+    "ru": "Вино и чай: встреча двух миров в музее Ришон ле-Циона",
+    "en": "Вино и чай: встреча двух миров в музее Ришон ле-Циона",
+    "he": "Вино и чай: встреча двух миров в музее Ришон ле-Циона"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

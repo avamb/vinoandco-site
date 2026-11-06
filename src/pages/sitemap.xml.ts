@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { languages, siteUrl } from '../../site.config.ts';
 import { eventPath, pagePaths, personalPages, type PageKey } from '../lib/routes.ts';
 import { siteEvents } from '../lib/events.ts';
+import { legacyEvents } from '../lib/legacy.ts';
 
 /**
  * /sitemap.xml at the same address as on WordPress (Slim SEO). Lists every page
@@ -16,6 +17,12 @@ export const GET: APIRoute = () => {
   for (const e of siteEvents()) {
     if (!e.listed) continue;
     groups.push(Object.fromEntries(languages.map((l) => [l.code, eventPath(e.slug, l.code)])));
+  }
+  const taken = new Set(groups.map((g) => g.ru));
+  for (const e of legacyEvents()) {
+    const g = Object.fromEntries(languages.map((l) => [l.code, eventPath(e.slug[l.code], l.code)]));
+    if (taken.has(g.ru!)) continue;
+    groups.push(g);
   }
   const abs = (p: string) => new URL(p, siteUrl).href;
   const urls = groups.flatMap((g) =>

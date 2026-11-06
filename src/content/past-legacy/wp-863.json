@@ -1,0 +1,29 @@
+{
+  "wp_id": 863,
+  "date": "2025-11-27T20:00",
+  "city": "Jerusalem",
+  "venue": "Menachem Begin Heritage Center",
+  "address": "Sh.A. Nakhon St 6, Jerusalem, 9411014, Israel",
+  "poster": "/_site/img/past/wp-863.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-863-860a5a96ddced49b0ed06d2e8df85788.jpg",
+  "slug": {
+    "ru": "new-wines-party-v-ierusalime",
+    "en": "new-wines-party-in-jerusalem",
+    "he": "msybth-yynwth-xdshy-byrwshly"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "New Wines Party в Иерусалиме",
+    "en": "New Wines Party in Jerusalem",
+    "he": "מסיבת יינות חדשים בירושלים"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "wp_id": 2310,
+  "date": "2026-05-28T19:00",
+  "city": "Beit Guvrin",
+  "venue": "Bell Caves",
+  "address": "Beit Guvrin-Maresha Parking",
+  "poster": "/_site/img/past/wp-2310.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2026/05/bil24-poster-2310-003f26adc38166308cdc766ed4b9ac92.jpg",
+  "slug": {
+    "ru": "festival-muzyki-i-vina-v-naczionalnom-parke-bejt-guvrin",
+    "en": "festival-muzyki-i-vina-v-naczionalnom-parke-bejt-guvrin",
+    "he": "festival-muzyki-i-vina-v-naczionalnom-parke-bejt-guvrin"
+  },
+  "translated": {
+    "ru": true,
+    "en": false,
+    "he": false
+  },
+  "title": {
+    "ru": "Фестиваль музыки и вина в Национальном парке Бейт-Гуврин",
+    "en": "Фестиваль музыки и вина в Национальном парке Бейт-Гуврин",
+    "he": "Фестиваль музыки и вина в Национальном парке Бейт-Гуврин"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

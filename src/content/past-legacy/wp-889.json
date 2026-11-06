@@ -1,0 +1,29 @@
+{
+  "wp_id": 889,
+  "date": "2025-11-28T19:00",
+  "city": "Tel Aviv",
+  "venue": "Desire Club",
+  "address": "Carlebach St 25, Tel Aviv-Yafo, Israel",
+  "poster": "/_site/img/past/wp-889.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-889-2ebde4e16425a71b439c23875df84800.jpg",
+  "slug": {
+    "ru": "vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj",
+    "en": "wine-in-arab-traditions-with-dr-dina-lisnyanskaya",
+    "he": "yy-bmswrwth-hrbywth-dr-dynh-lysnynsky"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "Вино в арабских традициях с Др. Диной Лиснянской",
+    "en": "Wine in Arab Traditions with Dr. Dina Lisnyanskaya",
+    "he": "יין במסורות הערביות עם ד\"ר דינה ליסניאנסקי"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

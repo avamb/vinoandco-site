@@ -1,0 +1,29 @@
+{
+  "wp_id": 2785,
+  "date": "2026-07-09T19:00",
+  "city": "Jerusalem",
+  "venue": "Skizza Gallery",
+  "address": "Koresh St 8, Jerusalem",
+  "poster": "/_site/img/past/wp-2785.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2026/06/bil24-poster-2785-99226faeaca4eacdddff496efdc30f2e.jpg",
+  "slug": {
+    "ru": "kuvshin-i-amfora-vinnyj-vecher-s-ejnat-klyajn",
+    "en": "kuvshin-i-amfora-vinnyj-vecher-s-ejnat-klyajn",
+    "he": "kuvshin-i-amfora-vinnyj-vecher-s-ejnat-klyajn"
+  },
+  "translated": {
+    "ru": true,
+    "en": false,
+    "he": false
+  },
+  "title": {
+    "ru": "Кувшин и амфора: винный вечер с Эйнат Кляйн",
+    "en": "Кувшин и амфора: винный вечер с Эйнат Кляйн",
+    "he": "Кувшин и амфора: винный вечер с Эйнат Кляйн"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

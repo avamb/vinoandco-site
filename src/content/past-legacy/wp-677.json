@@ -1,0 +1,29 @@
+{
+  "wp_id": 677,
+  "date": null,
+  "city": "",
+  "venue": "",
+  "address": "",
+  "poster": "/_site/img/past/wp-677.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/10/site.webp",
+  "slug": {
+    "ru": "vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt",
+    "en": "negev-desert-wines-a-tasting-of-wines-that-shouldnt-exist",
+    "he": "yynwth-mdbr-hngb-tymth-yynwth-shl-hyw-mwry-lhywth"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "Вина пустыни Негев: дегустация вин, которых не должно было быть",
+    "en": "Negev Desert Wines: A tasting of wines that shouldn't exist",
+    "he": "יינות מדבר הנגב: טעימת יינות שלא היו אמורים להיות"
+  },
+  "description_html": {
+    "ru": "<p>Первая в 2025 году встреча Клуба любителей вина Эйнат Кляйн проекта Vino&amp;Co не случайно пройдёт в дни праздника Песах. Это время, когда мы празднуем то, что казалось невозможным - окончание 210 лет, в течение которых еврейский народ был в рабстве у египетских фараонов. И как Песах является символом освобождения и возрождения, так и вина пустыни Негев являются зримым доказательством победы жизненных сил над самыми суровыми условиями.</p>",
+    "en": "<p>The first 2025 meeting of Einat Klein's Vino&amp;Co Wine Lovers Club will be held during Passover for a reason. This is a time when we celebrate what seemed impossible - the end of the 210 years that the Jewish people were enslaved to the Egyptian pharaohs. And just as Passover is a symbol of liberation and rebirth, so the wines of the Negev desert are visible proof of the victory of vitality over the harshest conditions.</p>",
+    "he": "<p>המפגש הראשון של מועדון חובבי היין של עינת קליין מפרויקט Vino&amp;Co לשנת 2025 מתקיים בכוונה בימי חג הפסח. זהו הזמן בו אנו חוגגים את מה שנראה בלתי אפשרי - סיום 210 שנים בהן העם היהודי היה משועבד לפרעוני מצרים. וכפי שפסח הוא סמל לשחרור ולתחייה, כך גם יינות מדבר הנגב הם הוכחה נראית לעין לניצחון כוחות החיים על התנאים הקשים ביותר.</p>"
+  }
+}

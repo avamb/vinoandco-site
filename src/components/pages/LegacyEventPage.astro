@@ -1,0 +1,53 @@
+---
+/**
+ * Page of a Bil24-era past event (WordPress product template 442 without the
+ * purchase): poster, title, 📅 date 🕖 time, 🏛 venue 📍 city, "This event has
+ * already taken place", the short description. Same address as on WordPress.
+ */
+import Base from '../../layouts/Base.astro';
+import { ui } from '../../lib/i18n.ts';
+import { eventPath, pagePath } from '../../lib/routes.ts';
+import type { LegacyEvent } from '../../lib/legacy.ts';
+import { languages, type LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+  event: LegacyEvent;
+}
+const { lang, event } = Astro.props;
+const t = ui(lang).event;
+const title = event.title[lang];
+const alternates = Object.fromEntries(languages.map((l) => [l.code, eventPath(event.slug[l.code], l.code)])) as Record<LanguageCode, string>;
+const html = event.description_html[lang];
+const description = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160);
+const [day, time] = event.date ? event.date.split('T') : [null, null];
+---
+<Base lang={lang} title={`${title} — Vino&Co`} description={description} alternates={alternates} image={event.poster}>
+  <article class="vc-event vc-event--past">
+    <div class="vc-event__inner">
+      {event.poster && (
+        <div class="vc-event__poster">
+          <img src={event.poster} alt={`${title} – Poster`} width="450" height="450" />
+        </div>
+      )}
+      <h1 class="vc-event__title">{title}</h1>
+      {day && (
+        <div class="vc-event__facts">
+          <span>📅 {day}</span>
+          <span>🕖 {time}</span>
+        </div>
+      )}
+      {(event.venue || event.city) && (
+        <div class="vc-event__facts">
+          {event.venue && <span>🏛 {t.place} {event.venue}</span>}
+          {event.city && <span>📍 {event.city}</span>}
+        </div>
+      )}
+      <div class="vc-event__buy">
+        <p class="vc-event__past-note">{t.past}</p>
+      </div>
+      {html && <div class="vc-event__desc" set:html={html} />}
+      <p class="vc-event__back"><a href={pagePath('past', lang)}>← {ui(lang).nav.past}</a></p>
+    </div>
+  </article>
+</Base>

@@ -19,6 +19,13 @@ const built = (path) => {
 };
 const errors = [];
 for (const r of doc.pages ?? []) if (!built(r.from)) errors.push(`200 expected but not built: ${r.from}`);
+// Event pages answering 200: the Bil24-era static pages always; the platform's
+// only on a build from the real feed (the sample snapshot does not have them).
+const platformToo = process.env.CHECK_PLATFORM_EVENTS === '1';
+for (const r of (doc.events ?? []).filter((e) => e.code === 200)) {
+  if (r.platform && !platformToo) continue;
+  if (!built(r.from)) errors.push(`200 expected but not built: ${r.from}`);
+}
 const rules = [...(doc.redirects ?? []), ...(doc.gone ?? []), ...(doc.events ?? []).filter((e) => e.code !== 'pending')];
 for (const r of rules) {
   if (r.code === 301 && !built(r.to)) errors.push(`301 target not built: ${r.from} -> ${r.to}`);
@@ -29,4 +36,5 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
-console.log(`redirects: ${doc.pages.length} pages, ${rules.length} rules OK; ${pending} WordPress event addresses pending the slug table`);
+const eventPages = (doc.events ?? []).filter((e) => e.code === 200).length;
+console.log(`redirects: ${doc.pages.length} pages, ${eventPages} event pages, ${rules.length} rules OK; ${pending} WordPress event addresses pending the slug table`);

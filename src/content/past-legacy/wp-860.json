@@ -1,0 +1,29 @@
+{
+  "wp_id": 860,
+  "date": "2025-11-14T19:00",
+  "city": "Tel Aviv",
+  "venue": "Desire Club",
+  "address": "Carlebach St 25, Tel Aviv-Yafo, Israel",
+  "poster": "/_site/img/past/wp-860.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-860-70cd98937e81e1450148bb0310c12877.jpg",
+  "slug": {
+    "ru": "vino-v-iudaizme-s-ejnat-klyajn",
+    "en": "wine-in-judaism-with-einat-klein",
+    "he": "yy-byhdwth-ynth-klyy"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "Вино в иудаизме с Эйнат Кляйн",
+    "en": "Wine in Judaism with Einat Klein",
+    "he": "יין ביהדות עם עינת קליין"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

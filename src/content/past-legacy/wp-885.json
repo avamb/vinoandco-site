@@ -1,0 +1,29 @@
+{
+  "wp_id": 885,
+  "date": "2025-12-26T20:00",
+  "city": "Netanya",
+  "venue": "Club Rubiz 1928",
+  "address": "המכביה, Netanya, Israel",
+  "poster": "/_site/img/past/wp-885.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/11/bil24-poster-885-9d390fd7a64eee98d19dc21bdbc245b0.jpg",
+  "slug": {
+    "ru": "prednovogodnyaya-vecherinka-beatsbubbles-v-netanii",
+    "en": "pre-new-year-beatsbubbles-party-in-netanya",
+    "he": "msybth-beatsbubbles-lkrth-hshnh-hxdshh-bnthnyh"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "Предновогодняя вечеринка Beats&amp;Bubbles в Нетании",
+    "en": "Pre-New Year Beats&amp;Bubbles Party in Netanya",
+    "he": "מסיבת Beats&amp;Bubbles לקראת השנה החדשה בנתניה"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}

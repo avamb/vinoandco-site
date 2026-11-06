@@ -66,7 +66,7 @@ const builder = createBuilder({
     return join(appDir, 'dist');
   },
   async checkSite(releaseDir) {
-    const e = { ...env, DIST_DIR: releaseDir };
+    const e = { ...env, DIST_DIR: releaseDir, CHECK_PLATFORM_EVENTS: '1' };
     await run(process.execPath, [join(appDir, 'scripts', 'check-dist.mjs')], { cwd: appDir, env: e, log });
     await run(process.execPath, [join(appDir, 'scripts', 'check-redirects.mjs')], { cwd: appDir, env: e, log });
   },

@@ -1,0 +1,29 @@
+{
+  "wp_id": 1458,
+  "date": "2025-12-18T20:00",
+  "city": "Haifa",
+  "venue": "Eshkol Tower",
+  "address": "Abba Khoushy Ave 199, Haifa, 3498838, Israel",
+  "poster": "/_site/img/past/wp-1458.jpg",
+  "poster_source": "https://vinoandco.events/wp-content/uploads/2025/12/bil24-poster-1458-65d5e4940c882642fda995df120fef93.jpg",
+  "slug": {
+    "ru": "vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe",
+    "en": "wine-as-a-miracle-a-hanukkah-tasting-with-the-best-view-in-haifa",
+    "he": "yy-khns-tymth-xnwkhh-hnw-htwb-bywthr-bxyphh"
+  },
+  "translated": {
+    "ru": true,
+    "en": true,
+    "he": true
+  },
+  "title": {
+    "ru": "Вино как чудо: Ханукальная дегустация с лучшим видом в Хайфе",
+    "en": "Wine as a Miracle: A Hanukkah Tasting with the Best View in Haifa",
+    "he": "יין כנס: טעימת חנוכה עם הנוף הטוב ביותר בחיפה"
+  },
+  "description_html": {
+    "ru": "",
+    "en": "",
+    "he": ""
+  }
+}
