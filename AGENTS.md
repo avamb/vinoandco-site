@@ -160,3 +160,26 @@ Still to add: link check, JSON-LD and hreflang check, axe, Lighthouse.
   (new.vinoandco.events, later vinoandco.events) must be in the platform's `CORS_ALLOWED_ORIGINS`,
   or every browser call (availability refresh, quote, start, status, funnel) fails. From
   `localhost` they always fail; the modal then keeps the built data.
+
+## Conventions learned in stage 3 (personal pages, forms, removals)
+
+- **Removed events:** the builder polls with `include_removed=true`, keeps every removal in
+  `state.json` (`removed`, the platform lists only 30 days, the 410 must outlive that) and writes
+  them into the build snapshot as `removed_events`. `scripts/removed-events.mjs` (plain JS, used by
+  builder, postbuild and release check) turns them into addresses; `postbuild` adds
+  `location = <path> { return 410; }` for each; `verifyRelease` fails a release that still has the
+  page. A shrink named in `removed_events` passes the guard; `/data/allow-shrink` is the manual override.
+- **Checkout 409 `checkout.price_changed`** carries `details.actual_total` (not `total`); the modal
+  reads `actual_total` and falls back to `total`.
+- **`buyer_context`** replaces the old top-level `tracking_consent` on checkout/start. fbp / fbc are
+  sent only when the cookie exists, the GA4 id only after consent, fbclid / gclid are kept per tab by
+  `scripts/attribution.ts`.
+- **"My tickets" never spends the e-mailed token on a GET**: the island moves `?t=` to sessionStorage
+  and shows a button; 410 drops the token, a network error or 429 keeps it. The PDF needs the Bearer
+  header, so it is fetched and saved as a blob; never render a plain link to it.
+- **Site forms** are wired by `src/scripts/site-forms.ts`. Turnstile (`action` = topic or `club`) is
+  strictly necessary and loads at the first touch of a form without the cookie banner. A definite
+  platform answer spends the single-use token (new widget, new Idempotency-Key); a lost answer keeps
+  both so the retry replays. Bump `CLUB_TEXT_VERSION` in `src/lib/forms.ts` when the club tick text changes.
+- Success texts of the forms are the site's own (Elementor messages were not in the saved HTML).
+- In the Bash tool a heredoc with apostrophes or backticks may fail to parse: write such files with the editor tool.

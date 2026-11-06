@@ -35,6 +35,29 @@ visitor ──► static pages (this repo, built with Astro)
 - **Tracking** (Meta Pixel, Google Analytics) loads only after the visitor accepts
   cookies.
 
+## Personal pages and forms
+
+These need the platform routes of the "site off WordPress" work (see the table below);
+until they are deployed the pages render and say the service is unavailable.
+
+| Page | Address (ru / en / he) | What it does | Platform route |
+|---|---|---|---|
+| Order status | `/order-status/`, `/en/order-status/`, `/he/order-status/` | Reads the order by its token, shows paid / failed / expired / cancelled / refunded / "we are checking your payment" (`needs_help`), the event with its date in the venue time zone and the ticket PDF links as the platform gives them | `GET /v1/public/checkout/{token}` with the `event` block |
+| My tickets | `/my-tickets/`, `/en/my-tickets/`, `/he/my-tickets/` | E-mail form asks for a link (always "check your e-mail"). The link opens the page with `?t=`; a button spends the one-time token for a 4-hour session kept in `sessionStorage`; orders, PDF download (fetch + Bearer + blob), log out | `POST .../my-tickets/link`, `POST /v1/public/my-tickets/session`, `GET .../my-tickets/orders`, `GET .../tickets/{id}/pdf`, `DELETE .../my-tickets/session` |
+| Contact, private events, club | `/contact-us/`, `/private-events/` (popup), home (club popup) | Forms with Cloudflare Turnstile (action = topic, `club` for the club), one `Idempotency-Key` per submission | `POST .../organizer-contact`, `POST .../marketing-subscriptions` |
+
+Settings: `PUBLIC_TURNSTILE_SITE_KEY` (public, empty by default: the forms are then disabled and
+say so). The Turnstile hostname list and the secret key are the platform's business. The channel
+must list this site's origin (`settings.site.origins`) and the origin must be in the platform's
+CORS list, or every browser call fails.
+
+The purchase modal also sends `buyer_context` (click ids from the landing URL, `_fbp` / `_fbc`
+when present, the GA4 client id only after consent, the page address and the cookie banner
+answer) for the platform's server-side conversions.
+
+Events that left the feed (`include_removed=true`) are recorded in the builder's `state.json`,
+have no page and answer 410; `/data/allow-shrink` stays as the manual override.
+
 ## Working on the site
 
 Read [AGENTS.md](AGENTS.md) first: it describes the structure, the rules that keep

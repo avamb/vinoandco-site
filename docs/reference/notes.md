@@ -37,12 +37,12 @@ Where the new site takes what:
 | Lightbox gallery on Private events | Three links in the HTML, invisible on the page | Omitted | — |
 | Event list on `/en/` and `/he/` | Empty (WPML products were not translated) | Events in every language with the original text (Р-7) | — |
 | Past events | Bil24-era product posters + platform events, no links | Platform past events + the 27 Bil24-era products of `wp-products-export.json` in one list, newest first, each linking to its page at the old WordPress address (undated 2023–2024 products last) | — |
-| Forms and popups | Elementor Pro forms with reCAPTCHA v3, Brevo | Same fields and texts, submit disabled | Platform forms with Turnstile (П-17) |
+| Forms and popups | Elementor Pro forms with reCAPTCHA v3, Brevo | Same fields and texts, sent to the platform with Cloudflare Turnstile. Success and error texts are the site's own (the Elementor messages are not in the saved HTML). The club tick is required here (the platform subscription needs it) | Set `PUBLIC_TURNSTILE_SITE_KEY` and deploy the platform routes |
 
 Icons: Facebook and Instagram are Font Awesome Free brand icons (CC BY 4.0), as on WordPress.
 | Purchase modal | `vino-modal` on admin-ajax, WooCommerce order, `bil24_add_to_cart` | Same markup, texts (plugin i18n) and CSS (`modal-booking.css` with its !important values folded in), on `checkout/quote` and `checkout/start` | Seat-map variant (§5.2, П-1) after the switch |
 | Quantity beyond a price step | Spill into the next Bil24 category at its price | Capped at the step's free places until the feed names the next step (`price_step.next_tier_id`, П-4); then two `ga_items` | П-4 |
-| Thank-you page | Elementor page 1250 / 1760 / 2126 (saved as `html/*-thankyou.html`), share buttons by Elementor JS | Same texts; status from the platform; share buttons as plain links (no third-party script on a personal page); "My tickets in my account" goes to `/my-tickets/` | П-7 «Мои билеты» |
+| Thank-you page | Elementor page 1250 / 1760 / 2126 (saved as `html/*-thankyou.html`), share buttons by Elementor JS | Same texts; status from the platform; share buttons as plain links (no third-party script on a personal page); "My tickets in my account" goes to `/my-tickets/` | П-7 «Мои билеты» (built, waits for the platform routes) |
 | Expired order | WP `vino-allpay-payment-window` | "Take the seats again" (`/recover`); the AllPay link after a recover depends on the platform | Platform: new payment link after recover |
 
 Gate buttons: "מאשר" green `#2e7d32` / hover `#256628`, "לא מאשר" light grey `#e0e0e0` with `#333` text (Elementor kit 542 custom CSS), fixed 2026-11-06.
