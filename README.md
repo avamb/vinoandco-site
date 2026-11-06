@@ -37,7 +37,21 @@ Read [AGENTS.md](AGENTS.md) first: it describes the structure, the rules that ke
 the site identical to the original, and how to check a change. It is written for
 people and for AI coding assistants alike.
 
-Commands are added as the project is scaffolded.
+### Commands
+
+Node 22 or newer.
+
+```
+npm install          # once
+npm run dev          # local site at http://localhost:4321 (events from src/data/events.sample.json)
+npm run build        # static site into dist/ (+ nginx rules and CSP hashes in dist/.nginx/)
+npm run check        # type check, redirect map and build sanity checks (after a build)
+npm run preview      # serve dist/ locally
+docker compose up --build web   # the production container (nginx) on http://localhost:8080
+```
+
+Build settings come from the environment (see `.env.example`); all of them are public.
+Without `PUBLIC_FEED_TOKEN` / `EVENTS_SNAPSHOT` the site builds from the sample events.
 
 ## Ownership
 

@@ -32,23 +32,69 @@ only pages, texts, design and the browser-side code.
 7. **Three languages always move together**: ru (default, no prefix), en (`/en/`),
    he (`/he/`, RTL). A change to one language's UI text needs the other two.
 
-## Planned structure
+## Structure
 
 ```
-src/arena/            platform API client, types, purchase flow logic (no markup)
-src/content/{ru,en,he}/  page texts and legal documents copied from WordPress
-src/content/blog/     future blog posts (static), src/content/video/ future video entries
-src/i18n/             UI strings per language
-src/layouts, src/components   the site's own design (header, footer, cards, modal…)
-src/styles/tokens.css design tokens: #822121 #F0E6DC #2C2C2C #D9A441 #999999 #A02828
-public/fonts/         Assistant, Karla (woff2, OFL)
-redirects.yaml        old WordPress addresses → new ones
-builder/              rebuilds the site when platform data changes
-Dockerfile, docker-compose.yml   nginx (web) + builder
+site.config.ts              languages (ru default no prefix, en, he RTL), origin, indexing,
+                            feed token, pixel / GA4 ids — read from the build environment
+src/arena/                  platform boundary: feed types, fetch client, lifecycle rules (no markup)
+src/lib/                    routes (every address per language), content loaders, events
+                            view model, i18n, HTML allow-list for event descriptions
+src/content/{ru,en,he}/     page texts (*.json) and legal documents (*.html) copied from WordPress
+src/content/past-legacy/    Bil24-era past events, one JSON per event (poster in public/_site/img/past/)
+src/data/events.sample.json events snapshot in the feed contract (spec 62 §6.0), used when no
+                            snapshot is given; the builder will write the real one
+src/i18n/{ru,en,he}.json    UI strings (menu, cards, event page, modal, forms, banner, age gate)
+src/layouts/Base.astro      <head>, age gate, header, footer, cookie banner, tracking loader
+src/components/             Header, Footer, EventCard, Split, PageHero, SiteForm, Popup, AgeGate
+src/components/pages/       one component per page type; src/pages/[...path].astro routes them
+src/components/islands/     Svelte islands: CookieBanner, BuyModal (stub)
+src/scripts/                consent cookie and the consent-gated GA4 / Meta Pixel loader
+src/styles/                 tokens.css (from the Elementor kit), fonts.css, global.css
+public/_site/               fonts (OFL), images, age-gate.js — every static file lives under /_site/
+redirects.yaml              every WordPress address with its expected code (200 / 301 / 410 / pending)
+nginx/                      server config template and header snippets
+scripts/                    postbuild (CSP hashes, nginx redirects), check-dist, check-redirects
+builder/                    feed poller and rebuilder (stub)
+Dockerfile, docker-compose.yml   build with Node, serve with nginx; builder service (profile)
+docs/reference/             snapshot of the WordPress site (HTML, CSS, screenshots, sitemaps)
+                            and notes.md: what is not yet 1:1
 ```
 
-Stack: Astro (static output) with Svelte islands for the purchase modal, seat map,
-"My tickets" and the cookie banner.
+Stack: Astro 5 (static output, `trailingSlash: 'always'`, directory format) with Svelte 5 islands.
+
+## Commands
+
+```
+npm install
+npm run dev            # http://localhost:4321
+npm run build          # dist/ + dist/.nginx/{csp-hashes,redirects}.conf
+npm run check          # astro check + check:redirects + check:dist (needs a build first)
+docker compose up --build web
+```
+
+## Conventions learned while building
+
+- **Addresses keep the WordPress shape** (trailing slash, folder per page). Add a page
+  to `src/lib/routes.ts` for all three languages; the catch-all `src/pages/[...path].astro`
+  builds it. Hebrew slugs are the transliterated WPML ones.
+- **No inline CSS or JS of our own**: the CSP is `'self'` plus hashes. Astro is set to emit
+  external CSS/JS (`inlineStylesheets: 'never'`, `assetsInlineLimit: 0`); the few inline
+  scripts Astro adds for islands are hashed by `scripts/postbuild.mjs` into
+  `dist/.nginx/csp-hashes.conf`. Never use a `style="..."` attribute (check-dist fails):
+  section photos are CSS classes `.vc-bg-*` in `global.css`.
+- **nginx `add_header` in a location replaces the server's headers**: every location that
+  adds a header includes `nginx/headers.conf` (or `headers-personal.conf`). Personal pages
+  use `^~` prefix locations so they beat `/en/` and `/he/`.
+- **Static files under `/_site/`** (spec 62 §4.1): fonts, images, scripts and Astro assets
+  (`build.assets: '_site/assets'`). Rollback routing relies on that prefix.
+- Texts in `src/content/` were generated from `docs/reference/html/*.json`; edit the JSON
+  directly now. Links to `https://vinoandco.events/...` inside texts are made relative by
+  `localizeLinks`.
+- Assistant and Karla have no Cyrillic: Russian falls back to the system sans, as it did
+  on WordPress. Not a bug of the font setup.
+- On Windows/git-bash, pass Windows paths (`C:\...`) and `MSYS_NO_PATHCONV=1` to node
+  scripts that receive URL paths, or `/` gets rewritten to `C:/Program Files/Git/`.
 
 ## Behaviour to preserve
 
@@ -67,6 +113,12 @@ Stack: Astro (static output) with Svelte islands for the purchase modal, seat ma
 
 ## Checks before a change is done
 
-To be filled in as tooling lands: build, link check, redirect check against the old
-sitemap, JSON-LD and hreflang check, visual comparison with the WordPress
-screenshots, accessibility (axe), Lighthouse.
+1. `npm run build` passes (postbuild prints the page count and the hashes).
+2. `npm run check` passes: types, `check:redirects` (every `redirects.yaml` entry against
+   `dist/`), `check:dist` (all pages in ru/en/he, one `<h1>`, lang/dir, no inline styles,
+   personal pages noindex and without tracking).
+3. Visual comparison with `docs/reference/screenshots/` at 1440 and 390 px, ru/en/he.
+4. For nginx changes: `docker compose up --build web` and `curl -I` the pages; no CSP
+   errors in the browser console.
+
+Still to add: link check, JSON-LD and hreflang check, axe, Lighthouse.
