@@ -1,14 +1,15 @@
 ---
 /**
- * Order status ("Спасибо") — STUB with the final layout. The page will read
- * the state only from GET /v1/public/checkout/{token} (spec 62 §5.5), take the
- * token from the address once, move it to sessionStorage and remove it from
- * the URL. Personal page: no-store, no third-party scripts, noindex (§5.6).
+ * Order status ("Спасибо", WordPress page 1250 / 1760 en / 2126 he). The state
+ * comes only from GET /v1/public/checkout/{token} (spec 62 §5.5); the island
+ * takes the token from the address once, keeps it in sessionStorage and removes
+ * it from the URL. Personal page: no-store, no third-party scripts, noindex (§5.6).
  */
 import Base from '../../layouts/Base.astro';
+import OrderStatus from '../islands/OrderStatus.svelte';
 import { ui } from '../../lib/i18n.ts';
 import { pagePath, pagePaths } from '../../lib/routes.ts';
-import type { LanguageCode } from '../../../site.config.ts';
+import { arena, brand, siteUrl, type LanguageCode } from '../../../site.config.ts';
 
 interface Props {
   lang: LanguageCode;
@@ -20,18 +21,16 @@ const t = ui(lang).orderStatus;
   <section class="vc-personal">
     <h1>{t.title}</h1>
     <div class="vc-personal__box">
-      <p class="vc-personal__status" data-order-status>{t.noToken}</p>
-      <a class="vc-btn vc-btn--primary" href={pagePath('myTickets', lang)}>{t.myTickets}</a>
+      <OrderStatus
+        client:load
+        t={t}
+        apiBase={arena.apiBase}
+        feedToken={arena.feedToken}
+        myTicketsPath={pagePath('myTickets', lang)}
+        upcomingPath={pagePath('upcoming', lang)}
+        shareUrl={new URL(pagePath('upcoming', lang), siteUrl).href}
+        contactEmail={brand.email}
+      />
     </div>
   </section>
-  <script>
-    // Strip a token from the address at once (spec 62 §5.6); the status lookup comes later.
-    const url = new URL(location.href);
-    const token = url.searchParams.get('checkout_token');
-    if (token) {
-      sessionStorage.setItem('vc_checkout_token', token);
-      url.searchParams.delete('checkout_token');
-      history.replaceState(null, '', url.pathname + url.search + url.hash);
-    }
-  </script>
 </Base>

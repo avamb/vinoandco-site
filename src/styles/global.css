@@ -554,3 +554,29 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-popup__body p { font-size: 15px; }
 .vc-popup__close { position: absolute; top: 8px; inset-inline-end: 8px; background: none; border: 0; box-shadow: none; padding: 6px; cursor: pointer; font-size: 22px; line-height: 1; color: var(--vc-text); }
 .vc-popup__close:hover { background: none; color: var(--vc-primary); }
+
+/* ---------- Order status (WordPress page 1250 "Оплата прошла успешно") ---------- */
+.vc-order { text-align: start; }
+.vc-order__title { font-size: 26px; margin: 0 0 16px; color: var(--vc-primary); }
+.vc-order p { margin: 0 0 14px; }
+.vc-order__number { font-size: 17px; }
+.vc-order__tickets { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 8px; }
+.vc-order__tickets a { color: var(--vc-primary); font-weight: 600; }
+.vc-order__share-title { font-size: 18px; margin: 24px 0 12px; }
+.vc-order__share { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.vc-share { display: inline-block; padding: 8px 14px; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; background: #555; }
+.vc-share--facebook { background: #3b5998; }
+.vc-share--linkedin { background: #0077b5; }
+.vc-share--reddit { background: #ff4500; }
+.vc-share--telegram { background: #2ca5e0; }
+.vc-share--whatsapp { background: #25d366; }
+.vc-share--email { background: #ea4335; }
+.vc-share--threads { background: #000; }
+.vc-share:hover, .vc-share:focus-visible { filter: brightness(0.9); color: #fff; }
+.vc-order__referral { margin: 24px 0; padding: 18px; border: 1px dashed var(--vc-primary); border-radius: 12px; }
+.vc-order__referral h3 { margin: 0 0 10px; }
+.vc-order__code { font-size: 20px; letter-spacing: 0.06em; }
+.vc-order__error { color: #c0392b; }
+.vc-order__spinner { display: inline-block; width: 16px; height: 16px; margin-inline-end: 10px; vertical-align: -2px; border: 2px solid rgba(0, 0, 0, 0.15); border-top-color: var(--vc-primary); border-radius: 50%; animation: vc-spin 0.8s linear infinite; }
+@keyframes vc-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .vc-order__spinner { animation: none; } }

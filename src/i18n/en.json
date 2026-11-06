@@ -173,8 +173,6 @@
     "failedText": "No money was taken. You can try to pay again.",
     "retry": "Try again",
     "expiredTitle": "The time to pay has run out",
-    "expiredText": "The seats have been released. Choose tickets again on the event page.",
-    "recoverText": "The time has run out, but the seats are still free.",
     "recover": "Take the seats again",
     "recoverGone": "The seats are taken now. Choose tickets again.",
     "cancelledTitle": "The order is cancelled",
