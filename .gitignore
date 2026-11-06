@@ -1,9 +1,16 @@
-node_modules/
+# build
 dist/
 .astro/
+node_modules/
+
+# env and secrets (never commit)
 .env
 .env.*
 !.env.example
-*.log
+
+# os / editors
 .DS_Store
 Thumbs.db
+*.log
+.vscode/
+.idea/

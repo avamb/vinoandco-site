@@ -1,0 +1,31 @@
+{
+  "name": "vinoandco-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "vinoandco.events: Astro static site, events from the Arena public feed, served by nginx",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/postbuild.mjs",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "npm run check:types && npm run check:redirects && npm run check:dist",
+    "check:types": "astro check",
+    "check:redirects": "node scripts/check-redirects.mjs",
+    "check:dist": "node scripts/check-dist.mjs"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^7.2.5",
+    "astro": "^5.18.2",
+    "svelte": "^5.57.2",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
