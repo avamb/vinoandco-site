@@ -61,6 +61,7 @@ export function viewOf(status: CheckoutPublicStatus): StatusView {
     case 'refunded':
     case 'partially_refunded':
       return 'refunded';
+    case 'needs_help':
     case 'manual_review':
       return 'review';
     default:

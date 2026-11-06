@@ -67,7 +67,7 @@ describe('order status rules', () => {
     expect(takeToken('https://x/order-status/', s)).toEqual({ token: 'abc', cleanUrl: null });
   });
   it('maps platform states to screens', () => {
-    expect(['pending', 'paid', 'failed', 'expired', 'cancelled', 'refunded', 'manual_review', 'weird'].map(viewOf)).toEqual(['pending', 'paid', 'failed', 'expired', 'cancelled', 'refunded', 'review', 'pending']);
+    expect(['pending', 'paid', 'failed', 'expired', 'cancelled', 'refunded', 'manual_review', 'needs_help', 'weird'].map(viewOf)).toEqual(['pending', 'paid', 'failed', 'expired', 'cancelled', 'refunded', 'review', 'review', 'pending']);
   });
 });
 
@@ -145,5 +145,45 @@ describe('OrderStatus', () => {
     await settle();
     expect(document.querySelector('.vc-order__referral')!.textContent).toContain('ANNA10');
     expect(text()).toContain('скидку 10%');
+  });
+
+  const event = { event_id: 'e1', session_id: 's1', name: 'Премьера вина', slug: 'premera', start_at: '2026-11-21T17:30:00Z', venue_name: 'Винотека', timezone: 'Asia/Jerusalem' };
+
+  it('needs_help says the payment is being checked and the organizer will write, and stops polling', async () => {
+    statuses = [{ ...pending, status: 'needs_help', event }];
+    start('?checkout_token=ct');
+    await settle();
+    expect(text()).toContain('Мы проверяем ваш платёж');
+    expect(text()).toContain('организатор свяжется с вами по e-mail');
+    expect(text()).toContain('info@vinoandco.events');
+    const n = calls.length;
+    await settle(10_000);
+    expect(calls.length).toBe(n);
+  });
+
+  it('refunded and cancelled orders have their own screens with the event', async () => {
+    statuses = [{ ...pending, status: 'refunded', event }];
+    start('?checkout_token=ct');
+    await settle();
+    expect(text()).toContain('Заказ возвращён');
+    expect(text()).toContain('Премьера вина');
+    unmount(component!);
+    component = null;
+    statuses = [{ ...pending, status: 'cancelled', event }];
+    start('?checkout_token=ct');
+    await settle();
+    expect(text()).toContain('Заказ отменён');
+  });
+
+  it('renders the event block with the date in the venue time zone and uses pdf_url as given', async () => {
+    statuses = [{ ...pending, status: 'paid', event, tickets: [{ ticket_id: 'tk1', human_code: 'AB12', pdf_url: 'https://api.test/v1/public/checkout/ct/tickets/tk1/pdf' }] }];
+    start('?checkout_token=ct');
+    await settle();
+    const block = document.querySelector('.vc-order__event')!.textContent!.replace(/\s+/g, ' ');
+    expect(block).toContain('Премьера вина');
+    // 17:30 UTC is 19:30 in Jerusalem (winter time)
+    expect(block).toContain('19:30');
+    expect(block).toContain('Винотека');
+    expect(document.querySelector<HTMLAnchorElement>('.vc-order__tickets a')!.href).toBe('https://api.test/v1/public/checkout/ct/tickets/tk1/pdf');
   });
 });

@@ -565,6 +565,9 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-order__number { font-size: 17px; }
 .vc-order__tickets { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 8px; }
 .vc-order__tickets a { color: var(--vc-primary); font-weight: 600; }
+.vc-order__event { display: grid; gap: 2px; margin: 0 0 16px; padding: 12px 16px; background: var(--vc-bg-soft, #f6f1ee); border-radius: 12px; }
+.vc-order__event-name { font-size: 18px; }
+.vc-order__event-when, .vc-order__event-venue { font-size: 15px; }
 .vc-order__share-title { font-size: 18px; margin: 24px 0 12px; }
 .vc-order__share { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .vc-share { display: inline-block; padding: 8px 14px; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; background: #555; }
@@ -583,3 +586,20 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-order__spinner { display: inline-block; width: 16px; height: 16px; margin-inline-end: 10px; vertical-align: -2px; border: 2px solid rgba(0, 0, 0, 0.15); border-top-color: var(--vc-primary); border-radius: 50%; animation: vc-spin 0.8s linear infinite; }
 @keyframes vc-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .vc-order__spinner { animation: none; } }
+
+/* My tickets (personal page) */
+.vc-mt__order { margin: 0 0 22px; padding: 16px 18px; border: 1px solid #e3d9d0; border-radius: 12px; }
+.vc-mt__event { font-size: 20px; margin: 0 0 6px; color: var(--vc-primary); }
+.vc-mt__when, .vc-mt__meta { margin: 0 0 8px; font-size: 15px; }
+.vc-mt__state { margin-inline-start: 10px; color: #c0392b; }
+.vc-mt__tickets { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 10px; }
+.vc-mt__tickets li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.vc-mt__ticket small { display: block; color: var(--vc-muted); }
+.vc-mt__logout { text-align: center; margin-top: 18px; }
+.vc-mt__link { background: none; border: 0; padding: 0; font: inherit; color: var(--vc-primary); text-decoration: underline; cursor: pointer; }
+
+/* Site forms: captcha slot and status line */
+.vc-form__turnstile:empty { display: none; }
+.vc-form__status { margin: 0; font-size: 16px; }
+.vc-form__status[data-state='error'] { color: #c0392b; }
+.vc-form__status[data-state='ok'] { color: #2e7d32; font-weight: 600; }

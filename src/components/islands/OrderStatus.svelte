@@ -11,6 +11,7 @@
   import type { CheckoutStatus, ReferralOffer } from '../../arena/types.ts';
   import { isFinal, nextPollDelay, shareLinks, takeToken, viewOf, type StatusView } from '../../lib/order-status.ts';
   import { LAST_EVENT_KEY, fmt } from '../../lib/purchase.ts';
+  import { formatWhen } from '../../lib/when.ts';
 
   type Strings = Record<string, string>;
   interface Props {
@@ -23,8 +24,10 @@
     /** Absolute URL the share buttons share (the WordPress page shared the events list). */
     shareUrl: string;
     contactEmail: string;
+    /** BCP 47 tag of the page language for the date. */
+    intl?: string;
   }
-  let { t, apiBase, feedToken, myTicketsPath, upcomingPath, shareUrl, contactEmail }: Props = $props();
+  let { t, apiBase, feedToken, myTicketsPath, upcomingPath, shareUrl, contactEmail, intl = 'ru-RU' }: Props = $props();
 
   // svelte-ignore state_referenced_locally
   const client = createArenaClient({ apiBase, feedToken, timeoutMs: 20_000 });
@@ -42,6 +45,7 @@
   let alive = true;
 
   const links = $derived(shareLinks(shareUrl, t.share));
+  const ev = $derived(status?.event ?? null);
 
   async function poll() {
     if (!token || !alive) return;
@@ -126,6 +130,16 @@
   });
 </script>
 
+{#snippet eventBlock()}
+  {#if ev}
+    <div class="vc-order__event">
+      <strong class="vc-order__event-name">{ev.name}</strong>
+      <span class="vc-order__event-when">{formatWhen(ev.start_at, ev.timezone, intl)}</span>
+      {#if ev.venue_name}<span class="vc-order__event-venue">{ev.venue_name}</span>{/if}
+    </div>
+  {/if}
+{/snippet}
+
 <div class="vc-order" data-view={view} aria-live="polite">
   {#if view === 'none'}
     <p class="vc-personal__status">{t.noToken}</p>
@@ -142,6 +156,7 @@
     {/if}
   {:else if view === 'paid'}
     <h2 class="vc-order__title">{t.paidTitle}</h2>
+    {@render eventBlock()}
     <p>{t.paidText1}<br />{t.paidText2}</p>
     {#if status?.order_number}<p class="vc-order__number">{t.orderNumber} <strong>{status.order_number}</strong></p>{/if}
     {#if status?.tickets?.length}
@@ -176,23 +191,28 @@
     </ul>
   {:else if view === 'failed'}
     <h2 class="vc-order__title">{t.failedTitle}</h2>
+    {@render eventBlock()}
     <p>{t.failedText}</p>
     {#if status?.payment_url}<p><a class="vc-btn vc-btn--primary" href={status.payment_url}>{t.retry}</a></p>{/if}
     <p><a href={eventLink?.path ?? upcomingPath}>{eventLink?.name ?? t.toEvents}</a></p>
   {:else if view === 'expired'}
     <h2 class="vc-order__title">{t.expiredTitle}</h2>
+    {@render eventBlock()}
     <p><button type="button" class="vc-btn vc-btn--primary" onclick={recover} disabled={recovering}>{t.recover}</button></p>
     {#if recoverMessage}<p class="vc-order__error" role="alert">{recoverMessage}</p>{/if}
     <p><a href={eventLink?.path ?? upcomingPath}>{eventLink?.name ?? t.toEvents}</a></p>
   {:else if view === 'cancelled'}
     <h2 class="vc-order__title">{t.cancelledTitle}</h2>
+    {@render eventBlock()}
     <p>{t.cancelledText}</p>
     <p><a href={eventLink?.path ?? upcomingPath}>{eventLink?.name ?? t.toEvents}</a></p>
   {:else if view === 'refunded'}
     <h2 class="vc-order__title">{t.refundedTitle}</h2>
+    {@render eventBlock()}
     <p>{t.refundedText}</p>
   {:else if view === 'review'}
     <h2 class="vc-order__title">{t.reviewTitle}</h2>
+    {@render eventBlock()}
     <p>{fmt(t.reviewText, contactEmail)}</p>
   {/if}
 </div>
