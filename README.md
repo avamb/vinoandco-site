@@ -26,6 +26,10 @@ visitor ──► static pages (this repo, built with Astro)
 - **Events** are built into pages from the platform; when an event ends it moves to
   "Past events" automatically and its page stays at the same address without the
   purchase button.
+- **Builder:** a small service polls the platform feed every 2 minutes, rebuilds the site
+  when events change (and when a session ends, and hourly), checks the result and only
+  then switches the folder nginx serves; a failed build leaves the last good one online.
+  `GET :8081/healthz` inside the container shows when it last read the feed and published.
 - **Purchase** happens in the site's own modal (the same one the WordPress site had)
   and is paid on the AllPay page.
 - **Tracking** (Meta Pixel, Google Analytics) loads only after the visitor accepts
@@ -46,8 +50,10 @@ npm install          # once
 npm run dev          # local site at http://localhost:4321 (events from src/data/events.sample.json)
 npm run build        # static site into dist/ (+ nginx rules and CSP hashes in dist/.nginx/)
 npm run check        # type check, redirect map and build sanity checks (after a build)
+npm test             # unit and component tests (no live platform calls)
 npm run preview      # serve dist/ locally
 docker compose up --build web   # the production container (nginx) on http://localhost:8080
+docker compose --profile builder up --build -d   # plus the builder: real events, rebuilt on change
 ```
 
 Build settings come from the environment (see `.env.example`); all of them are public.

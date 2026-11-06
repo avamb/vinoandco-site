@@ -32,11 +32,17 @@ Where the new site takes what:
 | Cookie banner close icon | A grey × that also meant "accept" | Removed; "Decline" button added (Р-10) | — |
 | Fonts | Assistant and Karla requested from the dead `tempvino.andreevmaster.com` and Google; Assistant 404, so everything was Arial | Assistant and Karla served from `/_site/fonts/` (Р-6). **Neither font has Cyrillic glyphs**: Russian text still falls back to the system sans, Latin letters and digits are now Assistant | Decide with the owner whether to add a Cyrillic font |
 | Days to start on the event page | Live JS counter | Computed at build time (the builder rebuilds at least hourly) | Client-side counter in the purchase island |
-| Event page selects | Hidden WooCommerce variation `<select>`s (category, tariff) | Not reproduced: the modal will offer them | Purchase modal |
+| Event page selects | Hidden WooCommerce variation `<select>`s (category, tariff) | The modal's own category `<select>` (tiers of the session; the platform has no tariffs) | — |
 | "We're Hiring" block on About | In the HTML, invisible on the page | Omitted | — |
 | Lightbox gallery on Private events | Three links in the HTML, invisible on the page | Omitted | — |
 | Event list on `/en/` and `/he/` | Empty (WPML products were not translated) | Events in every language with the original text (Р-7) | — |
-| Past events | 27 Bil24-era product posters + platform events | Platform events + `src/content/past-legacy/` (3 example cards, dates and slugs are placeholders) | Export of the 27 products |
+| Past events | Bil24-era product posters + platform events, no links | Platform past events + the 27 Bil24-era products of `wp-products-export.json` in one list, newest first, each linking to its page at the old WordPress address (undated 2023–2024 products last) | — |
 | Forms and popups | Elementor Pro forms with reCAPTCHA v3, Brevo | Same fields and texts, submit disabled | Platform forms with Turnstile (П-17) |
 
 Icons: Facebook and Instagram are Font Awesome Free brand icons (CC BY 4.0), as on WordPress.
+| Purchase modal | `vino-modal` on admin-ajax, WooCommerce order, `bil24_add_to_cart` | Same markup, texts (plugin i18n) and CSS (`modal-booking.css` with its !important values folded in), on `checkout/quote` and `checkout/start` | Seat-map variant (§5.2, П-1) after the switch |
+| Quantity beyond a price step | Spill into the next Bil24 category at its price | Capped at the step's free places until the feed names the next step (`price_step.next_tier_id`, П-4); then two `ga_items` | П-4 |
+| Thank-you page | Elementor page 1250 / 1760 / 2126 (saved as `html/*-thankyou.html`), share buttons by Elementor JS | Same texts; status from the platform; share buttons as plain links (no third-party script on a personal page); "My tickets in my account" goes to `/my-tickets/` | П-7 «Мои билеты» |
+| Expired order | WP `vino-allpay-payment-window` | "Take the seats again" (`/recover`); the AllPay link after a recover depends on the platform | Platform: new payment link after recover |
+
+Gate buttons: "מאשר" green `#2e7d32` / hover `#256628`, "לא מאשר" light grey `#e0e0e0` with `#333` text (Elementor kit 542 custom CSS), fixed 2026-11-06.
