@@ -1,0 +1,25 @@
+.lops-event-media-public {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 16px;
+	margin: 24px 0;
+}
+.lops-event-media-public img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+}
+.lops-event-partners { margin: 24px 0; }
+.lops-partner-button {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	margin: 0 8px 8px 0;
+	padding: 0 16px;
+	border-radius: 12px;
+	background: #F4CE53;
+	color: #21353E;
+	font-weight: 700;
+	text-decoration: none;
+}

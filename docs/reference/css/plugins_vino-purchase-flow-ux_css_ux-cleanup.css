@@ -1,0 +1,382 @@
+.vino-qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vino-qty-stepper .vino-stepper-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: #fff;
+  color: #2c2c2c;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.vino-qty-stepper .vino-stepper-btn:focus {
+  outline: 2px solid rgba(130, 33, 33, 0.35);
+  outline-offset: 1px;
+}
+
+.vino-qty-stepper .vino-stepper-input {
+  width: 64px;
+  text-align: center;
+  min-height: 38px;
+}
+
+/* Hide reservation notices/text completely per UX request */
+.vino-reserve-text,
+.bil24-checkout-reserve-text {
+  display: none !important;
+}
+
+.vino-success-copy {
+  margin: 12px 0 18px;
+  padding: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  background: #f7f3ee;
+}
+
+.vino-success-copy h2 {
+  margin: 0 0 8px;
+}
+
+.vino-success-copy p {
+  margin: 0 0 6px;
+}
+
+.woocommerce-checkout .woocommerce-privacy-policy-text,
+.woocommerce-checkout .woocommerce-terms-and-conditions-wrapper .woocommerce-privacy-policy-text {
+  display: none !important;
+}
+
+.woocommerce-checkout .vino-privacy-short-text {
+  margin: 8px 0 10px !important;
+  color: #2c2c2c;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* Order summary: keep only one line with qty + amount */
+.woocommerce-checkout #order_review_heading,
+.woocommerce-checkout .e-checkout__order-review-title {
+  display: none !important;
+}
+
+/* Remove "Ваши данные" heading */
+.woocommerce-checkout h3#ship-to-different-address,
+.woocommerce-checkout .woocommerce-billing-fields > h3,
+.woocommerce-checkout .woocommerce-billing-fields__field-wrapper + h3,
+.woocommerce-checkout .e-checkout .woocommerce-billing-fields h3 {
+  display: none !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order-table thead,
+.woocommerce-checkout .woocommerce-checkout-review-order-table tfoot {
+  display: none !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order-table tbody tr:not(.cart_item) {
+  display: none !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order-table tbody tr.cart_item {
+  display: table-row !important;
+}
+
+.woocommerce-checkout .e-checkout__order-review-table table thead,
+.woocommerce-checkout .e-checkout__order-review-table table tfoot {
+  display: none !important;
+}
+
+.woocommerce-checkout .e-checkout__order-review-table table tbody tr:not(.cart_item):not(.order_item) {
+  display: none !important;
+}
+
+/* Compact checkout layout: tighter vertical rhythm and aligned controls */
+.woocommerce-checkout .vino-checkout-clean-shell {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.woocommerce-checkout .checkout {
+  margin-top: 2px !important;
+}
+
+.woocommerce-checkout .form-row {
+  margin: 0 0 4px !important;
+}
+
+.woocommerce-checkout .form-row label {
+  margin-bottom: 2px !important;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.woocommerce-checkout input.input-text,
+.woocommerce-checkout input[type="text"],
+.woocommerce-checkout input[type="email"],
+.woocommerce-checkout input[type="tel"],
+.woocommerce-checkout select,
+.woocommerce-checkout textarea {
+  width: 100% !important;
+  min-height: 38px !important;
+  height: 38px;
+  padding: 8px 10px !important;
+  box-sizing: border-box;
+}
+
+.woocommerce-checkout .woocommerce-checkout-payment,
+.woocommerce-checkout .woocommerce-terms-and-conditions-wrapper {
+  margin-top: 4px !important;
+}
+
+.woocommerce-checkout .woocommerce-form__label-for-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.3;
+}
+
+.woocommerce-checkout #place_order,
+.woocommerce-checkout button[name="woocommerce_checkout_place_order"] {
+  width: 100% !important;
+  min-height: 42px !important;
+  margin-top: 4px !important;
+}
+
+/* Collapse extra top whitespace that often appears in Elementor checkout templates */
+.woocommerce-checkout .elementor-widget-container > p {
+  margin: 1px 0 !important;
+}
+
+.woocommerce-checkout .e-checkout,
+.woocommerce-checkout .e-checkout__container {
+  gap: 4px !important;
+}
+
+/* Promo block aligned with checkout fields */
+.woocommerce-checkout .bil24-promo-wrap {
+  margin: 4px 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.woocommerce-checkout .bil24-promo-wrap strong,
+.woocommerce-checkout .coupon label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+  margin: 0 0 3px !important;
+  font-family: inherit !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  color: #7f2028 !important;
+  cursor: pointer;
+}
+
+/* Chevron indicator for collapsible promo row */
+.woocommerce-checkout .bil24-promo-wrap .vino-promo-toggle::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform .18s ease;
+  margin-left: 4px;
+  flex: 0 0 auto;
+}
+
+.woocommerce-checkout .bil24-promo-wrap:not(.is-collapsed) .vino-promo-toggle::after {
+  transform: rotate(-135deg);
+}
+
+.woocommerce-checkout #bil24-promo-input,
+.woocommerce-checkout .coupon input.input-text[name="coupon_code"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 38px !important;
+  height: 38px !important;
+  padding: 8px 10px !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 0 !important;
+  box-sizing: border-box;
+  font-family: inherit !important;
+  font-size: 13px !important;
+}
+
+.woocommerce-checkout #bil24-apply-promo,
+.woocommerce-checkout .coupon button.button {
+  min-height: 38px !important;
+  height: 38px !important;
+  padding: 0 12px !important;
+  margin-top: 4px !important;
+  border-radius: 0 !important;
+  font-family: inherit !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+/* Accordion behavior for promo block */
+.woocommerce-checkout .bil24-promo-wrap.is-collapsed .vino-promo-input,
+.woocommerce-checkout .bil24-promo-wrap.is-collapsed .vino-promo-apply,
+.woocommerce-checkout .bil24-promo-wrap.is-collapsed .vino-promo-msg {
+  display: none !important;
+}
+
+.woocommerce-checkout .bil24-promo-wrap:not(.is-collapsed) .vino-promo-input {
+  display: block !important;
+  width: 100% !important;
+}
+
+.woocommerce-checkout .bil24-promo-wrap:not(.is-collapsed) .vino-promo-apply {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Make order single-line block denser */
+.woocommerce-checkout .woocommerce-checkout-review-order-table {
+  margin: 2px 0 !important;
+}
+
+.woocommerce-checkout .woocommerce-checkout-review-order-table td,
+.woocommerce-checkout .woocommerce-checkout-review-order-table th {
+  padding: 2px 0 !important;
+  line-height: 1.2 !important;
+}
+
+.woocommerce-checkout .vino-privacy-short-text {
+  margin: 3px 0 4px !important;
+  line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+  /* Hard compact for mobile viewport */
+  .woocommerce-checkout .vino-checkout-clean-shell,
+  .woocommerce-checkout .e-checkout,
+  .woocommerce-checkout .e-checkout__container,
+  .woocommerce-checkout .e-checkout__column,
+  .woocommerce-checkout .e-checkout__column-start,
+  .woocommerce-checkout .e-checkout__column-end {
+    gap: 2px !important;
+    row-gap: 2px !important;
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .woocommerce-checkout .checkout {
+    margin-top: 0 !important;
+  }
+
+  .woocommerce-checkout .elementor-widget-container > p {
+    margin: 0 !important;
+    line-height: 1.2 !important;
+    font-size: 12px !important;
+  }
+
+  .woocommerce-checkout .form-row {
+    margin: 0 0 2px !important;
+  }
+
+  .woocommerce-checkout .form-row label {
+    margin: 0 0 1px !important;
+    line-height: 1.15 !important;
+    font-size: 11px !important;
+  }
+
+  .woocommerce-checkout .vino-checkout-clean-shell {
+    max-width: 100%;
+  }
+
+  .woocommerce-checkout input.input-text,
+  .woocommerce-checkout input[type="text"],
+  .woocommerce-checkout input[type="email"],
+  .woocommerce-checkout input[type="tel"],
+  .woocommerce-checkout select,
+  .woocommerce-checkout textarea {
+    min-height: 38px !important;
+    height: 38px !important;
+    padding: 8px 10px !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+  }
+
+  .woocommerce-checkout #place_order,
+  .woocommerce-checkout button[name="woocommerce_checkout_place_order"] {
+    min-height: 42px !important;
+    height: 42px !important;
+    margin-top: 2px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .woocommerce-checkout #bil24-promo-input,
+  .woocommerce-checkout .coupon input.input-text[name="coupon_code"],
+  .woocommerce-checkout #bil24-apply-promo,
+  .woocommerce-checkout .coupon button.button {
+    min-height: 38px !important;
+    height: 38px !important;
+    font-size: 12px !important;
+  }
+
+  .woocommerce-checkout .bil24-promo-wrap {
+    margin: 2px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .woocommerce-checkout .bil24-promo-wrap .vino-promo-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 2px !important;
+    margin: 0 !important;
+  }
+
+  .vino-qty-stepper {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .vino-qty-stepper .vino-stepper-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .vino-qty-stepper .vino-stepper-input {
+    width: 72px;
+    min-height: 44px;
+  }
+
+  .single-product form.variations_form .single_add_to_cart_button {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .woocommerce-checkout .woocommerce-form__label-for-checkbox {
+    margin: 2px 0 !important;
+    line-height: 1.15 !important;
+    font-size: 11px !important;
+  }
+
+  .woocommerce-checkout .vino-privacy-short-text {
+    margin: 1px 0 2px !important;
+    line-height: 1.2 !important;
+    font-size: 11px !important;
+  }
+}
+
+/* order-pay: hide technical variation meta (Ticket Tariff: -, etc.) */
+.woocommerce-order-pay .wc-item-meta { display: none !important; }
+

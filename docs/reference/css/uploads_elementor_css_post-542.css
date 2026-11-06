@@ -1,0 +1,230 @@
+.elementor-kit-542{--e-global-color-primary:#822121;--e-global-color-secondary:#F0E6DC;--e-global-color-text:#2C2C2C;--e-global-color-accent:#D9A441;--e-global-color-45ca8e4:#999999;--e-global-color-f6f9770:#A02828;--e-global-color-5bfa07d:#FFFFFF;--e-global-color-40a1e0a:#F0E6DC;--e-global-typography-primary-font-family:"Assistant";--e-global-typography-primary-font-size:40px;--e-global-typography-primary-font-weight:400;--e-global-typography-primary-line-height:1.2em;--e-global-typography-secondary-font-family:"Assistant";--e-global-typography-secondary-font-size:18px;--e-global-typography-secondary-font-weight:700;--e-global-typography-secondary-line-height:1.3em;--e-global-typography-text-font-family:"Assistant";--e-global-typography-text-font-size:16px;--e-global-typography-text-font-weight:400;--e-global-typography-text-line-height:1.6em;--e-global-typography-accent-font-family:"Assistant";--e-global-typography-accent-font-size:14px;--e-global-typography-accent-font-weight:600;background-color:var( --e-global-color-secondary );color:var( --e-global-color-text );font-family:"Assistant", Sans-serif;font-size:16px;font-weight:400;}.elementor-kit-542 button,.elementor-kit-542 input[type="button"],.elementor-kit-542 input[type="submit"],.elementor-kit-542 .elementor-button{background-color:var( --e-global-color-f6f9770 );font-family:"Assistant", Sans-serif;font-size:18px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var( --e-global-color-5bfa07d );box-shadow:0px 2px 10px 0px rgba(0, 0, 0, 0.1);border-style:solid;border-width:1px 1px 1px 1px;border-color:var( --e-global-color-f6f9770 );border-radius:10px 10px 10px 10px;padding:16px 32px 16px 32px;}.elementor-kit-542 button:hover,.elementor-kit-542 button:focus,.elementor-kit-542 input[type="button"]:hover,.elementor-kit-542 input[type="button"]:focus,.elementor-kit-542 input[type="submit"]:hover,.elementor-kit-542 input[type="submit"]:focus,.elementor-kit-542 .elementor-button:hover,.elementor-kit-542 .elementor-button:focus{background-color:var( --e-global-color-primary );color:var( --e-global-color-5bfa07d );border-style:solid;border-width:1px 1px 1px 1px;border-color:var( --e-global-color-primary );border-radius:8px 8px 8px 8px;}.elementor-kit-542 e-page-transition{background-color:#FFBC7D;}.elementor-kit-542 p{margin-block-end:20px;}.elementor-kit-542 a{color:var( --e-global-color-primary );font-family:var( --e-global-typography-accent-font-family ), Sans-serif;font-size:var( --e-global-typography-accent-font-size );font-weight:var( --e-global-typography-accent-font-weight );line-height:var( --e-global-typography-accent-line-height );}.elementor-kit-542 a:hover{color:var( --e-global-color-accent );}.elementor-kit-542 h1{color:var( --e-global-color-text );font-family:var( --e-global-typography-primary-font-family ), Sans-serif;font-size:var( --e-global-typography-primary-font-size );font-weight:var( --e-global-typography-primary-font-weight );line-height:var( --e-global-typography-primary-line-height );}.elementor-kit-542 h2{color:var( --e-global-color-text );font-family:var( --e-global-typography-secondary-font-family ), Sans-serif;font-size:var( --e-global-typography-secondary-font-size );font-weight:var( --e-global-typography-secondary-font-weight );line-height:var( --e-global-typography-secondary-line-height );}.elementor-kit-542 h3{color:var( --e-global-color-text );font-family:var( --e-global-typography-secondary-font-family ), Sans-serif;font-size:var( --e-global-typography-secondary-font-size );font-weight:var( --e-global-typography-secondary-font-weight );line-height:var( --e-global-typography-secondary-line-height );}.elementor-kit-542 h4{color:var( --e-global-color-text );font-family:var( --e-global-typography-text-font-family ), Sans-serif;font-size:var( --e-global-typography-text-font-size );font-weight:var( --e-global-typography-text-font-weight );line-height:var( --e-global-typography-text-line-height );}.elementor-kit-542 h5{color:var( --e-global-color-text );font-family:var( --e-global-typography-text-font-family ), Sans-serif;font-size:var( --e-global-typography-text-font-size );font-weight:var( --e-global-typography-text-font-weight );line-height:var( --e-global-typography-text-line-height );}.elementor-kit-542 h6{color:var( --e-global-color-45ca8e4 );font-family:var( --e-global-typography-accent-font-family ), Sans-serif;font-size:var( --e-global-typography-accent-font-size );font-weight:var( --e-global-typography-accent-font-weight );line-height:var( --e-global-typography-accent-line-height );}.elementor-kit-542 img{border-style:none;border-radius:10px 10px 10px 10px;opacity:100;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1140px;}.e-con{--container-max-width:1140px;}.elementor-widget:not(:last-child){--kit-widget-spacing:20px;}.elementor-element{--widgets-spacing:20px 20px;--widgets-spacing-row:20px;--widgets-spacing-column:20px;}{}h1.entry-title{display:var(--page-title-display);}.site-header .site-branding{flex-direction:column;align-items:stretch;}.site-header{padding-inline-end:0px;padding-inline-start:0px;}.site-footer .site-branding{flex-direction:column;align-items:stretch;}@media(max-width:1024px){.elementor-kit-542 a{font-size:var( --e-global-typography-accent-font-size );line-height:var( --e-global-typography-accent-line-height );}.elementor-kit-542 h1{font-size:var( --e-global-typography-primary-font-size );line-height:var( --e-global-typography-primary-line-height );}.elementor-kit-542 h2{font-size:var( --e-global-typography-secondary-font-size );line-height:var( --e-global-typography-secondary-line-height );}.elementor-kit-542 h3{font-size:var( --e-global-typography-secondary-font-size );line-height:var( --e-global-typography-secondary-line-height );}.elementor-kit-542 h4{font-size:var( --e-global-typography-text-font-size );line-height:var( --e-global-typography-text-line-height );}.elementor-kit-542 h5{font-size:var( --e-global-typography-text-font-size );line-height:var( --e-global-typography-text-line-height );}.elementor-kit-542 h6{font-size:var( --e-global-typography-accent-font-size );line-height:var( --e-global-typography-accent-line-height );}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}.e-con{--container-max-width:1024px;}}@media(max-width:767px){.elementor-kit-542 a{font-size:var( --e-global-typography-accent-font-size );line-height:var( --e-global-typography-accent-line-height );}.elementor-kit-542 h1{font-size:var( --e-global-typography-primary-font-size );line-height:var( --e-global-typography-primary-line-height );}.elementor-kit-542 h2{font-size:var( --e-global-typography-secondary-font-size );line-height:var( --e-global-typography-secondary-line-height );}.elementor-kit-542 h3{font-size:var( --e-global-typography-secondary-font-size );line-height:var( --e-global-typography-secondary-line-height );}.elementor-kit-542 h4{font-size:var( --e-global-typography-text-font-size );line-height:var( --e-global-typography-text-line-height );}.elementor-kit-542 h5{font-size:var( --e-global-typography-text-font-size );line-height:var( --e-global-typography-text-line-height );}.elementor-kit-542 h6{font-size:var( --e-global-typography-accent-font-size );line-height:var( --e-global-typography-accent-line-height );}.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}.e-con{--container-max-width:767px;}}/* Start custom CSS *//* ========= Design Tokens ========= */
+:root{
+  --tix-accent: #B87A2E;     /* золото */
+  --tix-accent-2:#D9A25A;    /* светлее золота */
+  --tix-danger:#7C1B1B;      /* бордовый */
+  --tix-text:#2B2B2B;
+  --tix-muted:#8A8A8A;
+  --tix-bg:#FFFFFF;
+  --tix-soft:#F7F3EE;
+  --tix-radius:16px;
+  --tix-shadow:0 8px 22px rgba(0,0,0,.08);
+  --tix-tr: .2s ease;
+}
+
+/* ========= Карточка блока покупки ========= */
+.elementor-template .tixpicker,
+.tixpicker{
+  background: var(--tix-bg);
+  border-radius: var(--tix-radius);
+  box-shadow: var(--tix-shadow);
+  padding: clamp(16px, 3vw, 28px);
+  border: 1px solid rgba(0,0,0,.05);
+}
+
+/* Заголовки внутри виджета */
+.tixpicker h3, .tixpicker h4, .tixpicker label{
+  color: var(--tix-text);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ========= Красивый select (категории/тарифы) ========= */
+.tixpicker select{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 12px;
+  padding: 12px 42px 12px 14px;
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--tix-text);
+  transition: border-color var(--tix-tr), box-shadow var(--tix-tr);
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+  position: relative;
+}
+
+/* Стрелка у select через SVG */
+.tixpicker select{
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%238A8A8A' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z'/></svg>");
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  background-position: right 12px center;
+}
+
+.tixpicker select:focus{
+  outline: none;
+  border-color: var(--tix-accent);
+  box-shadow: 0 0 0 3px rgba(184,122,46,.15);
+}
+
+/* Хелп-текст/ошибки */
+.tixpicker .tix-help{
+  color: var(--tix-muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
+.tixpicker .tix-error{
+  color: var(--tix-danger);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* ========= Кнопка Add to Cart / Купить ========= */
+.tixpicker .button,
+.tixpicker .add_to_cart_button,
+.tixpicker .single_add_to_cart_button,
+.tixpicker .elementor-button{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 22px;
+  background: linear-gradient(180deg, var(--tix-accent) 0%, var(--tix-accent-2) 100%);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-transform: uppercase;
+  box-shadow: 0 6px 16px rgba(184,122,46,.35);
+  transition: transform var(--tix-tr), box-shadow var(--tix-tr), filter var(--tix-tr);
+}
+.tixpicker .single_add_to_cart_button:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 10px 22px rgba(184,122,46,.45);
+}
+.tixpicker .single_add_to_cart_button:active{
+  transform: translateY(0);
+}
+
+/* Иконка корзины справа от цены — «ценник» */
+.tixpicker .tix-price-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:#fff7ec;
+  color: var(--tix-danger);
+  border: 1px solid rgba(184,122,46,.35);
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-weight:700;
+  box-shadow: var(--tix-shadow);
+}
+
+/* Сделать кнопку и «ценник» в ряд и адаптивно переносить */
+.tixpicker .tix-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  margin-top: 16px;
+}
+
+/* ========= Поле количества ========= */
+.tixpicker .quantity input[type="number"]{
+  width: 86px;
+  border:1px solid rgba(0,0,0,.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight:600;
+}
+.tixpicker .quantity input[type="number"]:focus{
+  border-color: var(--tix-accent);
+  box-shadow: 0 0 0 3px rgba(184,122,46,.15);
+  outline:none;
+}
+
+/* ========= Счётчик (таймер) ========= */
+.tixcount{
+  display:grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: clamp(10px,2vw,18px);
+  margin: 8px 0 24px;
+}
+.tixcount .tixbox{
+  background: var(--tix-danger);
+  border-radius: 18px;
+  color:#fff;
+  text-align:center;
+  padding: 16px 10px;
+  box-shadow: var(--tix-shadow);
+}
+.tixcount .tixbox .num{
+  display:block;
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 800;
+  line-height: 1;
+}
+.tixcount .tixbox .label{
+  display:block;
+  opacity:.9;
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing:.3px;
+  text-transform: uppercase;
+}
+
+/* ========= Таблица корзины под виджетом (Single Product summary) ========= */
+.woocommerce div.product .summary .shop_table{
+  border-radius: 14px;
+  overflow:hidden;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: var(--tix-shadow);
+}
+.woocommerce table.shop_table th{
+  background: var(--tix-soft);
+  color: var(--tix-text);
+  font-weight:700;
+}
+.woocommerce table.shop_table td, 
+.woocommerce table.shop_table th{
+  padding: 14px 16px;
+  border-top: 1px solid rgba(0,0,0,.06);
+}
+
+/* ========= Мелкие UX-штрихи ========= */
+.tixpicker .is-hidden{ display:none !important; }
+.tixpicker .row{ display:flex; gap:12px; flex-wrap:wrap; }
+.tixpicker .row > *{ flex:1 1 220px; }
+
+/* ========= Адаптив ========= */
+@media (max-width: 768px){
+  .tixcount{ grid-template-columns: repeat(2,1fr); }
+  .tixpicker{ padding: 14px; }
+  .tixpicker .tix-actions{ gap:10px; }
+}
+
+/* ===== Age Gate – кнопки ===== */
+
+/* Левая кнопка "Да" – зелёная */
+.age-gate__submit.age-gate__submit--yes,
+.age-gate-submit.age-gate-submit-yes {
+  background-color: #2e7d32;   /* зелёный фон */
+  border-color: #2e7d32;
+  color: #ffffff;              /* белый текст */
+}
+
+/* Ховер по зелёной кнопке */
+.age-gate__submit.age-gate__submit--yes:hover,
+.age-gate-submit.age-gate-submit-yes:hover {
+  background-color: #256628;
+  border-color: #256628;
+}
+
+/* Правая кнопка "Нет" – серая */
+.age-gate__submit.age-gate__submit--no,
+.age-gate-submit.age-gate-submit-no {
+  background-color: #e0e0e0;   /* светло-серый фон */
+  border-color: #e0e0e0;
+  color: #333333;              /* тёмно-серый текст */
+}
+
+/* Ховер по серой кнопке */
+.age-gate__submit.age-gate__submit--no:hover,
+.age-gate-submit.age-gate-submit-no:hover {
+  background-color: #cfcfcf;
+  border-color: #cfcfcf;
+}/* End custom CSS */
