@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "home": "Home",
+    "upcoming": "Upcoming Events",
+    "private": "Private Events",
+    "privateShort": "Private Events",
+    "past": "Past Events",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "menu": "Menu",
+    "language": "Language"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "contact": "Contact Us",
+    "account": "My Account",
+    "pastEvents": "Past Events",
+    "privateEvents": "Private Events",
+    "upcomingEvents": "Upcoming Events",
+    "shop": "EinatWineryShop",
+    "cookieSettings": "Cookie settings"
+  },
+  "cookie": {
+    "text": "We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.",
+    "accept": "Ok",
+    "decline": "Decline",
+    "label": "Cookie Compliance"
+  },
+  "ageGate": {
+    "title": "Vino&Co",
+    "headline": "הריני להצהיר שאני מעל גיל",
+    "subheadline": "+18",
+    "challenge": "Are you over 18 years of age?",
+    "yes": "מאשר",
+    "no": "לא מאשר",
+    "remember": "Remember me",
+    "error": "You are not old enough to view this content"
+  },
+  "card": {
+    "tickets": "Tickets",
+    "soldOut": "SOLD OUT",
+    "soon": "Coming soon"
+  },
+  "event": {
+    "buy": "Buy ticket",
+    "place": "Venue:",
+    "address": "Address:",
+    "countdown": "Starts in:",
+    "days": "days",
+    "doorsOpen": "Doors open at",
+    "sessions": "Dates",
+    "cancelled": "cancelled",
+    "allCancelled": "The event is cancelled",
+    "past": "This event has already taken place",
+    "soldOut": "SOLD OUT",
+    "soon": "Coming soon",
+    "salesClosed": "Sales closed",
+    "priceFrom": "from",
+    "map": "Map"
+  },
+  "modal": {
+    "selectTitle": "Choose a ticket",
+    "close": "Close",
+    "next": "Next →",
+    "qty": "Number of seats",
+    "timer": "Your seats are reserved for 19 minutes",
+    "fullName": "First and last name",
+    "fullNamePlaceholder": "First Last",
+    "phone": "Phone",
+    "email": "Email",
+    "promoToggle": "I have a promo code",
+    "promoPlaceholder": "Enter promo code",
+    "promoApply": "Apply",
+    "pay": "PAY",
+    "back": "← Back",
+    "stub": "Purchase on the new site is being connected. The modal will appear here in the next stage."
+  },
+  "forms": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "fullNamePlaceholder": "First Name Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "phonePlaceholder": "972XXXXXXXXX",
+    "message": "Message",
+    "consent": "Consent",
+    "consentBefore": "I agree to the",
+    "consentTerms": "Terms of Use",
+    "consentAnd": "and",
+    "consentPrivacy": "Privacy Policy",
+    "consentAfter": "of this service. I confirm that I have read and fully understand the specified conditions, including consent to the processing of my personal data in accordance with applicable data protection laws.",
+    "sendMessage": "Send Message",
+    "send": "Send",
+    "club": {
+      "title": "Welcome to the wine experience club!",
+      "intro": "By filling out the club member form, you agree to receive email newsletters with news, exclusive offers, discounts, and other useful information",
+      "welcome": "Welcome to the Vino&Co club!",
+      "optin": "I agree to receive news, discounts, exclusive offers, and other useful information from Vino&Co"
+    },
+    "private": {
+      "intro": "We would be happy to create a unique wine experience for you. Fill out a short form, describe your preferences, and we will contact you to discuss the details."
+    },
+    "notConnected": "Forms are connected to the platform in the next stage."
+  },
+  "orderStatus": {
+    "title": "Order status",
+    "checking": "Checking your payment…",
+    "noToken": "Your order status will appear here after payment.",
+    "myTickets": "My tickets"
+  },
+  "myTickets": {
+    "title": "My tickets",
+    "intro": "Enter the e-mail your tickets were bought with and we will send you a sign-in link.",
+    "email": "E-mail",
+    "submit": "Get the link",
+    "open": "Open my tickets",
+    "notConnected": "“My tickets” is connected to the platform in the next stage."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "Oops! Looks Like You Lost Your Way.",
+    "link": "go to home page."
+  },
+  "meta": {
+    "siteName": "Vino&Co"
+  }
+}

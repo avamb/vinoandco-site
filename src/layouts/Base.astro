@@ -1,0 +1,77 @@
+---
+/**
+ * Page shell: <head> (title, description, canonical, hreflang, robots), age
+ * gate, header, footer, cookie banner and — outside personal pages — the
+ * consent-gated tracking loader.
+ */
+import '../styles/fonts.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AgeGate from '../components/AgeGate.astro';
+import CookieBanner from '../components/islands/CookieBanner.svelte';
+import { indexing, languages, siteUrl, tracking, type LanguageCode } from '../../site.config.ts';
+import { language, ui } from '../lib/i18n.ts';
+
+interface Props {
+  lang: LanguageCode;
+  title: string;
+  description?: string;
+  /** Address of this page in every language that has it. */
+  alternates?: Partial<Record<LanguageCode, string>>;
+  /** noindex for this page even in an indexed build (unlisted events, personal pages). */
+  noindex?: boolean;
+  /** Personal page: no third-party scripts, no hreflang (spec 62 §5.6). */
+  personal?: boolean;
+  /** Social preview image (site path). */
+  image?: string | null;
+}
+const { lang, title, description = '', alternates = {}, noindex = false, personal = false, image = null } = Astro.props;
+const l = language(lang);
+const t = ui(lang);
+const current = Astro.url.pathname;
+const canonical = new URL(current, siteUrl).href;
+const robots = !indexing || noindex || personal ? 'noindex, nofollow' : 'index, follow';
+const hreflang = personal || noindex ? [] : languages.filter((x) => alternates[x.code]).map((x) => ({ code: x.code, href: new URL(alternates[x.code]!, siteUrl).href }));
+const xDefault = alternates.ru ? new URL(alternates.ru, siteUrl).href : null;
+const ogImage = image ? new URL(image, siteUrl).href : new URL('/_site/img/dsc06725.jpg', siteUrl).href;
+---
+<!doctype html>
+<html lang={l.code} dir={l.dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    {hreflang.map((h) => <link rel="alternate" hreflang={h.code} href={h.href} />)}
+    {hreflang.length > 0 && xDefault && <link rel="alternate" hreflang="x-default" href={xDefault} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={t.meta.siteName} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={l.intl.replace('-', '_')} />
+    <link rel="icon" href="/_site/img/vinoandco_1.avif" type="image/avif" />
+    <link rel="preload" href="/_site/fonts/assistant-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+    {lang === 'he' && <link rel="preload" href="/_site/fonts/assistant-normal-hebrew.woff2" as="font" type="font/woff2" crossorigin />}
+    <script is:inline src="/_site/js/age-gate.js"></script>
+  </head>
+  <body data-ga4-id={personal ? undefined : tracking.ga4Id || undefined} data-meta-pixel-id={personal ? undefined : tracking.metaPixelId || undefined}>
+    <AgeGate lang={lang} />
+    <Header lang={lang} current={current} alternates={alternates} />
+    <main id="content">
+      <slot />
+    </main>
+    <Footer lang={lang} current={current} />
+    <CookieBanner client:load text={t.cookie.text} accept={t.cookie.accept} decline={t.cookie.decline} label={t.cookie.label} />
+    {!personal && (
+      <script>
+        import '../scripts/tracking.ts';
+      </script>
+    )}
+  </body>
+</html>

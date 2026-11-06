@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "home": "דף הבית",
+    "upcoming": "אירועים קרובים",
+    "private": "אירועים פרטיים",
+    "privateShort": "אירועים פרטיים",
+    "past": "אירועים קודמים",
+    "about": "אודותינו",
+    "contact": "צור קשר",
+    "menu": "תפריט",
+    "language": "שפה"
+  },
+  "footer": {
+    "privacy": "מדיניות פרטיות",
+    "terms": "תנאים והגבלות",
+    "contact": "צור קשר",
+    "account": "החשבון שלי",
+    "pastEvents": "אירועים קודמים",
+    "privateEvents": "אירועים פרטיים",
+    "upcomingEvents": "אירועים קרובים",
+    "shop": "EinatWineryShop",
+    "cookieSettings": "הגדרות עוגיות"
+  },
+  "cookie": {
+    "text": "אנו משתמשים בעוגיות כדי להבטיח שאנו מעניקים לך את החוויה הטובה ביותר באתר שלנו. אם תמשיך להשתמש באתר זה, נניח שאתה מרוצה מכך.",
+    "accept": "אישור",
+    "decline": "סירוב",
+    "label": "Cookie Compliance"
+  },
+  "ageGate": {
+    "title": "Vino&Co",
+    "headline": "הריני להצהיר שאני מעל גיל",
+    "subheadline": "+18",
+    "challenge": "Are you over 18 years of age?",
+    "yes": "מאשר",
+    "no": "לא מאשר",
+    "remember": "Remember me",
+    "error": "You are not old enough to view this content"
+  },
+  "card": {
+    "tickets": "כרטיסים",
+    "soldOut": "SOLD OUT",
+    "soon": "בקרוב במכירה"
+  },
+  "event": {
+    "buy": "לרכישת כרטיס",
+    "place": "מקום:",
+    "address": "כתובת:",
+    "countdown": "עד ההתחלה:",
+    "days": "ימים",
+    "doorsOpen": "פתיחת דלתות ב-",
+    "sessions": "תאריכים",
+    "cancelled": "בוטל",
+    "allCancelled": "האירוע בוטל",
+    "past": "האירוע כבר התקיים",
+    "soldOut": "SOLD OUT",
+    "soon": "בקרוב במכירה",
+    "salesClosed": "המכירה נסגרה",
+    "priceFrom": "החל מ-",
+    "map": "מפה"
+  },
+  "modal": {
+    "selectTitle": "בחירת כרטיס",
+    "close": "סגירה",
+    "next": "← הבא",
+    "qty": "מספר מקומות",
+    "timer": "המקומות שלך שמורים ל-19 דקות",
+    "fullName": "שם פרטי ושם משפחה",
+    "fullNamePlaceholder": "שם פרטי שם משפחה",
+    "phone": "טלפון",
+    "email": "אימייל",
+    "promoToggle": "יש לי קוד קופון",
+    "promoPlaceholder": "הזינו קוד קופון",
+    "promoApply": "החלה",
+    "pay": "לתשלום",
+    "back": "חזרה →",
+    "stub": "הרכישה באתר החדש בתהליך חיבור. החלון יופיע כאן בשלב הבא."
+  },
+  "forms": {
+    "firstName": "שם פרטי",
+    "lastName": "שם משפחה",
+    "fullNamePlaceholder": "שם פרטי שם משפחה",
+    "email": "אימייל",
+    "phone": "טלפון",
+    "phonePlaceholder": "972XXXXXXXXX",
+    "message": "הודעה",
+    "consent": "הסכמה",
+    "consentBefore": "אני מסכים ל",
+    "consentTerms": "תנאי השימוש",
+    "consentAnd": "ול",
+    "consentPrivacy": "מדיניות הפרטיות",
+    "consentAfter": "של השירות הזה. אני מאשר שקראתי ומבין לחלוטין את התנאים המצוינים, כולל הסכמה לעיבוד הנתונים האישיים שלי בהתאם לחקיקה החלה על הגנת נתונים.",
+    "sendMessage": "שלח הודעה",
+    "send": "שלח",
+    "club": {
+      "title": "ברוכים הבאים למועדון חוויות היין!",
+      "intro": "על ידי מילוי טופס חבר המועדון, אתה מסכים לקבל דיוור אלקטרוני עם חדשות, הצעות ייחודיות, הנחות ומידע שימושי אחר",
+      "welcome": "ברוכים הבאים למועדון החברים של Vino&Co!",
+      "optin": "אני מסכים לקבל הודעות על חדשות, הנחות, הצעות ייחודיות ומידע שימושי אחר מ-Vino&Co"
+    },
+    "private": {
+      "intro": "נשמח ליצור עבורך חוויית יין ייחודית. מלא שאלון קצר, תאר את העדפותיך ואנחנו ניצור איתך קשר לדיון בפרטים."
+    },
+    "notConnected": "הטפסים יחוברו לפלטפורמה בשלב הבא."
+  },
+  "orderStatus": {
+    "title": "סטטוס הזמנה",
+    "checking": "בודקים את התשלום…",
+    "noToken": "סטטוס ההזמנה יופיע כאן לאחר התשלום.",
+    "myTickets": "הכרטיסים שלי"
+  },
+  "myTickets": {
+    "title": "הכרטיסים שלי",
+    "intro": "הזינו את כתובת האימייל שאיתה נרכשו הכרטיסים, ונשלח אליכם קישור כניסה.",
+    "email": "אימייל",
+    "submit": "קבלת קישור",
+    "open": "פתיחת הכרטיסים שלי",
+    "notConnected": "\"הכרטיסים שלי\" יחובר לפלטפורמה בשלב הבא."
+  },
+  "notFound": {
+    "title": "הדף לא נמצא",
+    "text": "Oops! Looks Like You Lost Your Way.",
+    "link": "go to home page."
+  },
+  "meta": {
+    "siteName": "Vino&Co"
+  }
+}

@@ -1,0 +1,30 @@
+---
+/** About us (Elementor page 479 / 1680 en / 1693 he). */
+import Base from '../../layouts/Base.astro';
+import PageHero from '../PageHero.astro';
+import Split from '../Split.astro';
+import { blocksContent } from '../../lib/content.ts';
+import { pagePaths } from '../../lib/routes.ts';
+import type { LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+}
+const { lang } = Astro.props;
+const c = blocksContent(lang, 'about');
+// texts: [0] intro, [1] intro 2, [2] mission, [3] approach, [4] expertise, [5] closing line
+// h4:    [0] mission, [1] approach, [2] approach title, [3] expertise, ...
+const [intro1 = '', intro2 = '', mission = '', approach = '', expertise = '', closing = ''] = c.texts;
+---
+<Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.about}>
+  <PageHero bg="vc-bg-about" title={c.h1}>
+    <Fragment set:html={intro1} />
+    <Fragment set:html={intro2} />
+  </PageHero>
+  <Split image="/_site/img/whatsappimage2025-03-25at15.03.52_0ea706e4-07b6-4fc1-8bd5-2e3169c8e1bd-200x300-1.jpg" eyebrow={c.h4[0]} html={mission} reverse />
+  <Split image="/_site/img/dsc01053.jpg" eyebrow={c.h4[1]} title={c.h4[2]} html={approach} />
+  <Split image="/_site/img/dsc09800-scaled.jpg" eyebrow={c.h4[3]} html={expertise} reverse />
+  <section class="vc-band vc-bg-about-band">
+    <Fragment set:html={closing} />
+  </section>
+</Base>

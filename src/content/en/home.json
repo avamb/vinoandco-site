@@ -1,0 +1,44 @@
+{
+  "title": "Vino&Co",
+  "description": "Vino&Co Wine Experience Agency Welcome to the world of unique wines, vibrant events, and inspiring stories Vino&Co Friends Club Unique Evenings Unique e",
+  "hero": {
+    "title": "Vino&Co",
+    "subtitle": "Wine Experience Agency",
+    "text": "<p>Welcome to the world of unique wines, vibrant events, and inspiring stories</p>",
+    "clubButton": "Vino&Co Friends Club"
+  },
+  "features": [
+    {
+      "title": "Unique Evenings",
+      "text": "Unique evening formats in the most inspiring locations in Israel and the world"
+    },
+    {
+      "title": "Unusual Wines",
+      "text": "Rare and unusual wines await you here"
+    },
+    {
+      "title": "Private Events",
+      "text": "We can organize a wine event of any complexity"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Wine Experience Club",
+      "text": "<p>Wine, music, and an atmosphere you’ll want to stay in.<br/>Each Vino&amp;Co wine event is a living story of tastes, meetings, and emotions, a special journey from the first aroma to the last chord under the clinking of glasses, proclaiming the joy of life.</p>",
+      "button": "Upcoming Evenings",
+      "href": "https://vinoandco.events/en/upcoming-events/"
+    },
+    {
+      "title": "Private Events",
+      "text": "<p>We create wine tours, bespoke tastings, and turnkey evenings — from intimate dinners to large-scale events. Each event is thought out to the last detail according to the client’s wishes — location and wine selection, gastronomy and decor, musical accompaniment and service. We organize everything you need for an unforgettable personal experience in Israel and the world.</p>",
+      "button": "Create a unique experience",
+      "href": "https://vinoandco.events/en/private-events/"
+    },
+    {
+      "title": "Our permanent partner",
+      "text": "<p>collectible wines with an Israeli character from Einat Winery. Einat Klein creates wines from grapes grown in the Samarian Mountains at an altitude of 800 meters above sea level, and Andrei Makarevich embodies the character of the drink in an illustration that becomes the label. As befits an art object, each bottle has its own unique number.</p>",
+      "button": "Get to know us better",
+      "href": "https://www.einatwinery.com/"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+---
+/** Full-width photo header with centred title and text (pages about, private, contact, past). */
+interface Props {
+  /** CSS class that sets the background photo (see global.css `.vc-bg-*`). */
+  bg: string;
+  title: string;
+  short?: boolean;
+}
+const { bg, title, short = false } = Astro.props;
+---
+<section class:list={['vc-hero', bg, { 'vc-hero--short': short }]}>
+  <div class="vc-hero__body">
+    <h1>{title}</h1>
+    <slot />
+  </div>
+</section>

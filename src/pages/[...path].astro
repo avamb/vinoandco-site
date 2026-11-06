@@ -1,0 +1,57 @@
+---
+/**
+ * Every address of the site in ru (no prefix), en and he: the pages of the
+ * WordPress site (spec 62 §4), the personal pages and one page per event.
+ */
+import type { GetStaticPaths } from 'astro';
+import HomePage from '../components/pages/HomePage.astro';
+import AboutPage from '../components/pages/AboutPage.astro';
+import PrivatePage from '../components/pages/PrivatePage.astro';
+import ContactPage from '../components/pages/ContactPage.astro';
+import UpcomingPage from '../components/pages/UpcomingPage.astro';
+import PastPage from '../components/pages/PastPage.astro';
+import LegalPage from '../components/pages/LegalPage.astro';
+import OrderStatusPage from '../components/pages/OrderStatusPage.astro';
+import MyTicketsPage from '../components/pages/MyTicketsPage.astro';
+import EventPage from '../components/pages/EventPage.astro';
+import NotFoundPage from '../components/pages/NotFoundPage.astro';
+import { languages, type LanguageCode } from '../../site.config.ts';
+import { eventPath, notFoundPath, pagePaths, toParam, type PageKey } from '../lib/routes.ts';
+import { siteEvents, type SiteEvent } from '../lib/events.ts';
+
+type Route =
+  | { kind: 'page'; key: PageKey; lang: LanguageCode }
+  | { kind: 'event'; event: SiteEvent; lang: LanguageCode }
+  | { kind: '404'; lang: LanguageCode };
+
+export const getStaticPaths = (() => {
+  const out: { params: { path: string | undefined }; props: { route: Route } }[] = [];
+  for (const [key, paths] of Object.entries(pagePaths) as [PageKey, Record<LanguageCode, string>][]) {
+    for (const l of languages) out.push({ params: { path: toParam(paths[l.code]) }, props: { route: { kind: 'page', key, lang: l.code } } });
+  }
+  for (const event of siteEvents()) {
+    for (const l of languages) out.push({ params: { path: toParam(eventPath(event.slug, l.code)) }, props: { route: { kind: 'event', event, lang: l.code } } });
+  }
+  // ru 404 is src/pages/404.astro; en and he get their own copy for nginx.
+  for (const l of languages.filter((x) => x.code !== 'ru')) {
+    out.push({ params: { path: toParam(notFoundPath(l.code)) }, props: { route: { kind: '404', lang: l.code } } });
+  }
+  return out;
+}) satisfies GetStaticPaths;
+
+const { route } = Astro.props as { route: Route };
+const lang = route.lang;
+---
+{route.kind === 'event' && <EventPage lang={lang} event={route.event} />}
+{route.kind === '404' && <NotFoundPage lang={lang} />}
+{route.kind === 'page' && route.key === 'home' && <HomePage lang={lang} />}
+{route.kind === 'page' && route.key === 'upcoming' && <UpcomingPage lang={lang} />}
+{route.kind === 'page' && route.key === 'past' && <PastPage lang={lang} />}
+{route.kind === 'page' && route.key === 'private' && <PrivatePage lang={lang} />}
+{route.kind === 'page' && route.key === 'about' && <AboutPage lang={lang} />}
+{route.kind === 'page' && route.key === 'contact' && <ContactPage lang={lang} />}
+{route.kind === 'page' && route.key === 'terms' && <LegalPage lang={lang} name="terms" />}
+{route.kind === 'page' && route.key === 'privacy' && <LegalPage lang={lang} name="privacy" />}
+{route.kind === 'page' && route.key === 'refund' && <LegalPage lang={lang} name="refund" />}
+{route.kind === 'page' && route.key === 'orderStatus' && <OrderStatusPage lang={lang} />}
+{route.kind === 'page' && route.key === 'myTickets' && <MyTicketsPage lang={lang} />}

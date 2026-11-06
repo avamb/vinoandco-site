@@ -1,0 +1,42 @@
+---
+/**
+ * Event card (Elementor loop item 327 + plugins vino-event-cards and
+ * vino-sales-state): square poster, title, 📅 date 🕖 time, 🏛 venue 📍 city,
+ * full-width button. Sold out: SOLD OUT ribbon on the poster and a grey
+ * "SOLD OUT" button; coming soon: grey button "Скоро в продаже".
+ */
+import { ui } from '../lib/i18n.ts';
+import { eventPath } from '../lib/routes.ts';
+import { formatDate, formatTime, type SiteEvent } from '../lib/events.ts';
+import type { LanguageCode } from '../../site.config.ts';
+
+interface Props {
+  event: SiteEvent;
+  lang: LanguageCode;
+}
+const { event, lang } = Astro.props;
+const t = ui(lang).card;
+const href = eventPath(event.slug, lang);
+const s = event.primary;
+const soldOut = event.state === 'sold_out';
+const soon = event.state === 'soon';
+const label = soldOut ? t.soldOut : soon ? t.soon : t.tickets;
+const clickable = !soldOut && !soon;
+---
+<article class:list={['vc-card', { 'is-soldout': soldOut, 'is-soon': soon }]}>
+  <a class="vc-card__poster" href={href} tabindex={clickable ? undefined : -1} aria-hidden={clickable ? undefined : 'true'}>
+    {event.poster && <img src={event.poster} alt={`${event.name} – Poster`} width="640" height="640" loading="lazy" />}
+  </a>
+  <h4 class="vc-card__title"><a href={href}>{event.name}</a></h4>
+  {s && (
+    <div class="vc-card__meta">
+      <span>📅 {formatDate(s.start_at, event.timezone)}</span>
+      <span>🕖 {formatTime(s.start_at, event.timezone)}</span>
+    </div>
+  )}
+  <div class="vc-card__meta">
+    {event.venueName && <span>🏛 {event.venueName},</span>}
+    {event.venueCity && <span>📍 {event.venueCity}</span>}
+  </div>
+  {clickable ? <a class="vc-card__btn" href={href}>{label}</a> : <span class="vc-card__btn" aria-disabled="true">{label}</span>}
+</article>

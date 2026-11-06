@@ -1,0 +1,29 @@
+---
+/**
+ * Photo with the dot pattern next to a text block with a drop cap
+ * (home sections, about, private events).
+ */
+interface Props {
+  image: string;
+  alt?: string;
+  eyebrow?: string;
+  title?: string;
+  html: string;
+  reverse?: boolean;
+  wide?: boolean;
+  darkDots?: boolean;
+  karla?: boolean;
+}
+const { image, alt = '', eyebrow, title, html, reverse = false, wide = false, darkDots = false, karla = false } = Astro.props;
+---
+<section class:list={['vc-split', { 'vc-split--reverse': reverse, 'vc-split--dark-dots': darkDots }]}>
+  <div class:list={['vc-split__media', { 'vc-split__media--wide': wide }]}>
+    <img src={image} alt={alt} loading="lazy" />
+  </div>
+  <div class="vc-split__body">
+    {eyebrow && <h4 class="vc-split__eyebrow">{eyebrow}</h4>}
+    {title && <h2 class="vc-split__title">{title}</h2>}
+    <div class:list={['vc-split__text', { 'vc-split__text--karla': karla }]} set:html={html} />
+    {Astro.slots.has('default') && <div class="vc-split__actions"><slot /></div>}
+  </div>
+</section>

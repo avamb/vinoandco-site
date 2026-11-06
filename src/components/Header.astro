@@ -1,0 +1,118 @@
+---
+/**
+ * Site header (Elementor header 467): logo, main menu, language switcher (WPML
+ * menu item with flags), social icons; burger menu below 1025 px.
+ */
+import Icon from './Icon.astro';
+import { brand, languages, type LanguageCode } from '../../site.config.ts';
+import { pagePath, type PageKey } from '../lib/routes.ts';
+import { ui } from '../lib/i18n.ts';
+
+interface Props {
+  lang: LanguageCode;
+  /** Current address, to mark the active item. */
+  current: string;
+  /** Address of this page in every language (language switcher). */
+  alternates: Partial<Record<LanguageCode, string>>;
+}
+const { lang, current, alternates } = Astro.props;
+const t = ui(lang);
+const main: { key: PageKey; label: string }[] = [
+  { key: 'upcoming', label: t.nav.upcoming },
+  { key: 'private', label: t.nav.private },
+  { key: 'past', label: t.nav.past },
+  { key: 'about', label: t.nav.about },
+  { key: 'contact', label: t.nav.contact },
+];
+// The mobile menu on WordPress has its own order and a "Home" item at the end.
+const mobile: { key: PageKey; label: string }[] = [
+  { key: 'upcoming', label: t.nav.upcoming },
+  { key: 'past', label: t.nav.past },
+  { key: 'private', label: t.nav.privateShort },
+  { key: 'about', label: t.nav.about },
+  { key: 'contact', label: t.nav.contact },
+  { key: 'home', label: t.nav.home },
+];
+const currentLang = languages.find((l) => l.code === lang)!;
+const others = languages.filter((l) => l.code !== lang);
+const langHref = (code: LanguageCode) => alternates[code] ?? pagePath('home', code);
+---
+<header class="vc-header">
+  <div class="vc-header__inner">
+    <a class="vc-header__logo" href={pagePath('home', lang)} aria-label={brand.name}>
+      <img src="/_site/img/vinoandco_1.avif" alt={brand.name} width="47" height="47" />
+    </a>
+    <nav class="vc-nav" aria-label={t.nav.menu}>
+      <ul>
+        {main.map((item) => {
+          const href = pagePath(item.key, lang);
+          return (
+            <li><a class="vc-nav__link" href={href} aria-current={current === href ? 'page' : undefined}>{item.label}</a></li>
+          );
+        })}
+        <li class="vc-lang" data-vc-lang>
+          <button type="button" aria-haspopup="true" aria-expanded="false" aria-label={t.nav.language}>
+            <img src={`/_site/img/flag-${currentLang.code}.svg`} alt={currentLang.name} width="18" height="12" />
+          </button>
+          <ul>
+            {others.map((l) => (
+              <li>
+                <a href={langHref(l.code)} hreflang={l.code} lang={l.code}>
+                  <img src={`/_site/img/flag-${l.code}.svg`} alt="" width="18" height="12" />
+                  <span>{l.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="vc-social">
+      <a class="is-facebook" href={brand.facebook} target="_blank" rel="noopener" aria-label="Facebook"><Icon name="facebook" /></a>
+      <a class="is-instagram" href={brand.instagram} target="_blank" rel="noopener" aria-label="Instagram"><Icon name="instagram" /></a>
+    </div>
+    <button class="vc-burger" type="button" aria-label={t.nav.menu} aria-expanded="false" aria-controls="vc-mobile-menu" data-vc-burger>
+      <span data-icon-open><Icon name="menu" /></span>
+      <span data-icon-close hidden><Icon name="close" /></span>
+    </button>
+  </div>
+  <nav class="vc-mobile-menu" id="vc-mobile-menu" aria-label={t.nav.menu}>
+    <ul>
+      <li>
+        <a class="vc-mobile-menu__lang" href={langHref(lang)}>
+          <img src={`/_site/img/flag-${lang}.svg`} alt="" width="18" height="12" /> {currentLang.name}
+        </a>
+      </li>
+      {others.map((l) => (
+        <li>
+          <a class="vc-mobile-menu__lang" href={langHref(l.code)} hreflang={l.code} lang={l.code}>
+            <img src={`/_site/img/flag-${l.code}.svg`} alt="" width="18" height="12" /> {l.name}
+          </a>
+        </li>
+      ))}
+      {mobile.map((item) => {
+        const href = pagePath(item.key, lang);
+        return <li><a href={href} aria-current={current === href ? 'page' : undefined}>{item.label}</a></li>;
+      })}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const burger = document.querySelector<HTMLButtonElement>('[data-vc-burger]');
+  const menu = document.getElementById('vc-mobile-menu');
+  burger?.addEventListener('click', () => {
+    const open = !menu?.classList.contains('is-open');
+    menu?.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.querySelector('[data-icon-open]')?.toggleAttribute('hidden', open);
+    burger.querySelector('[data-icon-close]')?.toggleAttribute('hidden', !open);
+  });
+  const lang = document.querySelector<HTMLElement>('[data-vc-lang]');
+  const langBtn = lang?.querySelector('button');
+  langBtn?.addEventListener('click', () => {
+    const open = !lang?.classList.contains('is-open');
+    lang?.classList.toggle('is-open', open);
+    langBtn.setAttribute('aria-expanded', String(open));
+  });
+</script>

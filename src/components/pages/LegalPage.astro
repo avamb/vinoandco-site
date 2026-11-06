@@ -1,0 +1,20 @@
+---
+/** Terms, privacy, refund: texts copied from WordPress as they are (Р-5). */
+import Base from '../../layouts/Base.astro';
+import { legalContent } from '../../lib/content.ts';
+import { pagePaths } from '../../lib/routes.ts';
+import type { LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+  name: 'terms' | 'privacy' | 'refund';
+}
+const { lang, name } = Astro.props;
+const c = legalContent(lang, name);
+---
+<Base lang={lang} title={c.title} description={c.description} alternates={pagePaths[name]}>
+  <article class="vc-legal">
+    {c.h1 && <h1>{c.h1}</h1>}
+    <Fragment set:html={c.html} />
+  </article>
+</Base>

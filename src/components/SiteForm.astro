@@ -1,0 +1,68 @@
+---
+/**
+ * The site's forms in the look of the Elementor Pro form widget: contact form
+ * (contact page), private-event request (popup on private events) and club
+ * sign-up (popup on home). Markup and texts only: sending goes to the platform
+ * with Turnstile (spec 62 §10.2, П-17) in the next stage, so the submit button
+ * is disabled and nothing leaves the browser.
+ */
+import { ui } from '../lib/i18n.ts';
+import { pagePath } from '../lib/routes.ts';
+import type { LanguageCode } from '../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+  kind: 'contact' | 'private' | 'club';
+}
+const { lang, kind } = Astro.props;
+const f = ui(lang).forms;
+const id = `vc-form-${kind}`;
+---
+<form class="vc-form" id={id} data-form-kind={kind} novalidate>
+  {kind === 'contact' ? (
+    <>
+      <div class="vc-form__field">
+        <label class="is-required" for={`${id}-first`}>{f.firstName}</label>
+        <input type="text" id={`${id}-first`} name="first_name" placeholder={f.firstName} required autocomplete="given-name" />
+      </div>
+      <div class="vc-form__field">
+        <label class="is-required" for={`${id}-last`}>{f.lastName}</label>
+        <input type="text" id={`${id}-last`} name="last_name" placeholder={f.lastName} required autocomplete="family-name" />
+      </div>
+    </>
+  ) : (
+    <div class="vc-form__field vc-form__field--full">
+      <label class="is-required" for={`${id}-name`}>{f.firstName}</label>
+      <input type="text" id={`${id}-name`} name="name" placeholder={f.fullNamePlaceholder} required autocomplete="name" />
+    </div>
+  )}
+  <div class:list={['vc-form__field', { 'vc-form__field--full': kind !== 'contact' }]}>
+    <label class="is-required" for={`${id}-email`}>{f.email}</label>
+    <input type="email" id={`${id}-email`} name="email" placeholder={f.email} required autocomplete="email" />
+  </div>
+  <div class:list={['vc-form__field', { 'vc-form__field--full': kind !== 'contact' }]}>
+    <label class="is-required" for={`${id}-phone`}>{f.phone}</label>
+    <input type="tel" id={`${id}-phone`} name="phone" placeholder={f.phonePlaceholder} required autocomplete="tel" />
+  </div>
+  {kind !== 'club' && (
+    <div class="vc-form__field vc-form__field--full">
+      <label class:list={{ 'is-required': kind === 'private' }} for={`${id}-message`}>{f.message}</label>
+      <textarea id={`${id}-message`} name="message" rows="4" required={kind === 'private'}></textarea>
+    </div>
+  )}
+  {kind === 'club' && (
+    <div class="vc-form__field vc-form__field--full vc-form__consent">
+      <label><input type="checkbox" name="marketing" /> {f.club.optin}</label>
+    </div>
+  )}
+  <div class="vc-form__field vc-form__field--full vc-form__consent">
+    <span class="is-required">{f.consent}</span>
+    <label>
+      <input type="checkbox" name="consent" required />
+      {f.consentBefore} <a href={pagePath('terms', lang)}>{f.consentTerms}</a> {f.consentAnd} <a href={pagePath('privacy', lang)}>{f.consentPrivacy}</a> {f.consentAfter}
+    </label>
+  </div>
+  <div class="vc-form__field vc-form__field--full vc-form__actions">
+    <button type="submit" class="vc-btn vc-btn--gold" disabled title={f.notConnected}>{kind === 'contact' ? f.sendMessage : f.send}</button>
+  </div>
+</form>

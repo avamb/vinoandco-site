@@ -1,0 +1,140 @@
+---
+/**
+ * Event page (WooCommerce product template 442): poster, title, 📅 date 🕖 time
+ * ⌛ days to start 🔞 age, "doors open", 🏛 venue 📍 address, "Buy ticket",
+ * description, map. Dates are in the venue's zone. One page per event; with
+ * several sessions the buyer picks one (?session=<id> preselects it, spec 62 §4).
+ * A finished event keeps its address, loses the purchase button and shows the
+ * after-event materials (§6.1).
+ */
+import Base from '../../layouts/Base.astro';
+import BuyModal from '../islands/BuyModal.svelte';
+import { ui } from '../../lib/i18n.ts';
+import { eventPath } from '../../lib/routes.ts';
+import { buildNow, daysUntil, formatDate, formatSessionChip, formatTime, type SiteEvent } from '../../lib/events.ts';
+import { sessionEndsAt } from '../../arena/index.ts';
+import { languages, type LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+  event: SiteEvent;
+}
+const { lang, event } = Astro.props;
+const t = ui(lang).event;
+const m = ui(lang).modal;
+const tz = event.timezone;
+const alternates = Object.fromEntries(languages.map((l) => [l.code, eventPath(event.slug, l.code)])) as Record<LanguageCode, string>;
+const sessions = event.sessions;
+const primaryId = event.primary?.id ?? '';
+const soldOut = event.state === 'sold_out';
+const materials = event.raw.materials;
+const map = materials.map_point;
+const mapQuery = map ? `${map.latitude},${map.longitude}` : event.venueAddress || event.venueName;
+const mapSrc = mapQuery ? `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed` : null;
+const description = event.descriptionText.slice(0, 160);
+
+function sessionState(s: (typeof sessions)[number]) {
+  if (s.status === 'cancelled') return 'cancelled';
+  if (sessionEndsAt(s) < buildNow) return 'ended';
+  return s.sales_state || 'open';
+}
+---
+<Base lang={lang} title={`${event.name} — Vino&Co`} description={description} alternates={alternates} noindex={!event.listed} image={event.poster}>
+  <article class="vc-event" data-event-page data-primary-session={primaryId}>
+    <div class="vc-event__inner">
+      {event.poster && (
+        <div class:list={['vc-event__poster', { 'vc-soldout-ribbon': soldOut }]}>
+          <img src={event.poster} alt={`${event.name} – Poster`} width="450" height="450" />
+        </div>
+      )}
+      <h1 class="vc-event__title">{event.name}</h1>
+
+      {sessions.length > 1 && (
+        <>
+          <p class="sr-only">{t.sessions}</p>
+          <ul class="vc-event__sessions">
+            {sessions.map((s) => (
+              <li class:list={{ 'is-cancelled': s.status === 'cancelled' }}>
+                <a href={`?session=${s.id}`} data-session-chip={s.id} aria-current={s.id === primaryId ? 'true' : undefined}>
+                  {formatSessionChip(s.start_at, s.timezone || tz, lang)}{s.status === 'cancelled' ? ` (${t.cancelled})` : ''}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {sessions.map((s) => {
+        const stz = s.timezone || tz;
+        const state = sessionState(s);
+        const venue = event.raw.venues.find((v) => v.session_starts.includes(s.start_at)) ?? event.raw.venues[0];
+        return (
+          <div data-session-block={s.id} hidden={s.id !== primaryId}>
+            <div class="vc-event__facts">
+              <span>📅 {formatDate(s.start_at, stz)}</span>
+              <span>🕖 {formatTime(s.start_at, stz)}</span>
+              {state !== 'ended' && state !== 'cancelled' && <span>⌛{t.countdown} {daysUntil(s.start_at)} {t.days}</span>}
+              {event.ageRating && <span>🔞 {event.ageRating}</span>}
+              {s.doors_open_at && <span>🚪 {t.doorsOpen} {formatTime(s.doors_open_at, stz)}</span>}
+            </div>
+            <div class="vc-event__facts">
+              {venue?.name && <span>🏛 {t.place} {venue.name}</span>}
+              {venue?.address && <span>📍 {t.address} {venue.address}</span>}
+            </div>
+            <div class="vc-event__buy">
+              {state === 'open' && (
+                <button type="button" class="vc-btn" data-vino-buy data-session={s.id}>{t.buy}</button>
+              )}
+              {state === 'sold_out' && <button type="button" class="vc-btn" disabled>{t.soldOut}</button>}
+              {state === 'soon' && <button type="button" class="vc-btn" disabled>{t.soon}</button>}
+              {state === 'cancelled' && <p class="vc-event__past-note">{t.allCancelled}</p>}
+              {state === 'ended' && <p class="vc-event__past-note">{t.past}</p>}
+            </div>
+          </div>
+        );
+      })}
+
+      <div class="vc-event__desc" set:html={event.descriptionHtml} />
+
+      {materials.videos.filter((v) => v.provider === 'youtube' && v.video_id).map((v) => (
+        <div class="vc-event__map">
+          <iframe src={`https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.video_id!)}`} title={event.name} loading="lazy" allowfullscreen></iframe>
+        </div>
+      ))}
+
+      {mapSrc && !event.past && (
+        <div class="vc-event__map">
+          <iframe src={mapSrc} title={`${t.map}: ${event.venueName}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      )}
+    </div>
+  </article>
+
+  {!event.past && (
+    <BuyModal client:idle title={m.selectTitle} closeLabel={m.close} stub={m.stub} eventId={event.raw.id} sessionId={primaryId} />
+  )}
+
+  <script>
+    // Preselect the session named in ?session= (old WordPress links point at one date).
+    const page = document.querySelector<HTMLElement>('[data-event-page]');
+    const wanted = new URL(location.href).searchParams.get('session');
+    const select = (id: string) => {
+      const block = document.querySelector(`[data-session-block="${CSS.escape(id)}"]`);
+      if (!block) return;
+      document.querySelectorAll<HTMLElement>('[data-session-block]').forEach((b) => (b.hidden = b !== block));
+      document.querySelectorAll<HTMLElement>('[data-session-chip]').forEach((c) => {
+        if (c.dataset.sessionChip === id) c.setAttribute('aria-current', 'true');
+        else c.removeAttribute('aria-current');
+      });
+    };
+    if (page && wanted) select(wanted);
+    document.querySelectorAll<HTMLAnchorElement>('[data-session-chip]').forEach((chip) => {
+      chip.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = chip.dataset.sessionChip!;
+        select(id);
+        history.replaceState(null, '', `?session=${encodeURIComponent(id)}`);
+      });
+    });
+  </script>
+</Base>

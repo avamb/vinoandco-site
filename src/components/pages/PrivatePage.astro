@@ -1,0 +1,32 @@
+---
+/** Private events (Elementor page 521 / 1710 en / 1729 he) with the request popup. */
+import Base from '../../layouts/Base.astro';
+import PageHero from '../PageHero.astro';
+import Split from '../Split.astro';
+import Popup from '../Popup.astro';
+import SiteForm from '../SiteForm.astro';
+import { blocksContent } from '../../lib/content.ts';
+import { pagePaths } from '../../lib/routes.ts';
+import { ui } from '../../lib/i18n.ts';
+import type { LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+}
+const { lang } = Astro.props;
+const c = blocksContent(lang, 'private');
+const t = ui(lang);
+const [intro = '', body = ''] = c.texts;
+---
+<Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.private}>
+  <PageHero bg="vc-bg-private" title={c.h1}>
+    <Fragment set:html={intro} />
+  </PageHero>
+  <Split image="/_site/img/dsc09713-1024x683.jpg" eyebrow={c.h4[0]} html={body} reverse wide darkDots>
+    <a class="vc-btn vc-btn--gold" href="#request" data-open-popup="vc-popup-private">{c.buttons[0]}</a>
+  </Split>
+  <Popup id="vc-popup-private" closeLabel={t.modal.close}>
+    <p>{t.forms.private.intro}</p>
+    <SiteForm lang={lang} kind="private" />
+  </Popup>
+</Base>

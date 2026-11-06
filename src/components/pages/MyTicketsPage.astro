@@ -1,0 +1,48 @@
+---
+/**
+ * "My tickets by link" — STUB with the final layout (spec 62 §7): e-mail form
+ * (Turnstile, POST .../my-tickets/link) and, when opened from the e-mail link,
+ * an "Open my tickets" button that exchanges the one-time token. Personal page.
+ */
+import Base from '../../layouts/Base.astro';
+import { ui } from '../../lib/i18n.ts';
+import { pagePaths } from '../../lib/routes.ts';
+import type { LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+}
+const { lang } = Astro.props;
+const t = ui(lang).myTickets;
+---
+<Base lang={lang} title={`${t.title} — Vino&Co`} alternates={pagePaths.myTickets} personal>
+  <section class="vc-personal">
+    <h1>{t.title}</h1>
+    <p>{t.intro}</p>
+    <div class="vc-personal__box">
+      <form data-my-tickets-request novalidate>
+        <label for="vc-mt-email">{t.email}</label>
+        <input type="email" id="vc-mt-email" name="email" required autocomplete="email" />
+        <button type="submit" class="vc-btn vc-btn--primary vc-btn--block" disabled title={t.notConnected}>{t.submit}</button>
+      </form>
+      <div data-my-tickets-open hidden>
+        <button type="button" class="vc-btn vc-btn--primary vc-btn--block" disabled title={t.notConnected}>{t.open}</button>
+      </div>
+    </div>
+  </section>
+  <script>
+    // A link from the e-mail carries ?t=<one-time token>. Opening the page must
+    // not spend it (mail scanners open links): keep it, hide it, show the button.
+    const url = new URL(location.href);
+    const token = url.searchParams.get('t');
+    if (token) {
+      sessionStorage.setItem('vc_my_tickets_link', token);
+      url.searchParams.delete('t');
+      history.replaceState(null, '', url.pathname + url.search + url.hash);
+    }
+    if (sessionStorage.getItem('vc_my_tickets_link')) {
+      document.querySelector('[data-my-tickets-request]')?.setAttribute('hidden', '');
+      document.querySelector('[data-my-tickets-open]')?.removeAttribute('hidden');
+    }
+  </script>
+</Base>

@@ -1,0 +1,58 @@
+---
+/**
+ * Site footer (Elementor footer 472): logo, two link columns, social icons.
+ * "Личный кабинет" keeps its label but leads to /my-tickets/ (spec 62 §4.1, Р-9).
+ * The cookie-settings link reopens the banner (spec 62 §8.1).
+ */
+import Icon from './Icon.astro';
+import { brand, type LanguageCode } from '../../site.config.ts';
+import { pagePath } from '../lib/routes.ts';
+import { ui } from '../lib/i18n.ts';
+
+interface Props {
+  lang: LanguageCode;
+  current: string;
+}
+const { lang, current } = Astro.props;
+const t = ui(lang);
+const left = [
+  { href: pagePath('privacy', lang), label: t.footer.privacy },
+  { href: pagePath('terms', lang), label: t.footer.terms },
+  { href: pagePath('contact', lang), label: t.footer.contact },
+  { href: pagePath('myTickets', lang), label: t.footer.account },
+];
+const right = [
+  { href: pagePath('past', lang), label: t.footer.pastEvents },
+  { href: pagePath('private', lang), label: t.footer.privateEvents },
+  { href: pagePath('upcoming', lang), label: t.footer.upcomingEvents },
+  { href: brand.shop, label: t.footer.shop, external: true },
+];
+---
+<footer class="vc-footer">
+  <div class="vc-footer__inner">
+    <a class="vc-footer__logo" href={pagePath('home', lang)} aria-label={brand.name}>
+      <img src="/_site/img/vinoandco_1.avif" alt={brand.name} width="76" height="76" loading="lazy" />
+    </a>
+    <nav class="vc-footer__col" aria-label={t.footer.privacy}>
+      <ul>
+        {left.map((l) => <li><a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+    <nav class="vc-footer__col" aria-label={t.footer.upcomingEvents}>
+      <ul>
+        {right.map((l) => (
+          <li>
+            <a href={l.href} aria-current={current === l.href ? 'page' : undefined} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="vc-footer__social">
+      <a class="is-facebook" href={brand.facebook} target="_blank" rel="noopener" aria-label="Facebook"><Icon name="facebook" /></a>
+      <a class="is-instagram" href={brand.instagram} target="_blank" rel="noopener" aria-label="Instagram"><Icon name="instagram" /></a>
+    </div>
+  </div>
+  <div class="vc-footer__cookie">
+    <button type="button" data-vc-cookie-settings>{t.footer.cookieSettings}</button>
+  </div>
+</footer>

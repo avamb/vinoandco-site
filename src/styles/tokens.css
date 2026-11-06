@@ -1,0 +1,58 @@
+/*
+ * Design tokens of vinoandco.events, copied from the WordPress Elementor kit
+ * (post-542, docs/reference/css/uploads_elementor_css_post-542.css).
+ * Do not change values: the site must look identical to the original.
+ */
+:root {
+  /* Elementor global colours */
+  --vc-primary: #822121;      /* --e-global-color-primary: header, links, card buttons */
+  --vc-secondary: #f0e6dc;    /* --e-global-color-secondary: page background, nav text */
+  --vc-text: #2c2c2c;         /* --e-global-color-text: body text, footer background */
+  --vc-accent: #d9a441;       /* --e-global-color-accent: gold buttons, headings, hover */
+  --vc-muted: #999999;        /* --e-global-color-45ca8e4: h6, muted text */
+  --vc-button: #a02828;       /* --e-global-color-f6f9770: kit button background */
+  --vc-white: #ffffff;        /* --e-global-color-5bfa07d */
+
+  /* Sales states (vino-sales-state plugin) */
+  --vc-state-disabled: #9a9a9a;
+  --vc-soldout-ribbon: #d7262e;
+
+  /* Age gate (age-gate plugin options) */
+  --ag-background-color: rgba(0, 0, 0, 0.7);
+  --ag-form-background: #ffffff;
+  --ag-text-color: #000000;
+  --ag-blur: 5px;
+
+  /* Cookie Notice plugin defaults as configured on the site */
+  --cn-bar: rgba(50, 50, 58, 1);
+  --cn-text: #ffffff;
+  --cn-button: #00a99d;
+
+  /* Typography (Elementor global typography) */
+  --vc-font: 'Assistant', sans-serif;
+  --vc-font-alt: 'Karla', sans-serif;
+  --vc-h1-size: 40px;
+  --vc-h1-weight: 400;
+  --vc-h1-lh: 1.2em;
+  --vc-h2-size: 18px;
+  --vc-h2-weight: 700;
+  --vc-h2-lh: 1.3em;
+  --vc-text-size: 16px;
+  --vc-text-lh: 1.6em;
+  --vc-accent-size: 14px;
+  --vc-accent-weight: 600;
+
+  /* Layout */
+  --vc-container: 1140px;
+  --vc-radius-img: 10px;
+  --vc-radius-btn: 10px;
+  --vc-gap: 20px;
+  --vc-header-h: 92px;
+}
+
+@media (max-width: 1024px) {
+  :root { --vc-container: 1024px; }
+}
+@media (max-width: 767px) {
+  :root { --vc-container: 767px; --vc-header-h: 64px; }
+}

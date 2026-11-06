@@ -1,0 +1,34 @@
+---
+/**
+ * Popup in the look of the Elementor popups (overlay rgba(0,0,0,.8), 640 px box).
+ * Any element with data-open-popup="<id>" opens it.
+ */
+interface Props {
+  id: string;
+  closeLabel: string;
+}
+const { id, closeLabel } = Astro.props;
+---
+<dialog class="vc-popup" id={id}>
+  <button type="button" class="vc-popup__close" aria-label={closeLabel} data-close-popup>&#x2715;</button>
+  <div class="vc-popup__body">
+    <slot />
+  </div>
+</dialog>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-open-popup]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const dlg = document.getElementById(btn.dataset.openPopup ?? '') as HTMLDialogElement | null;
+      if (!dlg) return;
+      e.preventDefault();
+      dlg.showModal();
+    });
+  });
+  document.querySelectorAll<HTMLDialogElement>('dialog.vc-popup').forEach((dlg) => {
+    dlg.querySelector('[data-close-popup]')?.addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+  });
+</script>

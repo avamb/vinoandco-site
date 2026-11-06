@@ -1,0 +1,499 @@
+{
+  "fetched_at": "2026-11-06T20:00:00Z",
+  "source": "sample",
+  "events": [
+    {
+      "id": "00000000-0000-4000-8000-000000000041",
+      "display_number": 41,
+      "org_id": "00000000-0000-4000-8000-000000000000",
+      "name": "Премьера вина в Тель-Авиве",
+      "description": null,
+      "description_html": "<p>Добро пожаловать на премьеру!</p><p>Эйнат Кляйн и Андрей Макаревич представят новый Loneley Cat Cabernet Sauvignon 2024 от Einat Winery в Тель-Авиве в субботу, 21 ноября, начало в 20.00.</p><p>В бокалах: Lonely Cat Cabernet Sauvignon 2024<br>В этот вечер мы впервые в Тель-Авиве открываем Каберне Совиньон Einat Winery урожая 2024 года.</p><p>Дата и время: 21 ноября, суббота, 20:00<br>Место: Tel Aviv Eretz Israel Museum, Chaim Lebanon St. 2</p>",
+      "description_text": "Добро пожаловать на премьеру! Эйнат Кляйн и Андрей Макаревич представят новый Lonely Cat Cabernet Sauvignon 2024 от Einat Winery в Тель-Авиве.",
+      "status": "published",
+      "first_session_at": "2026-11-21T18:30:00Z",
+      "last_session_at": "2026-11-21T21:30:00Z",
+      "venue_names": [
+        "Eretz Israel Museum"
+      ],
+      "visibility": "public",
+      "image_url": null,
+      "poster_media_id": null,
+      "poster_url": "/_site/img/events/sample-tel-aviv.jpg",
+      "created_at": "2026-09-20T10:00:00Z",
+      "updated_at": "2026-11-01T10:00:00Z",
+      "slug": "premera-vina-v-tel-avive",
+      "age_rating": "18+",
+      "short_description": null,
+      "sessions": [
+        {
+          "id": "00000000-0000-4000-8000-0000000004a1",
+          "start_at": "2026-11-21T18:30:00Z",
+          "end_at": "2026-11-21T21:30:00Z",
+          "sales_end_at": "2026-11-21T18:30:00Z",
+          "doors_open_at": "2026-11-21T18:00:00Z",
+          "capacity_total": 120,
+          "status": "scheduled",
+          "admission_mode": "general_admission",
+          "buyer_fields": [
+            {
+              "key": "email",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "phone",
+              "required": true,
+              "enabled": true
+            }
+          ],
+          "service_fee_percent": "0.00",
+          "promo_codes_available": true,
+          "show_withdrawal_notice": false,
+          "white_label": false,
+          "marketing_optin": {
+            "enabled": false
+          },
+          "cart_reminder": true,
+          "timezone": "Asia/Jerusalem",
+          "sales_state": "open",
+          "tiers": [
+            {
+              "id": "00000000-0000-4000-8000-0000000000a1",
+              "name": "Входной билет",
+              "pricing_mode": "fixed",
+              "price_amount": 29000,
+              "currency": "ILS",
+              "pwyw_min": null,
+              "pwyw_max": null,
+              "capacity": 120,
+              "sale_window_start": null,
+              "sale_window_end": null,
+              "sort_order": 1,
+              "current_price": 29000,
+              "next_price_change_at": null,
+              "is_open": true,
+              "available": 48,
+              "is_addon": false,
+              "price_step": {
+                "remaining_at_price": 12,
+                "next_price": 32000
+              }
+            }
+          ],
+          "poster_media_id": null,
+          "poster_url": "/_site/img/events/sample-tel-aviv.jpg",
+          "media_gallery": []
+        }
+      ],
+      "materials": {
+        "gallery": [],
+        "videos": [],
+        "partner_links": [],
+        "map_point": {
+          "latitude": 32.1033,
+          "longitude": 34.7979,
+          "label": "Eretz Israel Museum"
+        },
+        "report_photos": []
+      },
+      "venues": [
+        {
+          "name": "Eretz Israel Museum",
+          "country": "IL",
+          "city": "Tel Aviv",
+          "address": "Chaim Levanon St 2, Tel Aviv-Yafo, Israel",
+          "postal_code": null,
+          "timezone": "Asia/Jerusalem",
+          "session_starts": [
+            "2026-11-21T18:30:00Z"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000042",
+      "display_number": 42,
+      "org_id": "00000000-0000-4000-8000-000000000000",
+      "name": "Премьера вина — впервые в Беэр-Шеве!",
+      "description": null,
+      "description_html": "<p>Эйнат Кляйн и Андрей Макаревич впервые представляют новое вино в Беэр-Шеве.</p>",
+      "description_text": "Эйнат Кляйн и Андрей Макаревич впервые представляют новое вино в Беэр-Шеве.",
+      "status": "published",
+      "first_session_at": "2026-11-26T18:00:00Z",
+      "last_session_at": "2026-11-26T21:00:00Z",
+      "venue_names": [
+        "Abraham's Well"
+      ],
+      "visibility": "public",
+      "image_url": null,
+      "poster_media_id": null,
+      "poster_url": "/_site/img/events/sample-beer-sheva.jpg",
+      "created_at": "2026-09-20T10:00:00Z",
+      "updated_at": "2026-11-01T10:00:00Z",
+      "slug": "premera-vina-vpervye-v-beer-sheve",
+      "age_rating": "18+",
+      "short_description": null,
+      "sessions": [
+        {
+          "id": "00000000-0000-4000-8000-0000000004a2",
+          "start_at": "2026-11-26T18:00:00Z",
+          "end_at": "2026-11-26T21:00:00Z",
+          "sales_end_at": "2026-11-26T18:00:00Z",
+          "doors_open_at": null,
+          "capacity_total": 120,
+          "status": "scheduled",
+          "admission_mode": "general_admission",
+          "buyer_fields": [
+            {
+              "key": "email",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "phone",
+              "required": true,
+              "enabled": true
+            }
+          ],
+          "service_fee_percent": "0.00",
+          "promo_codes_available": true,
+          "show_withdrawal_notice": false,
+          "white_label": false,
+          "marketing_optin": {
+            "enabled": false
+          },
+          "cart_reminder": true,
+          "timezone": "Asia/Jerusalem",
+          "sales_state": "sold_out",
+          "tiers": [
+            {
+              "id": "00000000-0000-4000-8000-0000000000a2",
+              "name": "Входной билет",
+              "pricing_mode": "fixed",
+              "price_amount": 29000,
+              "currency": "ILS",
+              "pwyw_min": null,
+              "pwyw_max": null,
+              "capacity": 120,
+              "sale_window_start": null,
+              "sale_window_end": null,
+              "sort_order": 2,
+              "current_price": 29000,
+              "next_price_change_at": null,
+              "is_open": true,
+              "available": 0,
+              "is_addon": false
+            }
+          ],
+          "poster_media_id": null,
+          "poster_url": "/_site/img/events/sample-beer-sheva.jpg",
+          "media_gallery": []
+        }
+      ],
+      "materials": {
+        "gallery": [],
+        "videos": [],
+        "partner_links": [],
+        "map_point": null,
+        "report_photos": []
+      },
+      "venues": [
+        {
+          "name": "Abraham's Well",
+          "country": "IL",
+          "city": "Be'er Sheva",
+          "address": "Derech Hevron 2, Be'er Sheva, Israel",
+          "postal_code": null,
+          "timezone": "Asia/Jerusalem",
+          "session_starts": [
+            "2026-11-26T18:00:00Z"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000043",
+      "display_number": 43,
+      "org_id": "00000000-0000-4000-8000-000000000000",
+      "name": "Израиль: такие разные красные",
+      "description": null,
+      "description_html": "<p>Дегустация, лекция и посещение выставки.</p>",
+      "description_text": "Дегустация, лекция и посещение выставки.",
+      "status": "published",
+      "first_session_at": "2026-12-18T17:00:00Z",
+      "last_session_at": "2026-12-18T20:00:00Z",
+      "venue_names": [
+        "Al ha-Tsuk Gallery"
+      ],
+      "visibility": "public",
+      "image_url": null,
+      "poster_media_id": null,
+      "poster_url": "/_site/img/events/sample-reds.jpg",
+      "created_at": "2026-09-20T10:00:00Z",
+      "updated_at": "2026-11-01T10:00:00Z",
+      "slug": "israel-takie-raznye-krasnye",
+      "age_rating": "18+",
+      "short_description": null,
+      "sessions": [
+        {
+          "id": "00000000-0000-4000-8000-0000000004a3",
+          "start_at": "2026-12-18T17:00:00Z",
+          "end_at": "2026-12-18T20:00:00Z",
+          "sales_end_at": "2026-12-18T17:00:00Z",
+          "doors_open_at": "2026-12-18T16:30:00Z",
+          "capacity_total": 120,
+          "status": "scheduled",
+          "admission_mode": "general_admission",
+          "buyer_fields": [
+            {
+              "key": "email",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "phone",
+              "required": true,
+              "enabled": true
+            }
+          ],
+          "service_fee_percent": "0.00",
+          "promo_codes_available": true,
+          "show_withdrawal_notice": false,
+          "white_label": false,
+          "marketing_optin": {
+            "enabled": false
+          },
+          "cart_reminder": true,
+          "timezone": "Asia/Jerusalem",
+          "sales_state": "soon",
+          "tiers": [
+            {
+              "id": "00000000-0000-4000-8000-0000000000a3",
+              "name": "Входной билет",
+              "pricing_mode": "fixed",
+              "price_amount": 18000,
+              "currency": "ILS",
+              "pwyw_min": null,
+              "pwyw_max": null,
+              "capacity": 120,
+              "sale_window_start": null,
+              "sale_window_end": null,
+              "sort_order": 3,
+              "current_price": 18000,
+              "next_price_change_at": null,
+              "is_open": false,
+              "available": 60,
+              "is_addon": false
+            }
+          ],
+          "poster_media_id": null,
+          "poster_url": "/_site/img/events/sample-reds.jpg",
+          "media_gallery": []
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000000004a4",
+          "start_at": "2026-12-19T12:00:00Z",
+          "end_at": "2026-12-19T15:00:00Z",
+          "sales_end_at": "2026-12-19T12:00:00Z",
+          "doors_open_at": null,
+          "capacity_total": 120,
+          "status": "scheduled",
+          "admission_mode": "general_admission",
+          "buyer_fields": [
+            {
+              "key": "email",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "phone",
+              "required": true,
+              "enabled": true
+            }
+          ],
+          "service_fee_percent": "0.00",
+          "promo_codes_available": true,
+          "show_withdrawal_notice": false,
+          "white_label": false,
+          "marketing_optin": {
+            "enabled": false
+          },
+          "cart_reminder": true,
+          "timezone": "Asia/Jerusalem",
+          "sales_state": "soon",
+          "tiers": [
+            {
+              "id": "00000000-0000-4000-8000-0000000000a4",
+              "name": "Входной билет",
+              "pricing_mode": "fixed",
+              "price_amount": 18000,
+              "currency": "ILS",
+              "pwyw_min": null,
+              "pwyw_max": null,
+              "capacity": 120,
+              "sale_window_start": null,
+              "sale_window_end": null,
+              "sort_order": 4,
+              "current_price": 18000,
+              "next_price_change_at": null,
+              "is_open": false,
+              "available": 60,
+              "is_addon": false
+            }
+          ],
+          "poster_media_id": null,
+          "poster_url": "/_site/img/events/sample-reds.jpg",
+          "media_gallery": []
+        }
+      ],
+      "materials": {
+        "gallery": [],
+        "videos": [],
+        "partner_links": [],
+        "map_point": null,
+        "report_photos": []
+      },
+      "venues": [
+        {
+          "name": "Al ha-Tsuk Gallery",
+          "country": "IL",
+          "city": "Netanya",
+          "address": "Ha-Ma'apilim St 19, Netanya, Israel",
+          "postal_code": null,
+          "timezone": "Asia/Jerusalem",
+          "session_starts": [
+            "2026-12-18T17:00:00Z",
+            "2026-12-19T12:00:00Z"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000038",
+      "display_number": 38,
+      "org_id": "00000000-0000-4000-8000-000000000000",
+      "name": "Премьера вина в Хайфе",
+      "description": null,
+      "description_html": "<p>Эйнат Кляйн и Андрей Макаревич представили новый Lonely Cat в Хайфе.</p>",
+      "description_text": "Эйнат Кляйн и Андрей Макаревич представили новый Lonely Cat в Хайфе.",
+      "status": "published",
+      "first_session_at": "2026-10-08T17:00:00Z",
+      "last_session_at": "2026-10-08T20:00:00Z",
+      "venue_names": [
+        "Haifa Museum of Art"
+      ],
+      "visibility": "public",
+      "image_url": null,
+      "poster_media_id": null,
+      "poster_url": "/_site/img/events/sample-haifa.jpg",
+      "created_at": "2026-09-20T10:00:00Z",
+      "updated_at": "2026-11-01T10:00:00Z",
+      "slug": "premera-vina-v-hajfe",
+      "age_rating": "18+",
+      "short_description": null,
+      "sessions": [
+        {
+          "id": "00000000-0000-4000-8000-0000000003a8",
+          "start_at": "2026-10-08T17:00:00Z",
+          "end_at": "2026-10-08T20:00:00Z",
+          "sales_end_at": "2026-10-08T17:00:00Z",
+          "doors_open_at": null,
+          "capacity_total": 120,
+          "status": "scheduled",
+          "admission_mode": "general_admission",
+          "buyer_fields": [
+            {
+              "key": "email",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "name",
+              "required": true,
+              "enabled": true
+            },
+            {
+              "key": "phone",
+              "required": true,
+              "enabled": true
+            }
+          ],
+          "service_fee_percent": "0.00",
+          "promo_codes_available": true,
+          "show_withdrawal_notice": false,
+          "white_label": false,
+          "marketing_optin": {
+            "enabled": false
+          },
+          "cart_reminder": true,
+          "timezone": "Asia/Jerusalem",
+          "sales_state": "ended",
+          "tiers": [
+            {
+              "id": "00000000-0000-4000-8000-0000000000a5",
+              "name": "Входной билет",
+              "pricing_mode": "fixed",
+              "price_amount": 29000,
+              "currency": "ILS",
+              "pwyw_min": null,
+              "pwyw_max": null,
+              "capacity": 120,
+              "sale_window_start": null,
+              "sale_window_end": null,
+              "sort_order": 5,
+              "current_price": 29000,
+              "next_price_change_at": null,
+              "is_open": true,
+              "available": 0,
+              "is_addon": false
+            }
+          ],
+          "poster_media_id": null,
+          "poster_url": "/_site/img/events/sample-haifa.jpg",
+          "media_gallery": []
+        }
+      ],
+      "materials": {
+        "gallery": [],
+        "videos": [],
+        "partner_links": [],
+        "map_point": null,
+        "report_photos": []
+      },
+      "venues": [
+        {
+          "name": "Haifa Museum of Art",
+          "country": "IL",
+          "city": "Haifa",
+          "address": "Shabtai Levi St 26, Haifa, Israel",
+          "postal_code": null,
+          "timezone": "Asia/Jerusalem",
+          "session_starts": [
+            "2026-10-08T17:00:00Z"
+          ]
+        }
+      ]
+    }
+  ]
+}

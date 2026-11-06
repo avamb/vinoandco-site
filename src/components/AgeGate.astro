@@ -1,0 +1,42 @@
+---
+/**
+ * Age gate 18+ (WordPress plugin age-gate v3, JS mode). Same screen and texts
+ * as the original on every language: the plugin was configured with one set of
+ * texts (Hebrew headline and buttons, English challenge) for all languages.
+ * Logic lives in public/_site/js/age-gate.js, loaded blocking in <head> so a
+ * returning visitor never sees the gate flash.
+ */
+import { ui } from '../lib/i18n.ts';
+import type { LanguageCode } from '../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+}
+const t = ui(Astro.props.lang).ageGate;
+---
+<div class="age-gate__wrapper" data-age-gate>
+  <div class="age-gate__background-color"></div>
+  <div class="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
+    <form class="age-gate__form" data-age-gate-form data-error={t.error}>
+      <div class="age-gate__heading">
+        <p class="age-gate__heading-title" id="age-gate-title">{t.title}</p>
+      </div>
+      <p class="age-gate__headline" lang="he" dir="rtl">{t.headline}</p>
+      <p class="age-gate__subheadline">{t.subheadline}</p>
+      <div class="age-gate__fields">
+        <p class="age-gate__challenge" lang="en">{t.challenge}</p>
+        <div class="age-gate__buttons">
+          <button type="submit" class="age-gate__submit age-gate__submit--yes" value="1" lang="he">{t.yes}</button>
+          <button type="submit" class="age-gate__submit age-gate__submit--no" value="0" lang="he">{t.no}</button>
+        </div>
+      </div>
+      <div class="age-gate__remember-wrapper">
+        <label class="age-gate__remember">
+          <input type="checkbox" class="age-gate__remember-field" data-age-gate-remember />
+          <span class="age-gate__remember-text" lang="en">{t.remember}</span>
+        </label>
+      </div>
+      <div class="age-gate__errors" role="alert" data-age-gate-errors></div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+---
+/** 404 (Elementor template 1224): the same English template on every language, as on WordPress. */
+import Base from '../../layouts/Base.astro';
+import { ui } from '../../lib/i18n.ts';
+import { pagePath } from '../../lib/routes.ts';
+import type { LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+}
+const { lang } = Astro.props;
+const t = ui(lang).notFound;
+// One figure per digit column; on WordPress each column is a background slideshow of these.
+const figures = ['/_site/img/w1.png', '/_site/img/c4.png', '/_site/img/w3.png'];
+---
+<Base lang={lang} title={`${t.title} — Vino&Co`} noindex>
+  <section class="vc-404">
+    <div class="vc-404__inner">
+      <div class="vc-404__digits" aria-hidden="true" dir="ltr">
+        {['4', '0', '4'].map((d, i) => (
+          <div class="vc-404__digit">
+            <span>{d}</span>
+            <img src={figures[i]} alt="" loading="lazy" />
+          </div>
+        ))}
+      </div>
+      <h1 class="vc-404__text" lang="en">{t.text} <a href={pagePath('home', lang)}>{t.link}</a></h1>
+    </div>
+  </section>
+</Base>

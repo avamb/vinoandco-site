@@ -1,0 +1,41 @@
+---
+/**
+ * Past events (Elementor page 494 / 1700 en / 1707 he): posters of the
+ * platform's finished events (newest first, linking to their pages), then the
+ * static Bil24-era cards from src/content/past-legacy/.
+ */
+import Base from '../../layouts/Base.astro';
+import PageHero from '../PageHero.astro';
+import { blocksContent } from '../../lib/content.ts';
+import { pastEvents } from '../../lib/events.ts';
+import { legacyEvents } from '../../lib/legacy.ts';
+import { eventPath, pagePaths } from '../../lib/routes.ts';
+import type { LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+}
+const { lang } = Astro.props;
+const c = blocksContent(lang, 'past');
+const events = pastEvents();
+const legacy = legacyEvents();
+---
+<Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.past}>
+  <PageHero bg="vc-bg-past" title={c.h1} short>
+    {c.h2[0] && <p>{c.h2[0]}</p>}
+  </PageHero>
+  <div class="vc-past">
+    {events.map((e) => (
+      <a class="vc-past__item" href={eventPath(e.slug, lang)}>
+        {e.poster && <img src={e.poster} alt={`${e.name} – Poster`} loading="lazy" />}
+        <span>{e.name}</span>
+      </a>
+    ))}
+    {legacy.map((e) => (
+      <div class="vc-past__item">
+        <img src={e.poster} alt={`${e.title[lang]} – Poster`} loading="lazy" />
+        <span>{e.title[lang]}</span>
+      </div>
+    ))}
+  </div>
+</Base>

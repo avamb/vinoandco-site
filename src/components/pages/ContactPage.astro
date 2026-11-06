@@ -1,0 +1,28 @@
+---
+/** Contact us (Elementor page 488 / 1688 en / 1711 he): photo + contact form. */
+import Base from '../../layouts/Base.astro';
+import PageHero from '../PageHero.astro';
+import SiteForm from '../SiteForm.astro';
+import { blocksContent } from '../../lib/content.ts';
+import { pagePaths } from '../../lib/routes.ts';
+import type { LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+}
+const { lang } = Astro.props;
+const c = blocksContent(lang, 'contact');
+---
+<Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.contact}>
+  <PageHero bg="vc-bg-contact" title={c.h1}>
+    <Fragment set:html={c.texts[0] ?? ''} />
+  </PageHero>
+  <section class="vc-split vc-split--dark-dots">
+    <div class="vc-split__media">
+      <img src="/_site/img/dsc09251-copy-scaled.jpg" alt="" loading="lazy" />
+    </div>
+    <div class="vc-split__body">
+      <SiteForm lang={lang} kind="contact" />
+    </div>
+  </section>
+</Base>

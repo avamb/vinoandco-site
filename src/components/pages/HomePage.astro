@@ -1,0 +1,67 @@
+---
+/** Home (Elementor page 495 / 1615 en / 1625 he). */
+import Base from '../../layouts/Base.astro';
+import EventCard from '../EventCard.astro';
+import Split from '../Split.astro';
+import Popup from '../Popup.astro';
+import SiteForm from '../SiteForm.astro';
+import { homeContent, localizeLinks } from '../../lib/content.ts';
+import { upcomingEvents } from '../../lib/events.ts';
+import { pagePath, pagePaths } from '../../lib/routes.ts';
+import { ui } from '../../lib/i18n.ts';
+import type { LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+}
+const { lang } = Astro.props;
+const c = homeContent(lang);
+const t = ui(lang);
+const events = upcomingEvents();
+const featureIcons = ['/_site/img/frame-381.png', '/_site/img/frame-379.png', '/_site/img/frame-380.png'];
+const sectionImages = ['/_site/img/kopiya-fajla-_dsc06156.jpg', '/_site/img/kopiya-fajla-_dsc09995.jpg', '/_site/img/frame-384-1.jpg'];
+const sectionHrefs = [pagePath('upcoming', lang), pagePath('private', lang), null];
+---
+<Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.home}>
+  <section class="vc-home-hero vc-bg-home">
+    <div class="vc-home-hero__body">
+      <h1>{c.hero.title}</h1>
+      <h2>{c.hero.subtitle}</h2>
+      <div class="vc-home-hero__text" set:html={c.hero.text} />
+      <a class="vc-btn vc-btn--primary" href="#club" data-open-popup="vc-popup-club">{c.hero.clubButton}</a>
+    </div>
+  </section>
+  <div class="vc-features">
+    {c.features.map((f, i) => (
+      <div class="vc-feature">
+        <img src={featureIcons[i]} alt="" width="68" height="68" loading="lazy" />
+        <div>
+          <h3>{f.title}</h3>
+          <p>{f.text}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {events.length > 0 && (
+    <div class="vc-events vc-events--carousel">
+      {events.map((e) => <EventCard event={e} lang={lang} />)}
+    </div>
+  )}
+
+  {c.sections.map((s, i) => {
+    const href = sectionHrefs[i] ?? localizeLinks(s.href);
+    const external = /^https?:/.test(href);
+    return (
+      <Split image={sectionImages[i]!} title={s.title} html={s.text} karla>
+        <a class="vc-btn vc-btn--gold" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>{s.button}</a>
+      </Split>
+    );
+  })}
+
+  <Popup id="vc-popup-club" closeLabel={t.modal.close}>
+    <h2>{t.forms.club.title}</h2>
+    <p>{t.forms.club.intro}</p>
+    <SiteForm lang={lang} kind="club" />
+  </Popup>
+</Base>

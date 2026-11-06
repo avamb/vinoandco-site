@@ -1,0 +1,25 @@
+---
+/** Upcoming events (Elementor page 528 / 1727 en / 1730 he): heading + event cards. */
+import Base from '../../layouts/Base.astro';
+import EventCard from '../EventCard.astro';
+import { blocksContent } from '../../lib/content.ts';
+import { upcomingEvents } from '../../lib/events.ts';
+import { pagePaths } from '../../lib/routes.ts';
+import type { LanguageCode } from '../../../site.config.ts';
+
+interface Props {
+  lang: LanguageCode;
+}
+const { lang } = Astro.props;
+const c = blocksContent(lang, 'upcoming');
+const events = upcomingEvents();
+---
+<Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.upcoming}>
+  <div class="vc-events-head">
+    <h1>{c.h1}</h1>
+    <Fragment set:html={c.texts[0] ?? ''} />
+  </div>
+  <div class="vc-events">
+    {events.map((e) => <EventCard event={e} lang={lang} />)}
+  </div>
+</Base>
