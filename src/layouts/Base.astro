@@ -70,6 +70,7 @@ const ogImage = image ? new URL(image, siteUrl).href : new URL('/_site/img/dsc06
     <CookieBanner client:load text={t.cookie.text} accept={t.cookie.accept} decline={t.cookie.decline} label={t.cookie.label} />
     {!personal && (
       <script>
+        import '../scripts/attribution.ts';
         import '../scripts/tracking.ts';
       </script>
     )}

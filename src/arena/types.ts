@@ -267,6 +267,8 @@ export interface CheckoutStartRequest {
   locale: string;
   attribution?: Attribution;
   marketing_consent?: MarketingConsentInput;
+  /** The buyer's tick on the sale terms, when the session's `consent.required` asks for it. */
+  consent?: { accepted: boolean; locale?: string };
   /** pending П-20 / §8.1 */
   tracking_consent?: TrackingConsentInput;
   /** The total the buyer saw (minor units); pending §5.4 p.3 (409 checkout.price_changed). */

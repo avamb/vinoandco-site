@@ -457,11 +457,85 @@ html.age-gate-open body { overflow: hidden; }
 .cn-bar__button--decline { background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.5); }
 .cn-bar__button--decline:hover { background-color: transparent; border: 1px solid #fff; }
 
-/* ---------- Purchase modal (stub; full vino-modal comes with the purchase flow) ---------- */
-.vino-modal-backdrop { position: fixed; inset: 0; z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(0, 0, 0, 0.6); }
-.vino-modal { position: relative; width: 100%; max-width: 520px; padding: clamp(16px, 3vw, 28px); background: #fff; border-radius: 16px; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08); }
-.vino-modal h2 { font-size: 22px; margin: 0 0 16px; }
-.vino-modal__close { position: absolute; top: 10px; inset-inline-end: 10px; background: none; border: 0; box-shadow: none; padding: 6px; cursor: pointer; font-size: 22px; line-height: 1; color: var(--vc-text); }
+/* ---------- Purchase modal (plugin vino-purchase-flow-ux, css/modal-booking.css) ----------
+ * Vino&Co Modal v2 — #822121 primary, #D9A441 accent, #F0E6DC bg, #2C2C2C text.
+ * Copied rule by rule; the WordPress !important overrides against the theme are not needed here. */
+#vino-booking-modal { position: fixed; inset: 0; z-index: 999999; }
+.vino-modal-overlay { position: absolute; inset: 0; background: rgba(44, 44, 44, 0.72); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+.vino-modal-box { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; border-radius: 20px; width: 92%; max-width: 460px; max-height: 92vh; overflow-y: auto; padding: 28px 28px 24px; box-shadow: 0 24px 64px rgba(44, 44, 44, 0.22); color: #2c2c2c; font-family: var(--vc-font); text-align: start; }
+.vino-modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; gap: 12px; }
+#vino-modal-title { font-size: 20px; font-weight: 700; color: #2c2c2c; margin: 0; line-height: 1.3; }
+.vino-modal-close { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: #f0e6dc; border: none; cursor: pointer; font-size: 16px; color: #822121; display: flex; align-items: center; justify-content: center; transition: background 0.15s; padding: 0; }
+.vino-modal-close:hover { background: #e8d8cc; }
+.vino-booking-summary { font-size: 14px; color: #822121; background: #f0e6dc; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-weight: 600; }
+.vino-modal-field { margin-bottom: 14px; }
+.vino-modal-field label { display: block; font-size: 12px; font-weight: 600; color: #888; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
+.vino-req { color: #c0392b; }
+.vino-modal-field input, .vino-modal-field select { width: 100%; height: 50px; border: 1.5px solid #e8ddd6; border-radius: 12px; padding: 0 14px; font-size: 16px; color: #2c2c2c; background: #fff; transition: border-color 0.15s, box-shadow 0.15s; box-sizing: border-box; appearance: none; -webkit-appearance: none; font-family: inherit; }
+.vino-modal-field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23822121' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+[dir='rtl'] .vino-modal-field select { background-position: left 14px center; padding-right: 14px; padding-left: 36px; }
+.vino-modal-field input:focus, .vino-modal-field select:focus { outline: none; border-color: #822121; box-shadow: 0 0 0 3px rgba(130, 33, 33, 0.08); }
+.vino-modal-field .vino-input-error, .vino-input-error { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1); }
+.vino-field-error { font-size: 12px; color: #c0392b; margin-top: 4px; }
+.vino-qty-row { display: flex; align-items: center; gap: 10px; }
+.vino-qty-btn { width: 48px; height: 48px; border-radius: 12px; border: none; background: #f0e6dc; color: #822121; font-size: 22px; font-weight: 500; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; padding: 0; }
+.vino-qty-btn:hover { background: #e5d5c5; }
+.vino-qty-btn:disabled { opacity: 0.5; cursor: default; }
+.vino-modal-field #vino-modal-qty { width: 60px; min-width: 60px; max-width: 60px; height: 48px; text-align: center; font-size: 18px; font-weight: 700; padding: 0; border-radius: 10px; flex-shrink: 0; -moz-appearance: textfield; }
+#vino-modal-qty::-webkit-outer-spin-button, #vino-modal-qty::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.vino-modal-btn-primary { display: block; width: 100%; height: 54px; border: none; border-radius: 14px; background: #822121; color: #fff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; margin-top: 12px; transition: background 0.15s, transform 0.1s; font-family: inherit; }
+.vino-modal-btn-primary:hover:not(:disabled) { background: #a02828; }
+.vino-modal-btn-primary:active { transform: scale(0.98); }
+.vino-modal-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+.vino-modal-back-link { display: block; text-align: center; font-size: 13px; color: #aaa; cursor: pointer; background: none; border: none; width: 100%; padding: 10px 0 4px; font-family: inherit; line-height: 1.4; }
+.vino-modal-back-link:hover { color: #822121; }
+.vino-promo-section { border-top: 1px solid #f0e6dc; padding-top: 14px; margin-top: 6px; margin-bottom: 14px; }
+.vino-promo-toggle { background: none; border: none; padding: 0; font-size: 14px; color: #888; cursor: pointer; display: flex; align-items: center; justify-content: space-between; width: 100%; font-family: inherit; line-height: 1.4; }
+.vino-promo-toggle:hover { color: #822121; }
+.vino-promo-arrow { display: inline-block; transition: transform 0.2s; font-size: 12px; color: #822121; }
+.vino-promo-arrow.is-open { transform: rotate(180deg); }
+.vino-promo-row { display: flex; gap: 8px; margin-top: 10px; }
+.vino-promo-row input { flex: 1; height: 44px; border: 1.5px solid #e8ddd6; border-radius: 10px; padding: 0 12px; font-size: 15px; box-sizing: border-box; font-family: inherit; min-width: 0; }
+.vino-promo-row input:focus { outline: none; border-color: #822121; }
+.vino-promo-apply { height: 44px; padding: 0 16px; border: none; border-radius: 10px; background: #f0e6dc; color: #822121; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; font-family: inherit; }
+.vino-promo-apply:hover { background: #e8d8cc; }
+.vino-promo-apply:disabled { opacity: 0.6; }
+.vino-promo-result { font-size: 13px; margin-top: 7px; min-height: 18px; }
+.vino-promo-result.success { color: #2a7a2a; font-weight: 600; }
+.vino-promo-result.error { color: #c0392b; }
+.vino-promo-line { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 600; color: #2a7a2a; margin: 4px 0 10px; }
+.vino-promo-remove { border: none; background: none; box-shadow: none; padding: 0 4px; font-size: 18px; line-height: 1; color: #8a7a6e; cursor: pointer; }
+.vino-promo-remove:hover { color: #c0392b; }
+.vino-step-errors { background: #fff5f5; border: 1px solid #fcc; border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; font-size: 14px; color: #c0392b; }
+.vino-modal-timer { font-size: 12px; color: #888; text-align: center; margin-bottom: 14px; font-weight: 400; }
+.vino-modal-check { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: #555; margin: 0 0 14px; cursor: pointer; line-height: 1.4; }
+.vino-modal-check input { margin-top: 2px; flex-shrink: 0; width: 18px; height: 18px; accent-color: #822121; }
+.vino-modal-check small { display: block; color: #999; font-size: 12px; margin-top: 2px; }
+.vino-modal-check a { color: #822121; margin-inline-start: 6px; }
+body.vino-modal-open { overflow: hidden; }
+#vino-booking-modal *, #vino-booking-modal *::before, #vino-booking-modal *::after { box-sizing: border-box; }
+/* Mobile: bottom sheet (iPhone SE 375 px to iPhone 15 430 px), as on WordPress. */
+@media (max-width: 600px) {
+  .vino-modal-box { top: auto; bottom: 0; left: 0; right: 0; transform: none; width: 100%; max-width: 100%; border-radius: 20px 20px 0 0; padding: 20px 16px 32px; overflow-x: hidden; -webkit-overflow-scrolling: touch; position: fixed; }
+  #vino-modal-title { font-size: 18px; }
+  .vino-booking-summary { font-size: 13px; padding: 8px 12px; }
+  .vino-modal-field { margin-bottom: 12px; }
+  .vino-modal-field input, .vino-modal-field select { height: 52px; }
+  .vino-qty-row { gap: 8px; }
+  .vino-qty-btn { font-size: 20px; min-width: 48px; }
+  .vino-modal-field #vino-modal-qty { width: 56px; min-width: 56px; max-width: 56px; }
+  .vino-promo-section { padding-top: 12px; margin-top: 4px; margin-bottom: 12px; }
+  .vino-promo-toggle { padding: 8px 0; min-height: 36px; }
+  .vino-promo-row { flex-direction: column; align-items: stretch; }
+  .vino-promo-row input { height: 48px; font-size: 16px; flex: none; width: 100%; }
+  .vino-promo-apply { width: 100%; height: 48px; font-size: 15px; border-radius: 12px; }
+  .vino-modal-btn-primary { height: 56px; margin-top: 4px; }
+  .vino-modal-back-link { padding: 12px 0 4px; font-size: 14px; }
+  .vino-modal-timer { margin-bottom: 12px; }
+}
+@media (max-width: 380px) {
+  .vino-modal-box { padding: 16px 14px 28px; }
+}
 html.age-gate-passed .age-gate__wrapper { display: none; }
 
 /* ---------- Section photos (background images of the Elementor containers) ---------- */

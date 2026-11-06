@@ -10,10 +10,11 @@
 import Base from '../../layouts/Base.astro';
 import BuyModal from '../islands/BuyModal.svelte';
 import { ui } from '../../lib/i18n.ts';
-import { eventPath } from '../../lib/routes.ts';
+import { eventPath, pagePath } from '../../lib/routes.ts';
 import { buildNow, daysUntil, formatDate, formatSessionChip, formatTime, type SiteEvent } from '../../lib/events.ts';
 import { sessionEndsAt } from '../../arena/index.ts';
-import { languages, type LanguageCode } from '../../../site.config.ts';
+import { arena, languages, siteUrl, type LanguageCode } from '../../../site.config.ts';
+import { language } from '../../lib/i18n.ts';
 
 interface Props {
   lang: LanguageCode;
@@ -32,6 +33,8 @@ const map = materials.map_point;
 const mapQuery = map ? `${map.latitude},${map.longitude}` : event.venueAddress || event.venueName;
 const mapSrc = mapQuery ? `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed` : null;
 const description = event.descriptionText.slice(0, 160);
+const returnUrl = new URL(pagePath('orderStatus', lang), siteUrl).href;
+const from = event.priceFrom;
 
 function sessionState(s: (typeof sessions)[number]) {
   if (s.status === 'cancelled') return 'cancelled';
@@ -40,7 +43,7 @@ function sessionState(s: (typeof sessions)[number]) {
 }
 ---
 <Base lang={lang} title={`${event.name} — Vino&Co`} description={description} alternates={alternates} noindex={!event.listed} image={event.poster}>
-  <article class="vc-event" data-event-page data-primary-session={primaryId}>
+  <article class="vc-event" data-event-page data-primary-session={primaryId} data-event-id={event.raw.id} data-event-name={event.name} data-api={arena.apiBase} data-feed={arena.feedToken} data-past={event.past ? '1' : undefined} data-price={from?.amount} data-currency={from?.currency}>
     <div class="vc-event__inner">
       {event.poster && (
         <div class:list={['vc-event__poster', { 'vc-soldout-ribbon': soldOut }]}>
@@ -111,12 +114,35 @@ function sessionState(s: (typeof sessions)[number]) {
   </article>
 
   {!event.past && (
-    <BuyModal client:idle title={m.selectTitle} closeLabel={m.close} stub={m.stub} eventId={event.raw.id} sessionId={primaryId} />
+    <BuyModal
+      client:idle
+      t={m}
+      lang={lang}
+      intl={language(lang).intl}
+      eventId={event.raw.id}
+      eventName={event.name}
+      eventPath={eventPath(event.slug, lang)}
+      sessions={event.sessions}
+      apiBase={arena.apiBase}
+      feedToken={arena.feedToken}
+      returnUrl={returnUrl}
+      sessionId={primaryId}
+    />
   )}
 
   <script>
+    import { createArenaClient } from '../../arena/client.ts';
+    import { funnelSessionOpen, funnelStep } from '../../scripts/funnel.ts';
+    import { trackViewContent } from '../../scripts/analytics.ts';
+
     // Preselect the session named in ?session= (old WordPress links point at one date).
     const page = document.querySelector<HTMLElement>('[data-event-page]');
+    const d = page?.dataset ?? {};
+    const client = d.feed && d.eventId && !d.past ? createArenaClient({ apiBase: d.api || '', feedToken: d.feed }) : null;
+    if (client && d.eventId) {
+      funnelStep(client, 'view', d.eventId);
+      if (d.price && d.currency) trackViewContent({ id: d.eventId, name: d.eventName || '', price: Number(d.price), quantity: 1 }, d.currency);
+    }
     const wanted = new URL(location.href).searchParams.get('session');
     const select = (id: string) => {
       const block = document.querySelector(`[data-session-block="${CSS.escape(id)}"]`);
@@ -127,13 +153,17 @@ function sessionState(s: (typeof sessions)[number]) {
         else c.removeAttribute('aria-current');
       });
     };
-    if (page && wanted) select(wanted);
+    if (page && wanted) {
+      select(wanted);
+      if (client && d.eventId) funnelSessionOpen(client, d.eventId, wanted);
+    }
     document.querySelectorAll<HTMLAnchorElement>('[data-session-chip]').forEach((chip) => {
       chip.addEventListener('click', (e) => {
         e.preventDefault();
         const id = chip.dataset.sessionChip!;
         select(id);
         history.replaceState(null, '', `?session=${encodeURIComponent(id)}`);
+        if (client && d.eventId) funnelSessionOpen(client, d.eventId, id);
       });
     });
   </script>
