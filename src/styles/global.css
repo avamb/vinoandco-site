@@ -410,6 +410,11 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .age-gate__buttons { display: flex; align-items: center; justify-content: center; gap: 10px; }
 .age-gate__submit { margin: 0 0 1rem; background-color: #333; color: #fff; border: 0; border-radius: 3px; cursor: pointer; font-size: 1rem; font-weight: 600; padding: 0.5rem 1rem; box-shadow: none; text-transform: none; letter-spacing: 0; font-family: inherit; }
 .age-gate__submit:hover, .age-gate__submit:focus { background-color: #323232; color: #fff; }
+/* Elementor kit 542 custom CSS: "yes" green, "no" light grey (reference css/uploads_elementor_css_post-542.css). */
+.age-gate__submit--yes { background-color: #2e7d32; color: #fff; }
+.age-gate__submit--yes:hover, .age-gate__submit--yes:focus { background-color: #256628; color: #fff; }
+.age-gate__submit--no { background-color: #e0e0e0; color: #333; }
+.age-gate__submit--no:hover, .age-gate__submit--no:focus { background-color: #cfcfcf; color: #333; }
 .age-gate__remember-wrapper { margin: 0 0 1rem; }
 .age-gate__remember { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
 .age-gate__remember-text { font-size: 0.9rem; margin-inline-start: 5px; }
