@@ -1,0 +1,82 @@
+# nginx for vinoandco.events (web container). Rendered by the official nginx
+# image: ${VARS} below come from the container environment (docker-compose.yml).
+# Generated per build, inside the site folder (scripts/postbuild.mjs):
+#   .nginx/csp-hashes.conf  hashes of the few inline scripts/styles Astro emits
+#   .nginx/redirects.conf   301/410 rules from redirects.yaml
+# Headers live in /etc/nginx/snippets/*.conf and are included in EVERY location
+# that sets a header, because a location's add_header replaces the server's.
+
+# Staging (SITE_INDEXING=false): X-Robots-Tag on every answer (spec 62 §13).
+map "${SITE_INDEXING}" $vc_robots {
+    "true"  "";
+    default "noindex, nofollow";
+}
+
+# Path only, no query: tokens never reach the access log (spec 62 §5.6).
+log_format vc_noquery '$remote_addr - [$time_local] "$request_method $uri $server_protocol" '
+                      '$status $body_bytes_sent "$http_user_agent"';
+
+server {
+    listen 80;
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+    absolute_redirect off;
+    server_tokens off;
+    charset utf-8;
+    access_log /var/log/nginx/access.log vc_noquery;
+
+    include /usr/share/nginx/html/.nginx/csp-hashes.conf;
+    set $vc_api "${ARENA_API_ORIGIN}";
+    set $vc_csp "default-src 'self'; script-src 'self' $csp_script_hashes https://challenges.cloudflare.com https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' $csp_style_hashes; img-src 'self' data: $vc_api https://www.google-analytics.com https://www.googletagmanager.com https://www.facebook.com; font-src 'self'; connect-src 'self' $vc_api https://challenges.cloudflare.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://connect.facebook.net; frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'";
+
+    # Build internals are never served.
+    location ^~ /.nginx/ { return 404; }
+
+    # Old WordPress addresses (redirects.yaml).
+    include /usr/share/nginx/html/.nginx/redirects.conf;
+
+    # Hashed build assets: cache forever.
+    location ^~ /_site/assets/ {
+        include /etc/nginx/snippets/headers.conf;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        try_files $uri =404;
+    }
+    # Fonts, images, plain scripts of the site.
+    location ^~ /_site/ {
+        include /etc/nginx/snippets/headers.conf;
+        add_header Cache-Control "public, max-age=86400" always;
+        try_files $uri =404;
+    }
+
+    # Personal pages: no cache, no referrer, never indexed (spec 62 §5.6).
+    # ^~ prefixes (not a regex): they must beat the /en/ and /he/ prefixes below.
+    location ^~ /order-status/     { include /etc/nginx/snippets/headers-personal.conf; try_files $uri $uri/ =404; }
+    location ^~ /my-tickets/       { include /etc/nginx/snippets/headers-personal.conf; try_files $uri $uri/ =404; }
+    location ^~ /en/order-status/  { include /etc/nginx/snippets/headers-personal.conf; try_files $uri $uri/ =404; }
+    location ^~ /en/my-tickets/    { include /etc/nginx/snippets/headers-personal.conf; try_files $uri $uri/ =404; }
+    location ^~ /he/order-status/  { include /etc/nginx/snippets/headers-personal.conf; try_files $uri $uri/ =404; }
+    location ^~ /he/my-tickets/    { include /etc/nginx/snippets/headers-personal.conf; try_files $uri $uri/ =404; }
+
+    location ^~ /en/ {
+        include /etc/nginx/snippets/headers.conf;
+        add_header Cache-Control "public, max-age=300" always;
+        error_page 404 /en/404/index.html;
+        try_files $uri $uri/ =404;
+    }
+    location ^~ /he/ {
+        include /etc/nginx/snippets/headers.conf;
+        add_header Cache-Control "public, max-age=300" always;
+        error_page 404 /he/404/index.html;
+        try_files $uri $uri/ =404;
+    }
+    location / {
+        include /etc/nginx/snippets/headers.conf;
+        add_header Cache-Control "public, max-age=300" always;
+        error_page 404 /404.html;
+        try_files $uri $uri/ =404;
+    }
+    location = /404.html { internal; include /etc/nginx/snippets/headers.conf; }
+    location = /en/404/index.html { internal; include /etc/nginx/snippets/headers.conf; }
+    location = /he/404/index.html { internal; include /etc/nginx/snippets/headers.conf; }
+}

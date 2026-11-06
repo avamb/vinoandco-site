@@ -1,0 +1,43 @@
+# vinoandco.events: web (nginx serving the built site) + builder (rebuilds the
+# site when platform data changes, spec 62 §9 — stub for now).
+# Only public values here. Deploy-specific settings (domain routing, Traefik
+# labels, purge token) live in the deploy environment, not in this repository.
+services:
+  web:
+    build:
+      context: .
+      target: web
+      args:
+        SITE_URL: ${SITE_URL:-https://vinoandco.events}
+        SITE_INDEXING: ${SITE_INDEXING:-false}
+        PUBLIC_ARENA_API: ${PUBLIC_ARENA_API:-https://api.arenasoldout.com}
+        PUBLIC_FEED_TOKEN: ${PUBLIC_FEED_TOKEN:-}
+        PUBLIC_META_PIXEL_ID: ${PUBLIC_META_PIXEL_ID:-}
+        PUBLIC_GA4_ID: ${PUBLIC_GA4_ID:-}
+    environment:
+      ARENA_API_ORIGIN: ${PUBLIC_ARENA_API:-https://api.arenasoldout.com}
+      SITE_INDEXING: ${SITE_INDEXING:-false}
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    restart: unless-stopped
+
+  # STUB. The real builder polls the feed every 2 minutes, writes a snapshot,
+  # builds into a new folder, checks it and switches the folder web serves
+  # (atomic symlink, last-known-good). Until then the site is rebuilt by
+  # redeploying `web`. Started only with `docker compose --profile builder up`.
+  builder:
+    image: node:22-alpine
+    profiles: ["builder"]
+    working_dir: /app
+    volumes:
+      - ./builder:/app/builder:ro
+      - builder-data:/data
+    environment:
+      PUBLIC_ARENA_API: ${PUBLIC_ARENA_API:-https://api.arenasoldout.com}
+      PUBLIC_FEED_TOKEN: ${PUBLIC_FEED_TOKEN:-}
+    command: ["node", "builder/run.mjs"]
+    restart: "no"
+
+volumes:
+  # Snapshots, optimized images, slug history: part of the nightly server backup.
+  builder-data:
