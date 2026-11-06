@@ -19,7 +19,7 @@ visitor ──► static pages (this repo, built with Astro)
               ▼
          Arena public API (events, holds, checkout)
               │
-              └─► AllPay hosted payment page ──► back to /payment-successful/
+              └─► AllPay hosted payment page ──► back to /order-status/
 ```
 
 - **Languages:** Russian (default, no prefix), English (`/en/`), Hebrew (`/he/`, right-to-left).
