@@ -14,3 +14,7 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+
+# builder runs locally
+.builder-data/
+.builder-site/

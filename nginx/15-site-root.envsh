@@ -1,0 +1,12 @@
+#!/bin/sh
+# Sourced by the nginx image's entrypoint before the template is rendered.
+# SITE_ROOT is the folder nginx serves. With the builder it is the release the
+# builder switched in (/srv/site/current); until the builder has published once
+# that folder does not exist, so the image's own build is served instead and
+# 40-watch-release.sh switches over as soon as a release appears.
+: "${SITE_ROOT:=/usr/share/nginx/html}"
+if [ ! -f "$SITE_ROOT/index.html" ] || [ ! -f "$SITE_ROOT/.nginx/csp-hashes.conf" ]; then
+  echo "site-root: $SITE_ROOT has no build yet; serving the image's own build" >&2
+  SITE_ROOT=/usr/share/nginx/html
+fi
+export SITE_ROOT

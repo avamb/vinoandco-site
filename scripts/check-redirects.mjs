@@ -8,7 +8,8 @@ import { join } from 'node:path';
 import { parse } from 'yaml';
 
 const root = decodeURIComponent(new URL('../', import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1');
-const dist = join(root, 'dist');
+// DIST_DIR: check another build folder (the builder checks each release before publishing it).
+const dist = process.env.DIST_DIR || join(root, 'dist');
 const doc = parse(readFileSync(join(root, 'redirects.yaml'), 'utf8'));
 
 const built = (path) => {

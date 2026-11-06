@@ -12,18 +12,22 @@
     "check": "npm run check:types && npm run check:redirects && npm run check:dist",
     "check:types": "astro check",
     "check:redirects": "node scripts/check-redirects.mjs",
-    "check:dist": "node scripts/check-dist.mjs"
+    "check:dist": "node scripts/check-dist.mjs",
+    "test": "vitest run",
+    "builder": "node --experimental-strip-types builder/run.mjs"
   },
   "dependencies": {
     "@astrojs/svelte": "^7.2.5",
     "astro": "^5.18.2",
+    "sharp": "^0.34.5",
     "svelte": "^5.57.2",
     "yaml": "^2.9.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@types/node": "^22.20.5",
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.7"
   },
   "engines": {
     "node": ">=22"

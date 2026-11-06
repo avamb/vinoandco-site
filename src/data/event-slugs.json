@@ -1,0 +1,5 @@
+{
+  "49": "izrail-takie-raznye-belye",
+  "51": "izrail-takie-raznye-krasnye",
+  "_note": "Event slugs known before the feed carries `slug` (П-5), keyed by display_number. Remove when П-5 is live."
+}

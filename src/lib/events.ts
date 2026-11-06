@@ -6,6 +6,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import sample from '../data/events.sample.json';
+import knownSlugs from '../data/event-slugs.json';
 import {
   eventSalesState,
   eventSlug,
@@ -67,7 +68,8 @@ export function siteEvents(): SiteEvent[] {
     const venue = e.venues.find((v) => primary && v.session_starts.includes(primary.start_at)) ?? e.venues[0];
     return {
       raw: e,
-      slug: eventSlug(e),
+      // TODO(П-5): the platform slug; until the feed has it, the known-slug table or e<display_number>.
+      slug: eventSlug(e, knownSlugs as Record<string, string>),
       name: e.name,
       past,
       listed: isListed(e),

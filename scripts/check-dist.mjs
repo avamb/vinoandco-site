@@ -4,7 +4,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = decodeURIComponent(new URL('../', import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1');
-const dist = join(root, 'dist');
+// DIST_DIR: check another build folder (the builder checks each release before publishing it).
+const dist = process.env.DIST_DIR || join(root, 'dist');
 const required = {
   ru: ['/', '/upcoming-events/', '/past-events/', '/private-events/', '/about-us/', '/contact-us/', '/terms-conditions/', '/privacy-policy/', '/refund_returns/', '/order-status/', '/my-tickets/'],
   en: ['/en/', '/en/upcoming-events/', '/en/past-events/', '/en/private-events/', '/en/about-us/', '/en/contact-us/', '/en/terms-conditions/', '/en/privacy-policy/', '/en/return-policy/', '/en/order-status/', '/en/my-tickets/'],

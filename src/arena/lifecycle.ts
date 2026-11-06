@@ -60,7 +60,17 @@ export function priceFrom(sessions: FeedSession[]): { amount: number; currency: 
   return best;
 }
 
-/** The slug the event's page lives at: platform slug (П-5), else a stable fallback. */
-export function eventSlug(e: FeedEvent): string {
-  return e.slug && e.slug.trim() ? e.slug.trim() : `e${e.display_number}`;
+/**
+ * The slug the event's page lives at: the platform slug (П-5); else a slug the
+ * site already knows for this event (`known`, keyed by display number); else
+ * a stable fallback `e<display_number>`.
+ *
+ * TODO(П-5): once the feed carries `slug` for every event, drop `known` and
+ * the `e<n>` fallback; a page then moves only through the platform's slug
+ * history (301 from the old slug).
+ */
+export function eventSlug(e: FeedEvent, known: Record<string, string> = {}): string {
+  if (e.slug && e.slug.trim()) return e.slug.trim();
+  const k = known[String(e.display_number)];
+  return k && k.trim() ? k.trim() : `e${e.display_number}`;
 }
