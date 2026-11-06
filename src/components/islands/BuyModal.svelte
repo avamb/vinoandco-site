@@ -14,6 +14,7 @@
   import { onMount } from 'svelte';
   import { createArenaClient, ArenaApiError, ArenaNetworkError } from '../../arena/client.ts';
   import { readAttribution } from '../../arena/attribution.ts';
+  import { buildBuyerContext } from '../../arena/buyer-context.ts';
   import { createAttemptKeys, EMAIL_RE, gaItems, isSellable, isSoldOut, localTotal, maxQuantity, offeredTiers, stepHint } from '../../arena/cart.ts';
   import type { CheckoutStartRequest, FeedSession, FeedTier, PricingBreakdown } from '../../arena/types.ts';
   import { CHECKOUT_TOKEN_KEY, LAST_EVENT_KEY, errorKey, fmt, isPromoError, nav, type ErrorKey } from '../../lib/purchase.ts';
@@ -271,7 +272,7 @@
     if (promoCode) body.promo_code = promoCode;
     if (attribution) body.attribution = attribution;
     if (optin?.text_version) body.marketing_consent = { accepted: marketingTicked, text_version: optin.text_version, ...(marketingDiscount ? {} : { discount: false }) };
-    if (c) body.tracking_consent = { granted: c.granted, version: c.version, at: c.at };
+    body.buyer_context = buildBuyerContext({ pageUrl: location.href.split('#')[0], store: sessionStorage, cookies: document.cookie, consent: c });
     if (consentBlock.required) body.consent = { accepted: consentTicked, locale: lang };
     return body;
   }
@@ -314,7 +315,9 @@
       paying = false;
       if (e instanceof ArenaApiError && e.code === 'idempotency.body_mismatch') keys.reset();
       if (e instanceof ArenaApiError && (e.code === 'checkout.price_changed' || e.code === 'checkout.pricing_mismatch')) {
-        const fresh = Number((e.details as { total?: number } | null)?.total);
+        // 409 checkout.price_changed carries details {expected_total, actual_total, currency}.
+        const d = e.details as { actual_total?: number; total?: number } | null;
+        const fresh = Number(d?.actual_total ?? d?.total);
         if (Number.isFinite(fresh) && fresh > 0) {
           confirmedTotal = fresh;
           stepError = fmt(t.priceChanged, money(fresh));

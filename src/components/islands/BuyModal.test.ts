@@ -159,6 +159,29 @@ describe('BuyModal', () => {
     });
     expect(nav.go).toHaveBeenCalledWith('https://allpay.test/pay/1');
     expect(sessionStorage.getItem('vc_checkout_token')).toBe('ct-1');
+    // No banner answer yet: not granted, no GA id, no cookies sent that are not there.
+    expect(start.body.buyer_context).toMatchObject({ tracking_consent: false });
+    expect(start.body.buyer_context.ga_client_id).toBeUndefined();
+    expect(start.body.tracking_consent).toBeUndefined();
+  });
+
+  it('PAY carries click ids, marketing cookies and the consent answer in buyer_context', async () => {
+    sessionStorage.setItem('arena_click_ids', JSON.stringify({ fbclid: 'FB1', gclid: 'G1' }));
+    const consent = { granted: true, version: '2026-11-06', at: '2026-11-07T10:00:00Z' };
+    document.cookie = `vc_consent=${encodeURIComponent(JSON.stringify(consent))}; path=/`;
+    document.cookie = '_fbp=fb.1.111.222; path=/';
+    document.cookie = '_ga=GA1.1.333.444; path=/';
+    routes['checkout/start'] = () => json({ checkout_token: 'ct', redirect_url: 'https://allpay.test/p', expires_at: 'x', pricing: { total: 29000 } }, 201);
+    open([session([tier()])]);
+    await settle();
+    fill();
+    pay();
+    await settle();
+    const ctx = calls.find((c) => c.url.includes('checkout/start'))!.body.buyer_context;
+    expect(ctx).toMatchObject({ fbclid: 'FB1', gclid: 'G1', fbp: 'fb.1.111.222', ga_client_id: '333.444', tracking_consent: true, tracking_consent_text_version: '2026-11-06' });
+    expect(ctx.fbc).toBeUndefined();
+    expect(ctx.page_url).toMatch(/^http/);
+    for (const c of ['vc_consent', '_fbp', '_ga']) document.cookie = `${c}=; path=/; max-age=0`;
   });
 
   it('a lost answer keeps the key; another body after a 409 mismatch gets a new one', async () => {
@@ -201,7 +224,7 @@ describe('BuyModal', () => {
     let n = 0;
     routes['checkout/start'] = () =>
       ++n === 1
-        ? json({ error: { code: 'checkout.price_changed', message: '', details: { total: 31000 } } }, 409)
+        ? json({ error: { code: 'checkout.price_changed', message: '', details: { expected_total: 29000, actual_total: 31000, currency: 'ILS' } } }, 409)
         : json({ checkout_token: 'ct', redirect_url: 'https://allpay.test/p', expires_at: 'x', pricing: { total: 31000 } }, 201);
     open([session([tier()])]);
     await settle();
