@@ -240,6 +240,10 @@
     "error": "Could not load your tickets. Please refresh the page.",
     "rateLimited": "Too many requests. Wait a minute and try again.",
     "unavailable": "The service is temporarily unavailable. Please try later.",
+    "captchaFailed": "The check was not passed. Please try again.",
+    "requestError": "Could not send the link. Please try again.",
+    "captchaWait": "One second: we are checking that you are not a robot.",
+    "formUnavailable": "The form is temporarily unavailable. Write to us at info@vinoandco.events.",
     "toEvents": "To the events"
   },
   "notFound": {

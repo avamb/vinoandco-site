@@ -8,12 +8,13 @@
    * third-party scripts.
    */
   import { onMount } from 'svelte';
-  import { createArenaClient } from '../../arena/client.ts';
+  import { ArenaApiError, createArenaClient } from '../../arena/client.ts';
   import { EMAIL_RE } from '../../arena/cart.ts';
   import type { MyTicketsOrder, MyTicketsSession } from '../../arena/types.ts';
   import { clearSession, errorKind, exchangeLinkToken, readSession, takeLinkToken, ticketFileName, type ErrorKind } from '../../lib/my-tickets.ts';
   import { fmt } from '../../lib/purchase.ts';
   import { formatWhen } from '../../lib/when.ts';
+  import { loadTurnstileScript, type TurnstileApi } from '../../scripts/site-forms.ts';
 
   type Strings = Record<string, string>;
   interface Props {
@@ -25,8 +26,12 @@
     /** Absolute address of this page; the e-mailed link opens it with #t= (older e-mails: ?t=). */
     pageUrl: string;
     upcomingPath: string;
+    /** Cloudflare Turnstile site key; empty = the link request is unavailable. */
+    siteKey?: string;
+    /** Test seam: loads the Turnstile script. */
+    loadTurnstile?: () => Promise<TurnstileApi | null>;
   }
-  let { t, apiBase, feedToken, lang, intl, pageUrl, upcomingPath }: Props = $props();
+  let { t, apiBase, feedToken, lang, intl, pageUrl, upcomingPath, siteKey = '', loadTurnstile = loadTurnstileScript }: Props = $props();
 
   // svelte-ignore state_referenced_locally
   const client = createArenaClient({ apiBase, feedToken, timeoutMs: 20_000 });
@@ -41,6 +46,35 @@
   let sent = $state(false);
   let notice = $state('');
 
+  let holder: HTMLElement | undefined = $state();
+  let api: TurnstileApi | null = null;
+  let widget: string | null = null;
+  let token = '';
+
+  async function ensureWidget(): Promise<void> {
+    if (widget !== null || !holder || !siteKey) return;
+    api = await loadTurnstile();
+    if (!api || widget !== null) return;
+    widget = api.render(holder, {
+      sitekey: siteKey,
+      action: 'my_tickets',
+      callback: (v: string) => {
+        token = v;
+      },
+      'expired-callback': () => {
+        token = '';
+      },
+      'error-callback': () => {
+        token = '';
+      },
+    });
+  }
+
+  function resetCaptcha() {
+    token = '';
+    if (api && widget !== null) api.reset(widget);
+  }
+
   let opening = $state(false);
   let loading = $state(false);
   let orders = $state<MyTicketsOrder[]>([]);
@@ -51,6 +85,13 @@
 
   const text = (k: ErrorKind): string => (k === 'rateLimited' ? t.rateLimited : k === 'unavailable' ? t.unavailable : k === 'notReady' ? t.pdfNotReady : t.error);
 
+  /** Texts of a failed link request; "could not load tickets" belongs to the orders list only. */
+  function linkErrorText(e: unknown): string {
+    if (e instanceof ArenaApiError && e.code === 'my_tickets.captcha_failed') return t.captchaFailed;
+    const k = errorKind(e);
+    return k === 'rateLimited' ? t.rateLimited : k === 'unavailable' ? t.unavailable : t.requestError;
+  }
+
   async function requestLink(ev: SubmitEvent) {
     ev.preventDefault();
     notice = '';
@@ -58,13 +99,20 @@
       notice = t.invalidEmail;
       return;
     }
+    if (!token) {
+      void ensureWidget();
+      notice = t.captchaWait;
+      return;
+    }
     sending = true;
     try {
-      await client.requestMyTicketsLink({ email: email.trim(), locale: lang, page_url: pageUrl });
+      await client.requestMyTicketsLink({ email: email.trim(), locale: lang, page_url: pageUrl, turnstile_token: token });
       sent = true;
     } catch (e) {
-      notice = text(errorKind(e));
+      notice = linkErrorText(e);
     } finally {
+      // The token is single-use: success or failure, a new check is needed.
+      resetCaptcha();
       sending = false;
     }
   }
@@ -177,11 +225,13 @@
       <p class="vc-personal__status">{t.sent}</p>
     {:else}
       <p>{t.intro}</p>
-      <form onsubmit={requestLink} novalidate>
+      <form onsubmit={requestLink} onfocusin={() => void ensureWidget()} novalidate>
         <label for="vc-mt-email">{t.email}</label>
         <input type="email" id="vc-mt-email" name="email" bind:value={email} required autocomplete="email" />
-        <button type="submit" class="vc-btn vc-btn--primary vc-btn--block" disabled={sending}>{sending ? t.sending : t.submit}</button>
+        <div class="vc-form__turnstile" data-turnstile bind:this={holder}></div>
+        <button type="submit" class="vc-btn vc-btn--primary vc-btn--block" disabled={sending || !siteKey}>{sending ? t.sending : t.submit}</button>
       </form>
+      {#if !siteKey}<p class="vc-order__error" role="alert">{t.formUnavailable}</p>{/if}
     {/if}
     {#if notice}<p class="vc-order__error" role="alert">{notice}</p>{/if}
   {:else if screen === 'landing'}

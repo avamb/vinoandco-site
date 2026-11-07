@@ -9,7 +9,7 @@ import Base from '../../layouts/Base.astro';
 import MyTickets from '../islands/MyTickets.svelte';
 import { ui, language } from '../../lib/i18n.ts';
 import { pagePath, pagePaths } from '../../lib/routes.ts';
-import { arena, siteUrl, type LanguageCode } from '../../../site.config.ts';
+import { arena, siteUrl, turnstile, type LanguageCode } from '../../../site.config.ts';
 
 interface Props {
   lang: LanguageCode;
@@ -30,6 +30,7 @@ const t = ui(lang).myTickets;
         intl={language(lang).intl}
         pageUrl={new URL(pagePath('myTickets', lang), siteUrl).href}
         upcomingPath={pagePath('upcoming', lang)}
+        siteKey={turnstile.siteKey}
       />
     </div>
   </section>

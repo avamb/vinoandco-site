@@ -232,7 +232,7 @@ export function createArenaClient(opts: ArenaClientOptions) {
   // ── My tickets by link (spec 62 §7) ─────────────────────────────────────
 
   /** E-mails a one-time link. The platform answers 202 whether or not the address has orders. */
-  async function requestMyTicketsLink(body: { email: string; locale: string; page_url: string }): Promise<void> {
+  async function requestMyTicketsLink(body: { email: string; locale: string; page_url: string; turnstile_token?: string }): Promise<void> {
     await request<unknown>(`/v1/public/feeds/${token}/my-tickets/link`, { method: 'POST', body });
   }
 

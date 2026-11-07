@@ -45,11 +45,24 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-function start(query = '') {
+type Rendered = { opts: Record<string, any>; reset: number };
+let rendered: Rendered | null;
+const fakeTurnstile = async () => ({
+  render: (_el: HTMLElement, opts: Record<string, unknown>) => {
+    rendered = { opts, reset: 0 };
+    return 'w1';
+  },
+  reset: () => {
+    if (rendered) rendered.reset++;
+  },
+});
+
+function start(query = '', extra: Record<string, unknown> = { siteKey: 'site-key', loadTurnstile: fakeTurnstile }) {
+  rendered = null;
   history.replaceState(null, '', `/my-tickets/${query}`);
   component = mount(MyTickets as unknown as Component<Record<string, unknown>>, {
     target: document.getElementById('root')!,
-    props: { t: ru.myTickets, apiBase: 'https://api.test', feedToken: 'tok', lang: 'ru', intl: 'ru-RU', pageUrl: 'https://vinoandco.events/my-tickets/', upcomingPath: '/upcoming-events/' },
+    props: { t: ru.myTickets, apiBase: 'https://api.test', feedToken: 'tok', lang: 'ru', intl: 'ru-RU', pageUrl: 'https://vinoandco.events/my-tickets/', upcomingPath: '/upcoming-events/', ...extra },
   });
   flushSync();
 }
@@ -91,12 +104,62 @@ describe('MyTickets', () => {
     const input = document.querySelector<HTMLInputElement>('#vc-mt-email')!;
     input.value = 'anna@example.com';
     input.dispatchEvent(new Event('input', { bubbles: true }));
+    document.querySelector('form')!.dispatchEvent(new Event('focusin', { bubbles: true }));
+    await settle();
+    rendered!.opts.callback('tok-1');
     document.querySelector('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
     await settle();
     const c = calls[0];
     expect(c.url).toBe('https://api.test/v1/public/feeds/tok/my-tickets/link');
-    expect(c.body).toEqual({ email: 'anna@example.com', locale: 'ru', page_url: 'https://vinoandco.events/my-tickets/' });
+    expect(c.body).toEqual({ email: 'anna@example.com', locale: 'ru', page_url: 'https://vinoandco.events/my-tickets/', turnstile_token: 'tok-1' });
+    expect(rendered!.opts.action).toBe('my_tickets');
+    expect(rendered!.opts.sitekey).toBe('site-key');
+    expect(rendered!.reset).toBe(1);
     expect(text()).toContain('Проверьте почту');
+  });
+
+  async function submitWithToken() {
+    const input = document.querySelector<HTMLInputElement>('#vc-mt-email')!;
+    input.value = 'anna@example.com';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    document.querySelector('form')!.dispatchEvent(new Event('focusin', { bubbles: true }));
+    await settle();
+    rendered!.opts.callback('tok-1');
+    document.querySelector('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    await settle();
+  }
+
+  it('maps my_tickets.captcha_failed to its own text and resets the widget', async () => {
+    routes['/my-tickets/link'] = () => json({ error: { code: 'my_tickets.captcha_failed', message: 'x' } }, 403);
+    start();
+    await submitWithToken();
+    expect(text()).toContain(ru.myTickets.captchaFailed);
+    expect(text()).not.toContain('Не удалось загрузить билеты');
+    expect(rendered!.reset).toBe(1);
+  });
+
+  it('a rate-limited link request says so', async () => {
+    routes['/my-tickets/link'] = () => json({ error: { code: 'rate_limited', message: 'x' } }, 429);
+    start();
+    await submitWithToken();
+    expect(text()).toContain(ru.myTickets.rateLimited);
+  });
+
+  it('asks to wait when the check has not finished', async () => {
+    start();
+    const input = document.querySelector<HTMLInputElement>('#vc-mt-email')!;
+    input.value = 'anna@example.com';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    document.querySelector('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    await settle();
+    expect(calls).toHaveLength(0);
+    expect(text()).toContain(ru.myTickets.captchaWait);
+  });
+
+  it('without a site key the form is disabled and says it is unavailable', async () => {
+    start('', { siteKey: '' });
+    expect(document.querySelector<HTMLButtonElement>('button[type="submit"]')!.disabled).toBe(true);
+    expect(text()).toContain(ru.myTickets.formUnavailable);
   });
 
   it('does not send a malformed address', async () => {
