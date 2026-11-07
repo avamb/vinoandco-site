@@ -1,0 +1,5 @@
+checked 190 addresses against https://new.vinoandco.events
+mismatches: 2
+pending (P-5): 7 -> 404,404,404,404,404,404,404
+gone	/xmlrpc.php	expected 410	got 403 
+gone	/wp-login.php	expected 410	got 403 

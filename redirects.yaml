@@ -229,3 +229,36 @@ events:
   - { from: "/wp-content/uploads/2026/05/bil24-poster-2718-89ce552be5f0605a48c9463e49778d1e.jpg", code: 301, to: /_site/img/past/wp-2718.jpg }
   - { from: "/wp-content/uploads/2026/06/bil24-poster-2785-99226faeaca4eacdddff496efdc30f2e.jpg", code: 301, to: /_site/img/past/wp-2785.jpg }
   - { from: "/wp-content/uploads/2026/06/bil24-poster-2852-b6dae44c215b4e2fdf10306a380ba458.jpg", code: 301, to: /_site/img/past/wp-2852.jpg }
+
+query_p:
+  # Old "?p=<WordPress product id>" links (ads, shares): 301 to the product page, with the session
+  # selected for platform events (spec 62 §4). Products of events 32-37 wait for П-5 (no slug yet).
+  - { p: 660, to: "/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/" }
+  - { p: 662, to: "/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/" }
+  - { p: 663, to: "/event/vino-i-ko-degustacziya-s-ejnat-klyajn-i-andreem-makarevichem/" }
+  - { p: 664, to: "/event/vino-i-ko-v-ierusalime-degustacziya-s-ejnat-klyajn-i-andreem-makarevichem/" }
+  - { p: 666, to: "/event/pobedit-somnenij-net-svet-tel-aviv/" }
+  - { p: 668, to: "/event/ne-novyj-god-andrej-makarevich-i-ejnat-klyajn-gotovyat-vmeste-s-vami/" }
+  - { p: 669, to: "/event/andrej-makarevich-i-ejnat-klyajn-v-ta-vecher-novogo-vina/" }
+  - { p: 671, to: "/event/ashdod-andrej-makarevich-i-ejnat-klyajn-predstavlyayut-novoe-vino/" }
+  - { p: 673, to: "/event/andrej-makarevich-i-einat-klein-priglashayut-vas-v-nyu-jork/" }
+  - { p: 675, to: "/event/uzhin-posle-novogo-goda-s-andreem-makarevichem-i-ejnat-klyajn/" }
+  - { p: 677, to: "/event/vina-pustyni-negev-degustacziya-vin-kotoryh-ne-dolzhno-bylo-byt/" }
+  - { p: 679, to: "/event/starejshie-vinodelni-izrailya-vinnoe-puteshestvie-vo-vremeni/" }
+  - { p: 681, to: "/event/soiree-botanique-ot-shef-povara-aviva-elbo-v-shavuot/" }
+  - { p: 860, to: "/event/vino-v-iudaizme-s-ejnat-klyajn/" }
+  - { p: 863, to: "/event/new-wines-party-v-ierusalime/" }
+  - { p: 885, to: "/event/prednovogodnyaya-vecherinka-beatsbubbles-v-netanii/" }
+  - { p: 889, to: "/event/vino-v-arabskih-tradicziyah-s-dr-dinoj-lisnyanskoj/" }
+  - { p: 892, to: "/event/new-wines-party-v-tel-avive/" }
+  - { p: 1458, to: "/event/vino-kak-chudo-hanukalnaya-degustacziya-s-luchshim-vidom-v-hajfe/" }
+  - { p: 1479, to: "/event/ejnat-i-andrej-sobirayut-druzej-v-hajfe/" }
+  - { p: 2310, to: "/event/festival-muzyki-i-vina-v-naczionalnom-parke-bejt-guvrin/" }
+  - { p: 2359, to: "/event/belyj-vecher-na-shavuot-s-ejnat-klyajn/" }
+  - { p: 2507, to: "/event/%d7%a4%d7%a1%d7%98%d7%99%d7%91%d7%9c-%d7%99%d7%99%d7%9f-%d7%95%d7%9e%d7%95%d7%96%d7%99%d7%a7%d7%94-%d7%91%d7%92%d7%9f-%d7%9c%d7%90%d7%95%d7%9e%d7%99-%d7%91%d7%99%d7%aa-%d7%92%d7%95%d7%91/" }
+  - { p: 2710, to: "/event/vino-i-chaj-vstrecha-dvuh-mirov-v-muzee-rishon-le-cziona-2/" }
+  - { p: 2718, to: "/event/vina-hudozhnikov-c-ejnat-klyajn/" }
+  - { p: 2785, to: "/event/kuvshin-i-amfora-vinnyj-vecher-s-ejnat-klyajn/" }
+  - { p: 2852, to: "/event/ejnat-klyajn-i-mark-tov-predstavlyayut-enogastronomicheskij-vecher-kak-pili-mushketyory/" }
+  - { p: 3583, to: "/event/izrail-takie-raznye-belye/?session=01a10d9a-e34c-7c18-b2e2-46a91992dbf5" }
+  - { p: 3601, to: "/event/izrail-takie-raznye-krasnye/?session=01a10da2-1982-7434-ad16-cc900498b0bb" }

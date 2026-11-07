@@ -31,6 +31,10 @@ for (const r of rules) {
   if (r.code === 301 && !built(r.to)) errors.push(`301 target not built: ${r.from} -> ${r.to}`);
   if (!r.from.includes('*') && (r.code === 301 || r.code === 410) && built(r.from)) errors.push(`${r.code} source is also a page: ${r.from}`);
 }
+for (const r of doc.query_p ?? []) {
+  if (r.to.includes('?session=') && !platformToo) continue;
+  if (!built(r.to.split('?')[0])) errors.push(`?p=${r.p} target not built: ${r.to}`);
+}
 const pending = (doc.events ?? []).filter((e) => e.code === 'pending').length;
 if (errors.length) {
   console.error(errors.join('\n'));

@@ -25,6 +25,8 @@ export function nginxRules(doc, goneEvents = []) {
     if (r.code === 301 && r.to) rule(r.from, `return 301 ${r.to};`);
     if (r.code === 410) rule(r.from, 'return 410;');
   }
+  // Old `?p=<WordPress product id>` links: 301 by table (the query is dropped from the target).
+  for (const r of doc.query_p ?? []) lines.push(`if ($arg_p = "${r.p}") { return 301 ${r.to}; }`);
   // Events that left the platform feed: 410, never the 404 page.
   for (const p of goneEvents) lines.push(`location = ${p} { return 410; }`);
   return lines.join('\n') + '\n';
