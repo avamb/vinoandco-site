@@ -191,7 +191,22 @@ function measure(scopeSel) {
     const right = texts.length ? vw - Math.max(...texts.map((t) => t.right)) : null;
     return { el: label(el).split(' "')[0], mt: s.marginTop, mb: s.marginBottom, pt: s.paddingTop, pb: s.paddingBottom, pi: `${s.paddingLeft} ${s.paddingRight}`, h: Math.round(r.height), gutter: left == null ? null : `${Math.round(left)}/${Math.round(right)}` };
   });
-  return { overflow, pairs, small, clipped, type, comp, sections };
+  // (f) text drawn over a photo: an <img> (not a background) that a heading, paragraph or its drop cap overlaps
+  const textOverImage = [];
+  const imgs = [...scope.querySelectorAll('img')].filter((im) => visible(im) && im.getBoundingClientRect().width > 150);
+  for (const t of scope.querySelectorAll('h1,h2,h3,h4,h5,h6,p')) {
+    if (!visible(t) || !(t.textContent || '').trim()) continue;
+    // the text's own glyph boxes, not the block: a block may legitimately sit next to a float
+    const rg = document.createRange(); rg.selectNodeContents(t);
+    const rects = [...rg.getClientRects()].filter((r) => r.width > 1 && r.height > 1);
+    for (const im of imgs) {
+      if (im.contains(t) || t.contains(im)) continue;
+      const ir = im.getBoundingClientRect();
+      const hit = rects.find((r) => Math.min(r.right, ir.right) - Math.max(r.left, ir.left) > 2 && Math.min(r.bottom, ir.bottom) - Math.max(r.top, ir.top) > 2);
+      if (hit) { textOverImage.push({ text: label(t), img: label(im), x: Math.round(hit.left), imgRight: Math.round(ir.right), y: Math.round(hit.top + scrollY) }); break; }
+    }
+  }
+  return { overflow, pairs, small, clipped, type, comp, sections, textOverImage };
 }
 
 // Element under the centre of each interactive element in the current viewport (covered by another layer?)
@@ -302,7 +317,7 @@ for (const width of widths) {
       } catch (e) { rec.error = String(e.message || e).split('\n')[0]; }
       results.push(rec);
       const n = (k) => (rec[k] || []).length;
-      console.log(`${site} ${width} ${lang} ${item.name}: overflow=${rec.overflow?.over ? 'YES' : 'no'} pairs=${(rec.pairs || []).filter((x) => x.kind === 'overlap').length}/${n('pairs')} small=${n('small')} clipped=${n('clipped')} occluded=${n('occluded')}${rec.error ? ' ERROR ' + rec.error : ''}`);
+      console.log(`${site} ${width} ${lang} ${item.name}: overflow=${rec.overflow?.over ? 'YES' : 'no'} pairs=${(rec.pairs || []).filter((x) => x.kind === 'overlap').length}/${n('pairs')} textOnImg=${n('textOverImage')} small=${n('small')} clipped=${n('clipped')} occluded=${n('occluded')}${rec.error ? ' ERROR ' + rec.error : ''}`);
       await c.close();
     }
   }
@@ -320,6 +335,7 @@ for (const r of results) {
   for (const x of r.pairs.filter((x) => x.kind !== 'touch')) lines.push(`  ${x.kind.toUpperCase()} ${x.dist}px ${x.overlap} y=${x.y}: ${x.a}  <->  ${x.b}`);
   const touch = r.pairs.filter((x) => x.kind === 'touch').length; if (touch) lines.push(`  touching pairs (gap 0, e.g. stacked list rows): ${touch}`);
   for (const x of r.occluded) lines.push(`  COVERED y=${x.y}: ${x.el} under ${x.under}`);
+  for (const x of r.textOverImage || []) lines.push(`  TEXT ON IMAGE y=${x.y}: ${x.text} at x=${x.x}, image ends at ${x.imgRight}: ${x.img}`);
   for (const x of r.clipped) lines.push(`  CLIPPED ${x.what}: ${x.el} ${JSON.stringify(x).slice(0, 120)}`);
   if (r.small.length) lines.push(`  small targets (<44): ${r.small.length}: ` + r.small.slice(0, 12).map((x) => `${x.el} ${x.w}x${x.h}`).join('; '));
   for (const [role, v] of Object.entries(r.type)) lines.push(`  type ${role}: ` + Object.entries(v).map(([k, o]) => `${k} x${o.n}`).join(' | '));

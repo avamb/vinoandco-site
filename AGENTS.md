@@ -204,3 +204,9 @@ Still to add: link check, JSON-LD and hreflang check, axe, Lighthouse.
 - `node scripts/acceptance/mobile-audit.mjs` (screenshots + overflow / collisions / small targets / clipped text /
   covered elements / type scale / component values); `--css dist/_site/assets/<file>.css` checks a local CSS build
   against the real staging pages before deploying. `mobile-summary.mjs` aggregates the JSON.
+- **Desktop split sections are WordPress' boxed container, not percentages of the window.** From 1025 px
+  `.vc-split` is max 1140 px and centred; `--pl/--pw/--tl/--tw` are "% of that box + px" fitted on WordPress at
+  1030/1366/1985. Percentages of the viewport measured at one width put the photo under the text on a wide screen.
+  On the home page the text sits on a cream panel overlapping the photo (`--ov`, Elementor `margin-left: -5em`),
+  and that margin is physical: in Hebrew it does not mirror. Measure with `scripts/acceptance/split-geom.mjs`
+  (it scrolls first; WordPress backgrounds are lazy). `mobile-audit.mjs` now also reports text drawn over an `<img>`.

@@ -21,6 +21,7 @@ if (at('find')) {
     for (const p of r.pairs) if (p.kind !== 'touch') add(`${p.kind} ${p.dist}px ${p.overlap}: ${p.a} <-> ${p.b}`);
     for (const o of r.occluded) add(`covered: ${o.el} under ${o.under}`);
     for (const c of r.clipped) add(`clipped ${c.what}: ${c.el}`);
+    for (const t of r.textOverImage || []) add(`text on image: ${t.text} at x=${t.x}, image ends ${t.imgRight}`);
   }
   for (const [k, v] of [...rows].sort()) console.log(`${k}  [${[...new Set(v)].join(' ')}]`);
 }

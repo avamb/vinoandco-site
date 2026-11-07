@@ -637,9 +637,12 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 }
 @media (max-width: 767px) { .vc-hero--private p { margin-left: 56px; margin-right: 56px; } }
 
-/* ---------- Split sections: geometry measured on WordPress at 1366 and 390 px (acceptance 2026-11-07) ----------
+/* ---------- Split sections: geometry of the WordPress Elementor containers (acceptance 2026-11-07, desktop pass) ----------
    --sh section height, --pl/--pw photo start and width, --ph photo height, --tl/--tw text start and width,
-   --dx/--dy dot pattern offset from the photo corner. Positions are percentages of the viewport width. */
+   --dx/--dy dot pattern offset from the photo corner. From 1025 px the section is WordPress' boxed container:
+   at most 1140 px wide and centred, so every position is "% of that box + px", fitted on WordPress at 1030, 1366
+   and 1985 px. The earlier version used percentages of the viewport measured at 1366 only, so on a wider screen
+   the photo grew past the text start: at 1985 the photo ended at 971 and the text began at 968, under the drop cap. */
 .vc-split__eyebrow { font-size: 18px; line-height: 1.2; margin: 0 0 20px; }
 .vc-split__title { font-size: 30px; line-height: 1.2; margin: 0 0 20px; }
 .vc-split__text p { margin: 0 0 20px; }
@@ -648,20 +651,40 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-btn--gold { font-weight: 600; line-height: 21px; padding: var(--btn-pad-y) var(--btn-pad-x); }
 .vc-split--home .vc-btn--gold { color: var(--vc-primary); }
 .vc-split--home .vc-btn--gold:hover { color: var(--vc-white); }
-.vc-split--about { --sh: 920px; --pw: 41.65%; --ph: 740px; --tw: 34.63%; --pl: 5.49%; --tl: 52.86%; }
-.vc-split--about.vc-split--reverse { --pl: 49.34%; --tl: 12.52%; }
-.vc-split--home { --sh: 920px; --pl: 9%; --pw: 39.9%; --ph: 740px; --tl: 48.76%; --tw: 32.87%; --dx: -21px; }
-.vc-split--contact { --sh: 1080px; --pl: 12.44%; --pw: 36.46%; --ph: 740px; --tl: 51.1%; --tw: 36.46%; --dx: -20px; }
-.vc-split--private { --sh: 753px; --pl: 48.24%; --pw: 42.75%; --ph: 389px; --tl: 9%; --tw: 32.36%; --tj: flex-start; --dx: -29px; --dy: -29px; }
-.vc-split--home .vc-split__actions { text-align: end; }
+.vc-split--about { --sh: 920px; --ph: 740px; --pl: -38px; --pw: calc(50% - 1px); --tl: calc(50% + 39px); --tw: calc(50% - 97px); }
+.vc-split--about.vc-split--reverse { --pl: calc(50% - 9px); --tl: 58px; }
+/* Home: the text sits on a cream panel (page colour) that overlaps the photo by 80 px, 48 px padding (Elementor
+   containers 2d5500db / 791a4024; the third, 0852238, overlaps by 48 px). The panel is centred on the photo. */
+.vc-split--home { --sh: 920px; --ph: 740px; --pl: 10px; --pw: calc(50% - 25px); --ov: 80px; --tl: calc(50% + 63px - var(--ov)); --tw: calc(50% - 121px); --dx: -21px; }
+.vc-split--home + .vc-split--home + .vc-split--home { --ov: 48px; }
+/* Elementor's panel margin is a physical margin-left, so in Hebrew it does not mirror: the panel grows away from
+   the photo, the text keeps a 78 px gap and the photo stays whole (measured on /he/ at 1536 and 1985). */
+[dir='rtl'] .vc-split--home { --tl: calc(50% + 63px); }
+/* Contact: photo and form are two equal columns, 30 px apart, centred, each min(545 px, 50vw - 185 px). */
+.vc-split--contact { --sh: 1080px; --ph: 740px; --cw: min(545px, 50vw - 185px); --pl: calc(50% - 15px - var(--cw)); --pw: var(--cw); --tl: calc(50% + 15px); --tw: var(--cw); --dx: -20px; }
+.vc-split--private { --sh: 753px; --ph: auto; --pl: calc(43.64% + 48.55px); --pw: calc(56.36% - 58.55px); --tl: 10px; --tw: calc(43.64% - 55.45px); --tj: flex-start; --dx: -29px; --dy: -29px; }
+.vc-split--home .vc-split__actions { text-align: right; } /* Elementor align-right: physical, the same in Hebrew */
 .vc-split--private .vc-split__actions { text-align: start; }
 @media (min-width: 1025px) {
-  .vc-split { position: relative; display: block; max-width: none; height: var(--sh); margin: 0; padding: 0; }
+  /* the about photos start 38 px before the box (as on WordPress); below 1100 px that is past the screen edge, which in RTL would scroll sideways */
+  main { overflow-x: clip; }
+  .vc-split { position: relative; display: block; max-width: 1140px; height: var(--sh); margin: 0 auto; padding: 0; }
   .vc-split__media, [dir='rtl'] .vc-split__media { position: absolute; top: 170px; inset-inline-start: var(--pl); width: var(--pw); height: var(--ph); padding: 0; }
+  .vc-split--private .vc-split__media img { aspect-ratio: 3 / 2; }
   .vc-split__media::before { top: var(--dy, -33px); inset-inline-start: var(--dx, -22px); }
   .vc-split__media img { height: 100%; aspect-ratio: auto; }
   .vc-split__body { position: absolute; top: 170px; inset-inline-start: var(--tl); width: var(--tw); height: var(--ph); display: flex; flex-direction: column; justify-content: var(--tj, center); padding: 0; }
   .vc-split--private .vc-split__body { height: auto; }
+  .vc-split--home .vc-split__body {
+    z-index: 2;
+    top: calc(170px + var(--ph) / 2);
+    inset-inline-start: calc(var(--tl) - 48px);
+    width: calc(var(--tw) + 96px);
+    height: auto;
+    padding: 48px;
+    background: var(--vc-secondary);
+    transform: translateY(-50%);
+  }
 }
 @media (max-width: 767px) {
   /* a section ends with the shared gap, so a section's button never touches the next section's photo (home, 375 px) */
