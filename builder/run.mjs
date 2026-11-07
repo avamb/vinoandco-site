@@ -19,7 +19,7 @@
 //   CF_API_TOKEN, CF_ZONE_ID              optional Cloudflare purge (secret: deploy env only)
 import { createServer } from 'node:http';
 import { hostname } from 'node:os';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createArenaClient } from '../src/arena/client.ts';
@@ -27,6 +27,7 @@ import { eventSlug } from '../src/arena/lifecycle.ts';
 import { createBuilder } from './lib/builder.mjs';
 import { removedPaths } from '../scripts/removed-events.mjs';
 import { run } from './lib/release.mjs';
+import { lockDecision } from './lib/state.mjs';
 import { testChannelConfig } from '../src/arena/test-channel.ts';
 import { testEventPaths } from './lib/test-events.mjs';
 
@@ -149,17 +150,31 @@ function heartbeat() {
   writeFileSync(lockFile, JSON.stringify({ ...me, at: new Date().toISOString() }));
 }
 if (existsSync(lockFile)) {
+  let other = null;
   try {
-    const other = JSON.parse(readFileSync(lockFile, 'utf8'));
-    const fresh = Date.now() - Date.parse(other.at) < 5 * 60_000;
-    const self = other.host === me.host && other.pid === me.pid;
-    if (fresh && !self) {
-      log(`another builder holds ${lockFile} (${other.host} pid ${other.pid}); exiting`);
-      process.exit(1);
-    }
+    other = JSON.parse(readFileSync(lockFile, 'utf8'));
   } catch {
     /* unreadable lock: take it */
   }
+  const verdict = lockDecision(other, {
+    now: Date.now(),
+    pollSeconds: Number(env.BUILDER_POLL_SECONDS || 120),
+    host: me.host,
+    pid: me.pid,
+    isAlive: (p) => {
+      try {
+        process.kill(p, 0);
+        return true;
+      } catch (e) {
+        return e?.code === 'EPERM';
+      }
+    },
+  });
+  if (!verdict.take) {
+    log(`another builder holds ${lockFile} (${other?.host} pid ${other?.pid}); exiting`);
+    process.exit(1);
+  }
+  if (verdict.reason === 'stale') log(`lock: taking over stale lock of ${other?.host}`);
 }
 heartbeat();
 
@@ -181,6 +196,11 @@ for (const sig of ['SIGTERM', 'SIGINT']) {
     stopping = true;
     log(`${sig}: finishing the running build`);
     await builder.building;
+    try {
+      if (JSON.parse(readFileSync(lockFile, 'utf8')).host === me.host) unlinkSync(lockFile);
+    } catch {
+      /* nothing to release */
+    }
     process.exit(0);
   });
 }

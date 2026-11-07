@@ -89,3 +89,25 @@ export function retryDelayMs(failures) {
   const steps = [1, 2, 5, 10];
   return steps[Math.min(Math.max(failures, 1), steps.length) - 1] * 60_000;
 }
+
+/**
+ * Decides what to do with an existing builder.lock (a heartbeat the holder rewrites every cycle).
+ * Returns { take, reason }: take=false means a live holder owns it and this process must stop.
+ *  - our own host and pid: ours;
+ *  - same host (two processes in one container): taken over only when that pid is dead;
+ *  - another host (a recreated container has a new hostname): taken over only when the heartbeat
+ *    is older than 3 poll cycles plus a margin, since pid 1 exists in every container and says nothing.
+ * @param {{host?: string, pid?: number, at?: string}|null} lock
+ * @param {{now: number, pollSeconds: number, host: string, pid: number, isAlive: (pid: number) => boolean, marginMs?: number}} ctx
+ */
+export function lockDecision(lock, { now, pollSeconds, host, pid, isAlive, marginMs = 30_000 }) {
+  if (!lock || typeof lock !== 'object') return { take: true, reason: 'unreadable' };
+  if (lock.host === host) {
+    if (lock.pid === pid) return { take: true, reason: 'own' };
+    return isAlive(lock.pid) ? { take: false, reason: 'alive' } : { take: true, reason: 'stale' };
+  }
+  const at = Date.parse(lock.at);
+  const staleAfter = 3 * pollSeconds * 1000 + marginMs;
+  if (!Number.isFinite(at) || now - at > staleAfter) return { take: true, reason: 'stale' };
+  return { take: false, reason: 'alive' };
+}
