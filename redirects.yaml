@@ -192,15 +192,15 @@ events:
   - { from: "/event/ejnat-klyajn-i-mark-tov-predstavlyayut-enogastronomicheskij-vecher-kak-pili-mushketyory/", code: 200, note: "wp 2852: Эйнат Кляйн и Марк Тов представляют: эногастрономический вечер 'Как пили мушкетёры'" }
   # Products of today's platform events. A platform event with the same slug
   # answers 200 (49, 51: slug known in src/data/event-slugs.json until the feed has it).
-  # TODO(П-5): events 32-37 have no platform slug yet; once they do, each becomes 200 (same
-  # slug) or a 301 to /event/<platform slug>/.
-  - { from: "/event/enogastronomicheskij-uzhin-rimskaya-trapeza/", code: pending, note: "TODO(П-5): platform event 35, no slug in the feed yet" }
-  - { from: "/event/more-opera-vino-i-dzhaz/", code: pending, note: "TODO(П-5): platform event 36, no slug in the feed yet" }
-  - { from: "/event/more-opera-vino-i-dzhaz-2/", code: pending, note: "TODO(П-5): platform event 36, no slug in the feed yet" }
-  - { from: "/event/vinnyj-kviz-na-kryshe/", code: pending, note: "TODO(П-5): platform event 37, no slug in the feed yet" }
-  - { from: "/event/premera-vina-v-hajfe/", code: pending, note: "TODO(П-5): platform event 34, no slug in the feed yet" }
-  - { from: "/event/premera-vina-v-tel-avive/", code: pending, note: "TODO(П-5): platform event 33, no slug in the feed yet" }
-  - { from: "/event/premera-vina-vpervye-v-beer-sheve/", code: pending, note: "TODO(П-5): platform event 32, no slug in the feed yet" }
+  # Events 32-37 carry their WordPress slug on the platform (set 07.11.2026), so the old
+  # addresses answer 200; the duplicate product slug of event 36 is a 301.
+  - { from: "/event/enogastronomicheskij-uzhin-rimskaya-trapeza/", code: 200, platform: true, note: "platform event 35, same slug" }
+  - { from: "/event/more-opera-vino-i-dzhaz/", code: 200, platform: true, note: "platform event 36, same slug" }
+  - { from: "/event/more-opera-vino-i-dzhaz-2/", code: 301, to: "/event/more-opera-vino-i-dzhaz/", note: "wp product 3000 of platform event 36" }
+  - { from: "/event/vinnyj-kviz-na-kryshe/", code: 200, platform: true, note: "platform event 37, same slug" }
+  - { from: "/event/premera-vina-v-hajfe/", code: 200, platform: true, note: "platform event 34, same slug" }
+  - { from: "/event/premera-vina-v-tel-avive/", code: 200, platform: true, note: "platform event 33, same slug" }
+  - { from: "/event/premera-vina-vpervye-v-beer-sheve/", code: 200, platform: true, note: "platform event 32, same slug" }
   - { from: "/event/izrail-takie-raznye-belye/", code: 200, platform: true, note: "platform event 49, same slug" }
   - { from: "/event/izrail-takie-raznye-krasnye/", code: 200, platform: true, note: "platform event 51, same slug" }
   # Original poster files of the past events: 301 to the copy kept in the site.
@@ -232,7 +232,7 @@ events:
 
 query_p:
   # Old "?p=<WordPress product id>" links (ads, shares): 301 to the product page, with the session
-  # selected for platform events (spec 62 §4). Products of events 32-37 wait for П-5 (no slug yet).
+  # selected for platform events (spec 62 §4).
   - { p: 660, to: "/event/premera-vina-s-andreem-makarevichem-i-ejnat-klyajn/" }
   - { p: 662, to: "/event/nevinnaya-istoriya-iz-chashi-prorokov-v-vash-bokal/" }
   - { p: 663, to: "/event/vino-i-ko-degustacziya-s-ejnat-klyajn-i-andreem-makarevichem/" }
@@ -260,5 +260,11 @@ query_p:
   - { p: 2718, to: "/event/vina-hudozhnikov-c-ejnat-klyajn/" }
   - { p: 2785, to: "/event/kuvshin-i-amfora-vinnyj-vecher-s-ejnat-klyajn/" }
   - { p: 2852, to: "/event/ejnat-klyajn-i-mark-tov-predstavlyayut-enogastronomicheskij-vecher-kak-pili-mushketyory/" }
+  - { p: 2888, to: "/event/enogastronomicheskij-uzhin-rimskaya-trapeza/" }
+  - { p: 3000, to: "/event/more-opera-vino-i-dzhaz/" }
+  - { p: 3027, to: "/event/vinnyj-kviz-na-kryshe/" }
+  - { p: 3047, to: "/event/premera-vina-v-hajfe/" }
+  - { p: 3277, to: "/event/premera-vina-v-tel-avive/" }
+  - { p: 3294, to: "/event/premera-vina-vpervye-v-beer-sheve/" }
   - { p: 3583, to: "/event/izrail-takie-raznye-belye/?session=01a10d9a-e34c-7c18-b2e2-46a91992dbf5" }
   - { p: 3601, to: "/event/izrail-takie-raznye-krasnye/?session=01a10da2-1982-7434-ad16-cc900498b0bb" }
