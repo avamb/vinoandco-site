@@ -10,6 +10,7 @@
 import Base from '../../layouts/Base.astro';
 import BuyModal from '../islands/BuyModal.svelte';
 import { ui } from '../../lib/i18n.ts';
+import { directionsLinks } from '../../lib/directions.ts';
 import { eventPath, pagePath } from '../../lib/routes.ts';
 import { buildNow, daysUntil, formatDate, formatSessionChip, formatTime, type SiteEvent } from '../../lib/events.ts';
 import { sessionEndsAt } from '../../arena/index.ts';
@@ -71,6 +72,7 @@ function sessionState(s: (typeof sessions)[number]) {
         const stz = s.timezone || tz;
         const state = sessionState(s);
         const venue = event.raw.venues.find((v) => v.session_starts.includes(s.start_at)) ?? event.raw.venues[0];
+        const directions = directionsLinks(venue);
         return (
           <div data-session-block={s.id} hidden={s.id !== primaryId}>
             <div class="vc-event__facts">
@@ -83,6 +85,13 @@ function sessionState(s: (typeof sessions)[number]) {
             <div class="vc-event__facts">
               {venue?.name && <span>🏛 {t.place} {venue.name}</span>}
               {venue?.address && <span>📍 {t.address} {venue.address}</span>}
+              {directions && (
+                <span class="vc-event__directions">
+                  🧭 {t.directions}{' '}
+                  <a href={directions.google} target="_blank" rel="noopener">Google Maps</a>{' · '}
+                  <a href={directions.waze} target="_blank" rel="noopener">Waze</a>
+                </span>
+              )}
             </div>
             <div class="vc-event__buy">
               {state === 'open' && (

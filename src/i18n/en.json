@@ -58,7 +58,8 @@
     "soon": "Coming soon",
     "salesClosed": "Sales closed",
     "priceFrom": "from",
-    "map": "Map"
+    "map": "Map",
+    "directions": "Directions:"
   },
   "modal": {
     "selectTitle": "Select ticket",

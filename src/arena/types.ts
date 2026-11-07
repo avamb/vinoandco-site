@@ -142,6 +142,9 @@ export interface FeedVenue {
   city: string | null;
   address: string | null;
   postal_code: string | null;
+  /** Not sent by the feed yet; directions links prefer them when present. */
+  geo_lat?: number | null;
+  geo_lng?: number | null;
   timezone: string | null;
   /** start_at of the sessions held at this venue. */
   session_starts: string[];

@@ -136,6 +136,7 @@
       <strong class="vc-order__event-name">{ev.name}</strong>
       <span class="vc-order__event-when">{formatWhen(ev.start_at, ev.timezone, intl)}</span>
       {#if ev.venue_name}<span class="vc-order__event-venue">{ev.venue_name}</span>{/if}
+      <!-- TODO: add the directions links (src/lib/directions.ts) once the checkout status event block carries the venue address. -->
     </div>
   {/if}
 {/snippet}

@@ -58,7 +58,8 @@
     "soon": "Скоро в продаже",
     "salesClosed": "Продажа закрыта",
     "priceFrom": "от",
-    "map": "Карта"
+    "map": "Карта",
+    "directions": "Как добраться:"
   },
   "modal": {
     "selectTitle": "Выбор билета",

@@ -256,6 +256,9 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-card__meta + .vc-card__meta { padding-top: 0; }
 /* One fact per chip; a fact longer than the row wraps inside itself instead of widening the page (a nowrap address made a phone zoom the whole page out to 401 px, mobile audit 2026-11-07). */
 .vc-card__meta span, .vc-event__facts span { min-width: 0; overflow-wrap: anywhere; }
+.vc-event__directions { flex-basis: 100%; }
+.vc-event__directions a { color: inherit; text-decoration: none; }
+.vc-event__directions a:hover { text-decoration: underline; }
 .vc-card__btn {
   display: block;
   align-self: stretch;
