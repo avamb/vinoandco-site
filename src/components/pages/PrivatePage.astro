@@ -19,12 +19,17 @@ const t = ui(lang);
 const [intro = '', body = ''] = c.texts;
 ---
 <Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.private}>
-  <PageHero bg="vc-bg-private" title={c.h1}>
+  <PageHero bg="vc-bg-private" page="private" title={c.h1}>
     <Fragment set:html={intro} />
   </PageHero>
-  <Split image="/_site/img/dsc09713-1024x683.jpg" eyebrow={c.h4[0]} html={body} reverse wide darkDots>
+  <Split image="/_site/img/dsc09713-1024x683.jpg" eyebrow={c.h4[0]} html={body} reverse wide darkDots layout="private">
     <a class="vc-btn vc-btn--gold" href="#request" data-open-popup="vc-popup-private">{c.buttons[0]}</a>
   </Split>
+  <section class="vc-gallery" aria-label={c.h1}>
+    <img src="/_site/img/fb_img_1718947333887.jpg" alt="" width="911" height="682" loading="lazy" />
+    <img src="/_site/img/dsc09977.jpg" alt="" width="1000" height="667" loading="lazy" />
+    <img src="/_site/img/dsc02061-scaled.jpg" alt="" width="2560" height="1706" loading="lazy" />
+  </section>
   <Popup id="vc-popup-private" closeLabel={t.modal.close}>
     <p>{t.forms.private.intro}</p>
     <SiteForm lang={lang} kind="private" />

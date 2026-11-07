@@ -5,10 +5,12 @@ interface Props {
   bg: string;
   title: string;
   short?: boolean;
+  /** WordPress page this hero copies: sets the measured height, offsets and text width. */
+  page?: 'about' | 'past' | 'contact' | 'private';
 }
-const { bg, title, short = false } = Astro.props;
+const { bg, title, short = false, page } = Astro.props;
 ---
-<section class:list={['vc-hero', bg, { 'vc-hero--short': short }]}>
+<section class:list={['vc-hero', bg, { 'vc-hero--short': short }, page && `vc-hero--${page}`]}>
   <div class="vc-hero__body">
     <h1>{title}</h1>
     <slot />

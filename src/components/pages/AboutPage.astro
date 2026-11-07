@@ -17,13 +17,13 @@ const c = blocksContent(lang, 'about');
 const [intro1 = '', intro2 = '', mission = '', approach = '', expertise = '', closing = ''] = c.texts;
 ---
 <Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.about}>
-  <PageHero bg="vc-bg-about" title={c.h1}>
+  <PageHero bg="vc-bg-about" page="about" title={c.h1}>
     <Fragment set:html={intro1} />
     <Fragment set:html={intro2} />
   </PageHero>
-  <Split image="/_site/img/whatsappimage2025-03-25at15.03.52_0ea706e4-07b6-4fc1-8bd5-2e3169c8e1bd-200x300-1.jpg" eyebrow={c.h4[0]} html={mission} reverse />
-  <Split image="/_site/img/dsc01053.jpg" eyebrow={c.h4[1]} title={c.h4[2]} html={approach} />
-  <Split image="/_site/img/dsc09800-scaled.jpg" eyebrow={c.h4[3]} html={expertise} reverse />
+  <Split image="/_site/img/whatsappimage2025-03-25at15.03.52_0ea706e4-07b6-4fc1-8bd5-2e3169c8e1bd-200x300-1.jpg" eyebrow={c.h4[0]} html={mission} reverse layout="about" mobileHeight={780} />
+  <Split image="/_site/img/dsc01053.jpg" eyebrow={c.h4[1]} title={c.h4[2]} html={approach} layout="about" mobileHeight={821} />
+  <Split image="/_site/img/dsc09800-scaled.jpg" eyebrow={c.h4[3]} html={expertise} reverse layout="about" mobileHeight={767} />
   <section class="vc-band vc-bg-about-band">
     <Fragment set:html={closing} />
   </section>

@@ -14,10 +14,10 @@ const { lang } = Astro.props;
 const c = blocksContent(lang, 'contact');
 ---
 <Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.contact}>
-  <PageHero bg="vc-bg-contact" title={c.h1}>
+  <PageHero bg="vc-bg-contact" page="contact" title={c.h1}>
     <Fragment set:html={c.texts[0] ?? ''} />
   </PageHero>
-  <section class="vc-split vc-split--dark-dots">
+  <section class="vc-split vc-split--contact vc-split--dark-dots">
     <div class="vc-split__media">
       <img src="/_site/img/dsc09251-copy-scaled.jpg" alt="" loading="lazy" />
     </div>

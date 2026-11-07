@@ -10,6 +10,7 @@
     "menu": "Menu",
     "language": "Language"
   },
+  "carousel": { "label": "Events", "prev": "Previous event", "next": "Next event" },
   "footer": {
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",

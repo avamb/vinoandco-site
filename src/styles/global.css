@@ -603,3 +603,144 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-form__status { margin: 0; font-size: 16px; }
 .vc-form__status[data-state='error'] { color: #c0392b; }
 .vc-form__status[data-state='ok'] { color: #2e7d32; font-weight: 600; }
+
+/* ---------- Page hero: heights copied from the Elementor containers (acceptance 2026-11-07) ----------
+   WordPress sets em paddings and a -120px margin under the transparent header; these are the visible
+   heights and text offsets measured at 1366 and 390 px (--h min height, --t top of the title, --w text
+   column, --g gap title -> first paragraph, --g2 gap between the two paragraphs). */
+.vc-hero--about, .vc-hero--past, .vc-hero--contact, .vc-hero--private {
+  align-items: flex-start;
+  padding: var(--t) 20px 0;
+  min-height: var(--h);
+}
+.vc-hero--about .vc-hero__body, .vc-hero--past .vc-hero__body, .vc-hero--contact .vc-hero__body, .vc-hero--private .vc-hero__body { width: 100%; max-width: var(--w); }
+.vc-hero--about h1, .vc-hero--past h1, .vc-hero--contact h1, .vc-hero--private h1 { margin-bottom: var(--g); }
+.vc-hero--about p, .vc-hero--contact p, .vc-hero--private p { margin-left: 20px; margin-right: 20px; }
+.vc-hero--about p + p { margin-top: var(--g2); }
+.vc-hero--about   { --h: 758px; --t: 125px; --w: 778px; --g: 40px; --g2: 60px; }
+.vc-hero--past    { --h: 540px; --t: 132px; --w: 383px; --g: 30px; }
+.vc-hero--contact { --h: 550px; --t: 123px; --w: 1120px; --g: 43px; }
+.vc-hero--private { --h: 535px; --t: 122px; --w: 824px; --g: 22px; }
+@media (max-width: 767px) {
+  .vc-hero--about   { --h: 607px; --t: 43px; --w: 370px; --g: 42px; --g2: 80px; }
+  .vc-hero--past    { --h: 245px; --t: 52px; --w: 287px; --g: 30px; }
+  .vc-hero--contact { --h: 322px; --t: 44px; --w: 370px; --g: 41px; }
+  .vc-hero--private { --h: 356px; --t: 43px; --w: 370px; --g: 22px; }
+  .vc-hero--past h1 { font-size: 30px; line-height: 36px; }
+}
+@media (max-width: 767px) { .vc-hero--private p { margin-left: 56px; margin-right: 56px; } }
+
+/* ---------- Split sections: geometry measured on WordPress at 1366 and 390 px (acceptance 2026-11-07) ----------
+   --sh section height, --pl/--pw photo start and width, --ph photo height, --tl/--tw text start and width,
+   --dx/--dy dot pattern offset from the photo corner. Positions are percentages of the viewport width. */
+.vc-split__eyebrow { font-size: 18px; line-height: 1.2; margin: 0 0 20px; }
+.vc-split__title { font-size: 30px; line-height: 1.2; margin: 0 0 20px; }
+.vc-split__text p { margin: 0 0 20px; }
+.vc-split__text--karla { font-size: 18px; line-height: 1.8; }
+.vc-split__text--karla p { font-size: 18px; line-height: 1.8; }
+.vc-btn--gold { font-weight: 600; line-height: 21px; padding: 16px 30px; }
+.vc-split--home .vc-btn--gold { color: var(--vc-primary); }
+.vc-split--home .vc-btn--gold:hover { color: var(--vc-white); }
+.vc-split--about { --sh: 920px; --pw: 41.65%; --ph: 740px; --tw: 34.63%; --pl: 5.49%; --tl: 52.86%; }
+.vc-split--about.vc-split--reverse { --pl: 49.34%; --tl: 12.52%; }
+.vc-split--home { --sh: 920px; --pl: 9%; --pw: 39.9%; --ph: 740px; --tl: 48.76%; --tw: 32.87%; --dx: -21px; }
+.vc-split--contact { --sh: 1080px; --pl: 12.44%; --pw: 36.46%; --ph: 740px; --tl: 51.1%; --tw: 36.46%; --dx: -20px; }
+.vc-split--private { --sh: 753px; --pl: 48.24%; --pw: 42.75%; --ph: 389px; --tl: 9%; --tw: 32.36%; --tj: flex-start; --dx: -29px; --dy: -29px; }
+.vc-split--home .vc-split__actions { text-align: end; }
+.vc-split--private .vc-split__actions { text-align: start; }
+@media (min-width: 1025px) {
+  .vc-split { position: relative; display: block; max-width: none; height: var(--sh); margin: 0; padding: 0; }
+  .vc-split__media, [dir='rtl'] .vc-split__media { position: absolute; top: 170px; inset-inline-start: var(--pl); width: var(--pw); height: var(--ph); padding: 0; }
+  .vc-split__media::before { top: var(--dy, -33px); inset-inline-start: var(--dx, -22px); }
+  .vc-split__media img { height: 100%; aspect-ratio: auto; }
+  .vc-split__body { position: absolute; top: 170px; inset-inline-start: var(--tl); width: var(--tw); height: var(--ph); display: flex; flex-direction: column; justify-content: var(--tj, center); padding: 0; }
+  .vc-split--private .vc-split__body { height: auto; }
+}
+@media (max-width: 767px) {
+  .vc-split { display: flex; flex-direction: column; padding: 0 10px; min-height: var(--mh, 0); gap: 0; box-sizing: border-box; }
+  .vc-hero + .vc-split { margin-top: 101px; }
+  .vc-split__media, [dir='rtl'] .vc-split__media { order: 0; width: 100%; height: 390px; padding: 0; }
+  .vc-split--reverse .vc-split__media { order: 0; }
+  .vc-split__media::before { top: -22px; inset-inline-start: -18px; width: 60px; height: 60px; }
+  .vc-split__media img { height: 100%; aspect-ratio: auto; }
+  .vc-split__body { padding: 78px 16px 0; }
+  .vc-split__eyebrow { margin-bottom: 20px; }
+  .vc-split__title { font-size: 20px; line-height: 1.2; }
+  .vc-split--home .vc-split__actions .vc-btn { display: block; }
+  .vc-split--private .vc-split__body, .vc-split--contact .vc-split__body { order: 0; padding: 0; }
+  .vc-split--private .vc-split__media, .vc-split--contact .vc-split__media { order: 1; margin-top: 90px; }
+  .vc-split--private .vc-split__media { height: 247px; }
+  .vc-split--private .vc-split__media::before { top: -29px; inset-inline-start: -10px; }
+  .vc-split--private .vc-split__actions { text-align: center; }
+}
+
+/* About page closing band: WP container 875 px high, no dark overlay, maroon 20 px text, 120 px above it */
+.vc-band { margin-top: 120px; min-height: 875px; padding: 338px 20px 0; }
+.vc-band::before { background: transparent; }
+.vc-band p { max-width: 784px; color: var(--vc-primary); font-size: 20px; line-height: 1.6; }
+@media (max-width: 767px) { .vc-band { padding-top: 290px; } .vc-band p { max-width: 370px; } }
+
+/* ---------- Home event carousel: 2 per view, 1 on a phone (Elementor loop carousel 506b169) ---------- */
+.vc-carousel { position: relative; max-width: 1140px; margin: 0 auto; padding: 0 0 15px; }
+.vc-carousel__track { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.vc-carousel__track::-webkit-scrollbar { display: none; }
+.vc-carousel__track > .vc-card { flex: 0 0 calc((100% - 10px) / 2); box-sizing: border-box; padding: 0 15px; scroll-snap-align: start; }
+.vc-carousel__arrow { position: absolute; top: 343px; z-index: 5; width: 25px; height: 25px; padding: 0; border: 0; background: transparent; color: var(--vc-primary); cursor: pointer; }
+.vc-carousel__arrow span { display: block; width: 25px; height: 25px; background: currentColor; -webkit-mask: var(--chev) center / contain no-repeat; mask: var(--chev) center / contain no-repeat; }
+.vc-carousel__arrow--prev { inset-inline-start: 0; --chev: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15 4l-8 8 8 8' fill='none' stroke='black' stroke-width='3'/></svg>"); }
+.vc-carousel__arrow--next { inset-inline-end: 0; --chev: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 4l8 8-8 8' fill='none' stroke='black' stroke-width='3'/></svg>"); }
+[dir='rtl'] .vc-carousel__arrow span { transform: scaleX(-1); }
+.vc-carousel__arrow:focus-visible, .vc-carousel__dot:focus-visible { outline: 2px solid var(--vc-primary); outline-offset: 3px; }
+.vc-carousel__dots { display: flex; justify-content: center; gap: 12px; margin-top: 12px; min-height: 6px; }
+.vc-carousel__dot { position: relative; width: 6px; height: 6px; padding: 0; border: 0; border-radius: 50%; background: var(--vc-primary); opacity: 0.3; cursor: pointer; }
+.vc-carousel__dot::after { content: ''; position: absolute; inset: -9px; }
+.vc-carousel__dot[aria-current='true'] { opacity: 1; }
+.vc-carousel.is-static .vc-carousel__arrow { display: none; }
+@media (max-width: 767px) {
+  .vc-carousel { padding: 0 10px 15px; }
+  .vc-carousel__track > .vc-card { flex-basis: 100%; padding: 0 5px; }
+  .vc-carousel__arrow { top: 160px; }
+}
+
+.vc-mh-780 { --mh: 780px; } .vc-mh-821 { --mh: 821px; } .vc-mh-767 { --mh: 767px; }
+
+/* ---------- Home hero, features and carousel spacing (measured on WordPress at 1366 px) ---------- */
+.vc-home-hero { padding-top: 130px; }
+.vc-home-hero__body { padding-inline: 10px; }
+.vc-home-hero h1 { margin-bottom: 20px; }
+.vc-home-hero .vc-btn { margin-top: 19px; }
+.vc-btn--primary { font-size: 14px; line-height: 21px; padding: 16px 32px; color: var(--vc-secondary); }
+.vc-features { margin-top: -121px; }
+.vc-feature { min-height: 254px; }
+.vc-feature img { width: 63px; height: 63px; flex-basis: 63px; }
+.vc-feature h3 { line-height: 1.2; margin: 8px 0 15px; }
+.vc-feature p { line-height: 1.6; }
+.vc-carousel { margin-top: 100px; margin-bottom: 10px; }
+
+.vc-carousel .vc-card__title { margin-top: 21px; }
+@media (max-width: 767px) {
+  /* WordPress hides the three feature cards on a phone and lists the event cards one under another. */
+  .vc-features { display: none; }
+  .vc-home-hero { min-height: 382px; padding: 61px 0 0; }
+  .vc-home-hero__body { padding-inline: 10px; }
+  .vc-home-hero h1 { font-size: 60px; line-height: 72px; margin-bottom: 0; }
+  .vc-home-hero h2 { margin-bottom: 16px; }
+  .vc-home-hero__text p { margin-inline: -6px 0; max-width: 370px; }
+  .vc-home-hero .vc-btn { display: block; width: 224px; margin: 19px auto 0; padding-inline: 0; }
+  .vc-carousel { margin-top: 20px; padding: 0 10px; }
+  .vc-carousel__track { display: block; overflow: visible; }
+  .vc-carousel__track > .vc-card { padding: 0; padding-inline: 20px 10px; margin-bottom: 20px; }
+  .vc-carousel .vc-card__title { margin-top: 33px; }
+  .vc-carousel__arrow, .vc-carousel__dots { display: none; }
+}
+
+/* Private events photo gallery (Elementor gallery e95e379, justified rows; the lightbox is not copied) */
+.vc-gallery { display: flex; gap: 10px; max-width: 1100px; margin: 0 auto; padding: 30px 0; }
+.vc-gallery img { height: 249px; min-width: 0; object-fit: cover; border-radius: 0; }
+.vc-gallery img:nth-child(1) { flex: 1.336 1 0; }
+.vc-gallery img:nth-child(2), .vc-gallery img:nth-child(3) { flex: 1.5 1 0; }
+@media (max-width: 767px) {
+  .vc-gallery { display: grid; grid-template-columns: 1.336fr 1.5fr; gap: 10px; padding: 84px 10px 30px; }
+  .vc-gallery img { height: 127px; width: 100%; }
+  .vc-gallery img:nth-child(3) { grid-column: 1; width: 225px; max-width: none; height: 150px; }
+}

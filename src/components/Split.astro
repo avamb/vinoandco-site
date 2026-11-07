@@ -13,10 +13,14 @@ interface Props {
   wide?: boolean;
   darkDots?: boolean;
   karla?: boolean;
+  /** Which WordPress page's measured geometry the section copies (global.css `.vc-split--<layout>`). */
+  /** Mobile height of the section in px, from photo top to the next photo top. */
+  mobileHeight?: number;
+  layout?: 'about' | 'home' | 'private' | 'contact';
 }
-const { image, alt = '', eyebrow, title, html, reverse = false, wide = false, darkDots = false, karla = false } = Astro.props;
+const { image, alt = '', eyebrow, title, html, reverse = false, wide = false, darkDots = false, karla = false, layout = 'about', mobileHeight } = Astro.props;
 ---
-<section class:list={['vc-split', { 'vc-split--reverse': reverse, 'vc-split--dark-dots': darkDots }]}>
+<section class:list={['vc-split', `vc-split--${layout}`, mobileHeight && `vc-mh-${mobileHeight}`, { 'vc-split--reverse': reverse, 'vc-split--dark-dots': darkDots }]}>
   <div class:list={['vc-split__media', { 'vc-split__media--wide': wide }]}>
     <img src={image} alt={alt} loading="lazy" />
   </div>

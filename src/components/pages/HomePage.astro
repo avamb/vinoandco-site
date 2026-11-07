@@ -44,8 +44,13 @@ const sectionHrefs = [pagePath('upcoming', lang), pagePath('private', lang), nul
   </div>
 
   {events.length > 0 && (
-    <div class="vc-events vc-events--carousel">
-      {events.map((e) => <EventCard event={e} lang={lang} />)}
+    <div class="vc-carousel" data-carousel role="region" aria-roledescription="carousel" aria-label={t.carousel.label}>
+      <div class="vc-carousel__track" data-carousel-track>
+        {events.map((e) => <EventCard event={e} lang={lang} />)}
+      </div>
+      <button type="button" class="vc-carousel__arrow vc-carousel__arrow--prev" data-carousel-prev aria-label={t.carousel.prev}><span aria-hidden="true"></span></button>
+      <button type="button" class="vc-carousel__arrow vc-carousel__arrow--next" data-carousel-next aria-label={t.carousel.next}><span aria-hidden="true"></span></button>
+      <div class="vc-carousel__dots" data-carousel-dots></div>
     </div>
   )}
 
@@ -53,12 +58,13 @@ const sectionHrefs = [pagePath('upcoming', lang), pagePath('private', lang), nul
     const href = sectionHrefs[i] ?? localizeLinks(s.href);
     const external = /^https?:/.test(href);
     return (
-      <Split image={sectionImages[i]!} title={s.title} html={s.text} karla>
+      <Split image={sectionImages[i]!} title={s.title} html={s.text} karla layout="home">
         <a class="vc-btn vc-btn--gold" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>{s.button}</a>
       </Split>
     );
   })}
 
+  <script src="../../scripts/carousel.ts"></script>
   <Popup id="vc-popup-club" closeLabel={t.modal.close}>
     <h2>{t.forms.club.title}</h2>
     <p>{t.forms.club.intro}</p>
