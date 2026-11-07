@@ -26,6 +26,12 @@ RUN npm run build
 # /site/current. Volumes: /data (builder-data), /site (shared with web).
 FROM deps AS builder
 COPY . .
+# Identifies this image. A changed id makes the builder rebuild once even when the feed is
+# unchanged (a redirects.yaml or template change deployed without new events). Pass the git
+# short sha; without one the image build time is used. Written to a file as well, so it survives
+# an environment that drops build args.
+ARG SITE_BUILD_ID=
+RUN echo "${SITE_BUILD_ID:-$(date -u +%Y%m%d%H%M%S)}" > /app/.build-id
 ENV BUILDER_APP_DIR=/app BUILDER_DATA_DIR=/data BUILDER_SITE_DIR=/site BUILDER_HEALTH_PORT=8081
 EXPOSE 8081
 HEALTHCHECK --interval=60s --timeout=5s --start-period=5m CMD wget -qO- http://127.0.0.1:8081/healthz >/dev/null || exit 1

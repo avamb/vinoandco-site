@@ -39,6 +39,9 @@ services:
     build:
       context: .
       target: builder
+      args:
+        # Git short sha of the deployed commit (optional, the image build time otherwise).
+        SITE_BUILD_ID: ${SITE_BUILD_ID:-}
     profiles: ["builder"]
     volumes:
       - builder-data:/data

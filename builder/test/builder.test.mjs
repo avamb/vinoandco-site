@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, 
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createBuilder } from '../lib/builder.mjs';
+import { needsImageBuild } from '../lib/state.mjs';
 import { currentRelease } from '../lib/release.mjs';
 
 const signed = (id) => `https://api.arenasoldout.com/v1/media-files/${id}?expires=1&sig=${Math.random()}`;
@@ -101,6 +102,32 @@ describe('builder', () => {
     expect(r.changed).toBe(false);
     expect(b.building).toBeNull();
     expect(builds).toBe(1);
+  });
+
+  it('rebuilds once when the running image differs from the one that made the release', async () => {
+    const old = make({ buildId: 'img-1' });
+    await old.poll();
+    await old.building;
+    expect(builds).toBe(1);
+    expect(old.state.published_build_id).toBe('img-1');
+    const same = make({ buildId: 'img-1' });
+    expect((await same.poll()).changed).toBe(false);
+    expect(same.building).toBeNull();
+    expect(builds).toBe(1);
+    const next = make({ buildId: 'img-2' });
+    expect((await next.poll()).changed).toBe(false); // feed content is the same
+    await next.building;
+    expect(builds).toBe(2);
+    expect(next.state.published_build_id).toBe('img-2');
+    await next.poll();
+    expect(next.building).toBeNull();
+    expect(builds).toBe(2);
+  });
+
+  it('needsImageBuild never asks without a build id', () => {
+    expect(needsImageBuild({ published_build_id: null }, '')).toBe(false);
+    expect(needsImageBuild({ published_build_id: null }, 'x')).toBe(true);
+    expect(needsImageBuild({ published_build_id: 'x' }, 'x')).toBe(false);
   });
 
   it('rebuilds on a price change and keeps a missing poster out instead of a signed link', async () => {

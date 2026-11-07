@@ -5,7 +5,7 @@
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { checkCompleteness, contentHash, mediaRefs, nextScheduledBuild, rewriteMedia } from './snapshot.mjs';
-import { health, readState, retryDelayMs, writeState } from './state.mjs';
+import { health, needsImageBuild, readState, retryDelayMs, writeState } from './state.mjs';
 import { mergeRemoved } from '../../scripts/removed-events.mjs';
 import { syncMedia } from './media.mjs';
 import { changedPaths, currentRelease, pageHashes, pruneReleases, stageRelease, switchCurrent, verifyRelease } from './release.mjs';
@@ -22,6 +22,7 @@ export const POLL_MS = 2 * 60_000;
  * @param {(releaseDir: string) => Promise<void>} o.checkSite      the site's own checks against a release
  * @param {(snapshot: object) => string[]} o.eventPaths            pages that must exist for a snapshot
  * @param {(snapshot: object) => string[]} [o.removedPaths]        addresses of removed events: no page, answer 410
+ * @param {string} [o.buildId]       id of the running image; a release made by another image is rebuilt once
  * @param {string} o.siteUrl
  */
 export function createBuilder(o) {
@@ -75,7 +76,8 @@ export function createBuilder(o) {
     if (!changed) state.oldest_unprocessed_change_at = null;
     save();
     // After a failed build the retry pause decides when to try again (1/2/5/10 min).
-    if (changed && !state.next_retry_at) requestBuild('change');
+    const image = needsImageBuild(state, o.buildId);
+    if ((changed || image) && !state.next_retry_at) requestBuild(changed ? 'change' : 'image');
     return { changed };
   }
 
@@ -140,6 +142,7 @@ export function createBuilder(o) {
         last_publish_at: at,
         last_build_at: at,
         published_hash: hash,
+        published_build_id: o.buildId || state.published_build_id,
         published_events: snap.events?.length ?? 0,
         // Staging test pages (3 per test event) are left out of the baseline: a test event may vanish.
         published_pages: Math.max(0, check.pages - 3 * (snap.test_events?.length ?? 0)),

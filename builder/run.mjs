@@ -10,6 +10,7 @@
 //                                         event ids (UUID or display number, comma separated) to build
 //                                         from it. Both empty in production.
 //   SITE_URL                              origin of the published site (purge URLs)
+//   SITE_BUILD_ID                         id of this image (build arg, else /app/.build-id)
 //   BUILDER_DATA_DIR   (/data)            snapshots, media, state.json   — volume builder-data
 //   BUILDER_SITE_DIR   (/site)            releases/ and `current`        — volume shared with web
 //   BUILDER_APP_DIR    (repo root)        where `npm run build` runs
@@ -36,6 +37,14 @@ const dataDir = resolve(env.BUILDER_DATA_DIR || '/data');
 const siteDir = resolve(env.BUILDER_SITE_DIR || '/site');
 const apiBase = env.PUBLIC_ARENA_API || 'https://api.arenasoldout.com';
 const feedToken = env.PUBLIC_FEED_TOKEN || '';
+const buildId = (() => {
+  if (env.SITE_BUILD_ID) return env.SITE_BUILD_ID.trim();
+  try {
+    return readFileSync(join(appDir, '.build-id'), 'utf8').trim();
+  } catch {
+    return '';
+  }
+})();
 const log = (m) => console.log(`${new Date().toISOString()} [builder] ${m}`);
 
 if (!feedToken) {
@@ -72,6 +81,7 @@ const removedEventPaths = (snapshot) => removedPaths(snapshot.removed_events, kn
 const builder = createBuilder({
   dataDir,
   siteDir,
+  buildId,
   siteUrl: env.SITE_URL || 'https://vinoandco.events',
   pollMs: Number(env.BUILDER_POLL_SECONDS || 120) * 1000,
   cfToken: env.CF_API_TOKEN || '',

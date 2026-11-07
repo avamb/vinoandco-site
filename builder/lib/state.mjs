@@ -24,9 +24,19 @@ export function emptyState() {
     consecutive_failures: 0,
     next_retry_at: null,
     last_purge: null,
+    // Build id of the image that produced the current release (see needsImageBuild).
+    published_build_id: null,
     // Events that left the feed (id, slug, status, removed_at): their pages answer 410 for good.
     removed: [],
   };
+}
+
+/**
+ * True when the running image (`buildId`) is not the one that produced the published release,
+ * so a build is due even though the feed content is unchanged. An empty build id never asks.
+ */
+export function needsImageBuild(state, buildId) {
+  return Boolean(buildId) && state?.published_build_id !== buildId;
 }
 
 export function readState(file) {
