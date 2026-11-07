@@ -10,7 +10,7 @@
     "menu": "Menu",
     "language": "Language"
   },
-  "carousel": { "label": "Events", "prev": "Previous event", "next": "Next event" },
+  "carousel": { "label": "Events", "prev": "Previous event", "next": "Next →" },
   "footer": {
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
@@ -86,6 +86,8 @@
     "promoWait": "Please wait, checking the promo code...",
     "pay": "PAY NOW",
     "processing": "Processing...",
+    "qtyLess": "Fewer",
+    "qtyMore": "More",
     "back": "← Back",
     "ticket": "Ticket",
     "pcs": "pcs",

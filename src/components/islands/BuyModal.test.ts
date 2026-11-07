@@ -141,7 +141,7 @@ describe('BuyModal', () => {
     open([session([tier()])]);
     await settle();
     fill();
-    $<HTMLButtonElement>('.vino-qty-btn[aria-label="+"]').click();
+    $<HTMLButtonElement>('.vino-qty-row .vino-qty-btn:last-child').click();
     flushSync();
     pay();
     await settle();

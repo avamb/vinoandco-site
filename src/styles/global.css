@@ -767,3 +767,20 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
   .vc-event__buy { margin: 14px 10px 0; max-width: 333px; }
   .vc-event__desc { margin-top: 24px; }
 }
+
+/* ---------- Keyboard focus (WCAG 2.4.7): one visible ring, white on the dark bands ---------- */
+:where(a, button, select, input, textarea, summary, [tabindex]):focus-visible { outline: 2px solid var(--vc-primary); outline-offset: 2px; }
+.vc-header :focus-visible, .vc-footer :focus-visible, .vc-hero :focus-visible, .vc-home-hero :focus-visible, .vc-features :focus-visible { outline-color: #fff; }
+.vino-modal-box:focus { outline: none; }
+
+/* ---------- Text contrast >= 4.5:1 (WCAG 1.4.3). WordPress used lighter values; these are the closest that pass. ---------- */
+.vino-modal-field label, .vino-modal-timer, .vino-promo-toggle, .vino-modal-check small, .vino-modal-back-link { color: #6b6b6b; }
+.vino-modal-back-link:hover { color: #822121; }
+.vino-req, .vino-field-error, .vino-step-errors, .vino-promo-result.error, .vc-order__error, .vc-mt__state, .vc-form__status[data-state='error'] { color: #a93226; }
+.vc-split__title { color: #856010; }
+.vc-split--home .vc-btn--gold { color: #6e1b1b; }
+.vc-split--home .vc-btn--gold:hover { color: var(--vc-white); }
+.vc-footer__col a[aria-current='page'] { color: #e3a3a3; }
+.vc-btn--gold { color: #6e1b1b; }
+.vc-btn--gold:hover { color: var(--vc-white); }
+.vc-legal a { text-decoration: underline; }
