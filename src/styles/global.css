@@ -794,3 +794,30 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-legal--privacy ul { padding-inline-start: 40px; margin: 0 0 20px; }
 .vc-legal--privacy li { margin: 0; }
 .vc-legal--privacy li p { margin: 0; }
+
+/* ---------- Event lists: grid copied from the Elementor loop grids (past 3 x 353 px, upcoming 3 x 350 px) ---------- */
+.vc-past { max-width: 1120px; gap: 30px; padding: 100px 0 80px; }
+.vc-past__item img, .vc-past__item--noimg { border-radius: 10px; }
+.vc-events:not(.vc-events--carousel) { grid-template-columns: repeat(3, 350px); justify-content: center; column-gap: 60px; position: relative; inset-inline-start: 5px; max-width: none; }
+.vc-events:not(.vc-events--carousel) .vc-card__title { margin-top: 21px; }
+@media (max-width: 1024px) { .vc-events:not(.vc-events--carousel) { grid-template-columns: repeat(2, 350px); inset-inline-start: 0; } }
+@media (max-width: 767px) {
+  .vc-past { padding: 131px 20px 80px; grid-template-columns: 1fr; }
+  .vc-events:not(.vc-events--carousel) { grid-template-columns: minmax(0, 350px); inset-inline-start: 0; padding-inline: 20px; }
+}
+
+/* ---------- Age gate: sizes of the plugin's markup on WordPress (measured at 1366 and 390 px) ---------- */
+.age-gate__heading-title { font-size: 40px; font-weight: 400; line-height: 48px; margin: 0 0 16px; color: var(--vc-text); }
+.age-gate__headline { font-size: 18px; line-height: 1.3; margin: 0 0 17px; color: var(--vc-text); }
+.age-gate__subheadline { margin: 0 0 20px; }
+.age-gate__fields { width: 100%; }
+.age-gate__challenge { margin: 0 0 20px; }
+.age-gate__submit { font-size: 18px; line-height: 27px; padding: 16px 32px; border: 1px solid transparent; border-radius: 10px; margin: 0 0 16px; }
+.age-gate__submit--yes:focus { background-color: #2e7d32; }
+.age-gate__submit--no:focus { background-color: #e0e0e0; }
+.age-gate__submit--yes:hover { background-color: #256628; }
+.age-gate__submit--no:hover { background-color: #cfcfcf; }
+.age-gate__remember { line-height: 1; }
+.age-gate__remember-text { font-size: 14.4px; line-height: 14.4px; margin-inline-start: 5px; }
+.age-gate__remember-wrapper { margin: 0; }
+.age-gate__errors { min-height: 20px; }
