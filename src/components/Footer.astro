@@ -27,6 +27,18 @@ const right = [
   { href: pagePath('upcoming', lang), label: t.footer.upcomingEvents },
   { href: brand.shop, label: t.footer.shop, external: true },
 ];
+const mobileLinks = [
+  { href: pagePath('home', lang), label: t.nav.home },
+  { href: pagePath('upcoming', lang), label: t.nav.upcoming },
+  { href: pagePath('past', lang), label: t.nav.past },
+  { href: pagePath('private', lang), label: t.nav.privateShort },
+  { href: pagePath('about', lang), label: t.nav.about },
+  { href: pagePath('contact', lang), label: t.nav.contact },
+  { href: pagePath('terms', lang), label: t.footer.terms },
+  { href: pagePath('privacy', lang), label: t.footer.privacy },
+  { href: pagePath('myTickets', lang), label: t.footer.account },
+  { href: brand.shop, label: t.footer.shop, external: true },
+];
 ---
 <footer class="vc-footer">
   <div class="vc-footer__inner">
@@ -44,6 +56,13 @@ const right = [
           <li>
             <a href={l.href} aria-current={current === l.href ? 'page' : undefined} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a>
           </li>
+        ))}
+      </ul>
+    </nav>
+    <nav class="vc-footer__mobile" aria-label={t.nav.menu}>
+      <ul>
+        {mobileLinks.map((l) => (
+          <li><a href={l.href} aria-current={current === l.href ? 'page' : undefined} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a></li>
         ))}
       </ul>
     </nav>

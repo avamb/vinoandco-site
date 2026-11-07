@@ -658,7 +658,7 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 }
 @media (max-width: 767px) {
   .vc-split { display: flex; flex-direction: column; padding: 0 10px; min-height: var(--mh, 0); gap: 0; box-sizing: border-box; }
-  .vc-hero + .vc-split { margin-top: 101px; }
+  .vc-hero + .vc-split { margin-top: 90px; }
   .vc-split__media, [dir='rtl'] .vc-split__media { order: 0; width: 100%; height: 390px; padding: 0; }
   .vc-split--reverse .vc-split__media { order: 0; }
   .vc-split__media::before { top: -22px; inset-inline-start: -18px; width: 60px; height: 60px; }
@@ -836,3 +836,27 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
   .vino-qty-row input { padding: 0; }
 }
 @media (max-width: 767px) { .vc-bg-home { background-image: url('/_site/img/dsc06725-m.jpg'); } }
+
+/* ---------- Phone: transparent header over the hero and the footer as one link list (Elementor mobile layouts) ---------- */
+.vc-footer__mobile { display: none; }
+@media (max-width: 767px) {
+  .vc-header { position: absolute; inset-inline: 0; top: 0; background: transparent; box-shadow: none; }
+  .vc-header__inner { min-height: 75px; padding-inline: 20px; }
+  .vc-header__logo img { width: 31px; height: 31px; border-radius: 10px; }
+  .vc-burger { width: 33px; height: 31px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 3px; }
+  main { padding-top: 75px; }
+  .vc-hero, .vc-home-hero { margin-top: -75px; }
+  .vc-hero--about, .vc-hero--past, .vc-hero--contact, .vc-hero--private { min-height: calc(var(--h) + 75px); padding-top: calc(var(--t) + 75px); }
+  .vc-home-hero { min-height: 446px; padding-top: 125px; }
+  .vc-mobile-menu.is-open { top: 75px; }
+  .vc-footer__inner { display: block; padding: 20px; }
+  .vc-footer__logo, .vc-footer__col { display: none; }
+  .vc-footer__mobile { display: block; }
+  .vc-footer__mobile ul { list-style: none; margin: 0; padding: 0; }
+  .vc-footer__mobile a { display: block; padding: 0; line-height: 42px; color: var(--vc-secondary); font: 600 14px/42px var(--vc-font); }
+  .vc-footer__mobile a[aria-current='page'] { color: #e3a3a3; }
+  .vc-footer__social { margin-top: 20px; display: flex; justify-content: center; gap: 5px; }
+  .vc-footer__social a { width: 50px; height: 50px; border-radius: 0; }
+  .vc-footer__social a svg { width: 25px; height: 25px; }
+}
+@media (max-width: 767px) { .vc-hero--about, .vc-hero--past, .vc-hero--contact, .vc-hero--private { padding-inline: 10px; } }
