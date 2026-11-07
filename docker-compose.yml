@@ -54,6 +54,9 @@ services:
       PUBLIC_META_PIXEL_ID: ${PUBLIC_META_PIXEL_ID:-}
       PUBLIC_GA4_ID: ${PUBLIC_GA4_ID:-}
       PUBLIC_TURNSTILE_SITE_KEY: ${PUBLIC_TURNSTILE_SITE_KEY:-}
+      # Staging only: the test channel's feed token and the test events to build (empty in production).
+      PUBLIC_TEST_FEED_TOKEN: ${PUBLIC_TEST_FEED_TOKEN:-}
+      TEST_EVENT_IDS: ${TEST_EVENT_IDS:-}
       # Optional, secret: set in the deploy environment only.
       CF_API_TOKEN: ${CF_API_TOKEN:-}
       CF_ZONE_ID: ${CF_ZONE_ID:-}
