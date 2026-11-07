@@ -22,7 +22,7 @@ Where the new site takes what:
 
 | Fragment | WordPress | New site now | Next step |
 |---|---|---|---|
-| Event carousel on the home page | Elementor Loop Carousel (Swiper, arrows, dots, two cards per view) | Two-column grid of the same cards | Svelte carousel island |
+| Event carousel on the home page | Elementor Loop Carousel (Swiper, arrows, dots, two cards per view, autoplay) | Built: Svelte carousel, two cards per row with arrows, dots and swipe, a list on phones. No autoplay (WCAG 2.2.2), plain arrows | Owner decision |
 | Entrance animations | Elementor `fadeInUp` / `fadeInLeft` / `fadeInRight` on scroll (JS) | None | Optional CSS-only animation with `prefers-reduced-motion` |
 | Mobile header on the home page | Transparent over the hero photo | Solid burgundy, as on the other pages | Check on a phone, copy if confirmed |
 | 404 figures | Three background slideshows of the figures `c1`–`c5`, `w1`–`w3` behind the digits, Montserrat font | One fixed figure per digit, Montserrat not loaded (falls back to Assistant) | Small CSS slideshow if wanted |
@@ -34,7 +34,7 @@ Where the new site takes what:
 | Days to start on the event page | Live JS counter | Computed at build time (the builder rebuilds at least hourly) | Client-side counter in the purchase island |
 | Event page selects | Hidden WooCommerce variation `<select>`s (category, tariff) | The modal's own category `<select>` (tiers of the session; the platform has no tariffs) | — |
 | "We're Hiring" block on About | In the HTML, invisible on the page | Omitted | — |
-| Lightbox gallery on Private events | Three links in the HTML, invisible on the page | Omitted | — |
+| Gallery on Private events | Three photos, visible on the page | Built: gallery of three photos | — |
 | Event list on `/en/` and `/he/` | Empty (WPML products were not translated) | Events in every language with the original text (Р-7) | — |
 | Past events | Bil24-era product posters + platform events, no links | Platform past events + the 27 Bil24-era products of `wp-products-export.json` in one list, newest first, each linking to its page at the old WordPress address (undated 2023–2024 products last) | — |
 | Forms and popups | Elementor Pro forms with reCAPTCHA v3, Brevo | Same fields and texts, sent to the platform with Cloudflare Turnstile. Success and error texts are the site's own (the Elementor messages are not in the saved HTML). The club tick is required here (the platform subscription needs it) | Set `PUBLIC_TURNSTILE_SITE_KEY` and deploy the platform routes |

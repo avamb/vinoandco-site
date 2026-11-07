@@ -174,7 +174,7 @@ Still to add: link check, JSON-LD and hreflang check, axe, Lighthouse.
 - **`buyer_context`** replaces the old top-level `tracking_consent` on checkout/start. fbp / fbc are
   sent only when the cookie exists, the GA4 id only after consent, fbclid / gclid are kept per tab by
   `scripts/attribution.ts`.
-- **"My tickets" never spends the e-mailed token on a GET**: the island moves `?t=` to sessionStorage
+- **"My tickets" never spends the e-mailed token on a GET**: the island moves the token (`#t=` fragment, older `?t=` as fallback) to sessionStorage
   and shows a button; 410 drops the token, a network error or 429 keeps it. The PDF needs the Bearer
   header, so it is fetched and saved as a blob; never render a plain link to it.
 - **Site forms** are wired by `src/scripts/site-forms.ts`. Turnstile (`action` = topic or `club`) is
