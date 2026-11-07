@@ -101,7 +101,7 @@
   const consentBlock = $derived((session?.consent ?? {}) as { required?: boolean; terms_url?: string; privacy_url?: string });
 
   function money(minor: number, cur = currency): string {
-    return new Intl.NumberFormat(intl, { style: 'currency', currency: cur, maximumFractionDigits: minor % 100 ? 2 : 0 }).format(minor / 100);
+    return new Intl.NumberFormat(intl, { style: 'currency', currency: cur, currencyDisplay: 'code', maximumFractionDigits: minor % 100 ? 2 : 0 }).format(minor / 100);
   }
 
   const summary = $derived.by(() => {

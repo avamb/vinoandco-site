@@ -821,3 +821,17 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .age-gate__remember-text { font-size: 14.4px; line-height: 14.4px; margin-inline-start: 5px; }
 .age-gate__remember-wrapper { margin: 0; }
 .age-gate__errors { min-height: 20px; }
+
+/* ---------- Purchase modal: the plugin's buttons and fields as the WordPress theme styled them (measured at 1366 and 390 px) ---------- */
+.vino-modal-close { width: 66px; height: 34px; border-radius: 10px; background: #a02828; color: #fff; font: 600 18px/1 var(--vc-font); letter-spacing: 0.5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+.vino-modal-close:hover { background: #822121; }
+.vino-modal-field input, .vino-modal-field select { border: 1px solid #666; }
+.vino-modal-field input:focus, .vino-modal-field select:focus { border-color: #822121; }
+.vino-modal-field .vino-input-error, .vino-input-error { border-color: #c0392b; }
+.vino-modal-btn-primary { background: #a02828; border-radius: 10px; font-size: 18px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+.vino-modal-btn-primary:hover:not(:disabled) { background: #822121; }
+.vino-modal-timer { margin-bottom: 20px; }
+@media (min-width: 768px) {
+  .vino-modal-field input, .vino-modal-field select { border-radius: 3px; padding: 8px 16px; }
+  .vino-qty-row input { padding: 0; }
+}

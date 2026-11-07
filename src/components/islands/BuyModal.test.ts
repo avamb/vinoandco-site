@@ -110,7 +110,7 @@ describe('BuyModal', () => {
     await settle();
     expect($('#vino-modal-title').textContent).toBe('Выбор билета');
     const options = [...document.querySelectorAll('#vino-modal-category option')].map((o) => o.textContent!.replace(/ /g, ' '));
-    expect(options).toEqual(['— выберите —', 'VIP — 500 ₪', 'Обычный — 290 ₪']);
+    expect(options).toEqual(['— выберите —', 'VIP — 500 ILS', 'Обычный — 290 ILS']);
     pay(); // "Далее →" without a choice
     flushSync();
     expect($('.vino-field-error').textContent).toBe('Выберите категорию');
