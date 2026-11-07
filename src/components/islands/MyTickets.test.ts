@@ -71,6 +71,13 @@ describe('token handling', () => {
     expect(m.get(LINK_TOKEN_KEY)).toBe('abc');
     expect(takeLinkToken('https://x/my-tickets/', s)).toEqual({ token: 'abc', cleanUrl: null });
   });
+  it('reads the token from the fragment first and strips it', () => {
+    const m = new Map<string, string>();
+    const s = { getItem: (k: string) => m.get(k) ?? null, setItem: (k: string, v: string) => void m.set(k, v), removeItem: (k: string) => void m.delete(k) };
+    expect(takeLinkToken('https://x/my-tickets/#t=frag&x=1', s)).toEqual({ token: 'frag', cleanUrl: '/my-tickets/#x=1' });
+    expect(takeLinkToken('https://x/my-tickets/?t=old#t=new', s)).toEqual({ token: 'new', cleanUrl: '/my-tickets/' });
+    expect(takeLinkToken('https://x/my-tickets/#t=only', s).cleanUrl).toBe('/my-tickets/');
+  });
   it('names the downloaded file safely', () => {
     expect(ticketFileName(1000123, 'AB 12/x', 0)).toBe('vinoandco-1000123-AB12x.pdf');
     expect(ticketFileName(1000123, null, 1)).toBe('vinoandco-1000123-2.pdf');

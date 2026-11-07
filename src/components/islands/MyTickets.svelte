@@ -22,7 +22,7 @@
     feedToken: string;
     lang: string;
     intl: string;
-    /** Absolute address of this page; the e-mailed link opens it with ?t=. */
+    /** Absolute address of this page; the e-mailed link opens it with #t= (older e-mails: ?t=). */
     pageUrl: string;
     upcomingPath: string;
   }

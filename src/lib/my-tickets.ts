@@ -1,6 +1,6 @@
 /**
  * "My tickets by link" rules (spec 62 §7). The e-mailed link carries a
- * one-time token (`?t=`). Opening the page must NOT spend it (mail scanners
+ * one-time token (`#t=` in the fragment so analytics never see it, `?t=` of older e-mails still works). Opening the page must NOT spend it (mail scanners
  * open links): the page keeps the token, takes it out of the address and
  * shows a button; only the button press exchanges it for a 4-hour session.
  * The session lives in the tab sessionStorage, never in a cookie.
@@ -28,11 +28,17 @@ function safe<T>(fn: () => T, fallback: T): T {
 /** Keeps the token of the address in the store and returns the address without it. */
 export function takeLinkToken(href: string, store: KeyValueStore | null): { token: string | null; cleanUrl: string | null } {
   const url = new URL(href);
-  const fromUrl = url.searchParams.get('t');
+  const frag = new URLSearchParams(url.hash.replace(/^#/, ''));
+  const fromHash = frag.get('t');
+  const fromQuery = url.searchParams.get('t');
+  const fromUrl = fromHash || fromQuery;
   if (fromUrl) {
     safe(() => store?.setItem(LINK_TOKEN_KEY, fromUrl), undefined);
+    frag.delete('t');
     url.searchParams.delete('t');
-    return { token: fromUrl, cleanUrl: url.pathname + url.search + url.hash };
+    const rest = frag.toString();
+    const hash = fromHash ? (rest ? '#' + rest : '') : url.hash;
+    return { token: fromUrl, cleanUrl: url.pathname + url.search + hash };
   }
   return { token: safe(() => store?.getItem(LINK_TOKEN_KEY) ?? null, null), cleanUrl: null };
 }
