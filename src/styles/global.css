@@ -835,3 +835,4 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
   .vino-modal-field input, .vino-modal-field select { border-radius: 3px; padding: 8px 16px; }
   .vino-qty-row input { padding: 0; }
 }
+@media (max-width: 767px) { .vc-bg-home { background-image: url('/_site/img/dsc06725-m.jpg'); } }

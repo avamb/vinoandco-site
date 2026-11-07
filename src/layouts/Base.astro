@@ -58,6 +58,7 @@ const ogImage = image ? new URL(image, siteUrl).href : new URL('/_site/img/dsc06
     <link rel="icon" href="/_site/img/vinoandco_1.avif" type="image/avif" />
     <link rel="preload" href="/_site/fonts/assistant-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
     {lang === 'he' && <link rel="preload" href="/_site/fonts/assistant-normal-hebrew.woff2" as="font" type="font/woff2" crossorigin />}
+    <slot name="head" />
     <script is:inline src="/_site/js/age-gate.js"></script>
   </head>
   <body data-ga4-id={personal ? undefined : tracking.ga4Id || undefined} data-meta-pixel-id={personal ? undefined : tracking.metaPixelId || undefined}>

@@ -23,6 +23,10 @@ const sectionImages = ['/_site/img/kopiya-fajla-_dsc06156.jpg', '/_site/img/kopi
 const sectionHrefs = [pagePath('upcoming', lang), pagePath('private', lang), null];
 ---
 <Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.home}>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href="/_site/img/dsc06725-m.jpg" media="(max-width: 767px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/_site/img/dsc06725.jpg" media="(min-width: 768px)" fetchpriority="high" />
+  </Fragment>
   <section class="vc-home-hero vc-bg-home">
     <div class="vc-home-hero__body">
       <h1>{c.hero.title}</h1>
