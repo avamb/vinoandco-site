@@ -185,3 +185,22 @@ Still to add: link check, JSON-LD and hreflang check, axe, Lighthouse.
 - In the Bash tool a heredoc with apostrophes or backticks may fail to parse: write such files with the editor tool.
 
 - Test channel (staging only): `snapshot.test_events` (separate from `events`, so the completeness and 410 rules never see it) is built only when `PUBLIC_TEST_FEED_TOKEN` is set. `siteEvents()` (lists, sitemap) never returns them, only `routeEvents()` (the router) does, and each `SiteEvent` carries its own `feedToken` for the modal and funnel. A public event keeps its address on a slug clash.
+
+## Conventions learned in the mobile and consistency pass (2026-11-07)
+
+- **One scale in `src/styles/tokens.css`:** `--radius-sm/md/lg` (fields 4, buttons/cards/images 10, the purchase
+  sheet 20), `--space-1..8`, `--btn-pad-y/x` (16/32 for every text button), `--control-h` (48, every field, select,
+  qty step, promo and banner button), `--gutter` (10 desktop, 20 on a phone), `--page-top`, `--page-bottom`,
+  `--section-gap`, `--list-gap`. A new component takes these, never its own number. Report:
+  `docs/acceptance/2026-11-07/mobile/report_ru.md`.
+- **Never `white-space: nowrap` on data that comes from the feed** (venue, address, names). One long address made
+  Chrome on a phone widen the layout viewport to 401 px and zoom the whole event page out, so the purchase sheet
+  and its close button ran to the screen edge. `innerWidth` grows with it: an overflow check must compare
+  `scrollWidth` to the configured width, not to `innerWidth` (`mobile-audit.mjs` does).
+- **Russian pages use the system sans for everything** (`:root:lang(ru)` in tokens.css). Assistant and Karla have
+  no Cyrillic, so with the web fonts loaded a Russian line mixed two typefaces. Do not "fix" it by removing the rule.
+- `button, input, select, textarea` inherit the page font (global.css); a control with its own `font-family` is a bug.
+- Enlarge a small WordPress-sized target with an absolutely placed `::after`, never by changing its drawn size.
+- `node scripts/acceptance/mobile-audit.mjs` (screenshots + overflow / collisions / small targets / clipped text /
+  covered elements / type scale / component values); `--css dist/_site/assets/<file>.css` checks a local CSS build
+  against the real staging pages before deploying. `mobile-summary.mjs` aggregates the JSON.

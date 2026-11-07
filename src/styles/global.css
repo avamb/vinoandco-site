@@ -11,6 +11,9 @@
 
 html { -webkit-text-size-adjust: 100%; }
 
+/* Form controls take the page font (browsers default them to the system UI font). */
+button, input, select, textarea { font-family: inherit; }
+
 body {
   margin: 0;
   background-color: var(--vc-secondary);
@@ -53,15 +56,15 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
   font-weight: 600;
   letter-spacing: 0.5px;
   line-height: 1;
-  padding: 16px 32px;
+  padding: var(--btn-pad-y) var(--btn-pad-x);
   text-align: center;
   text-transform: uppercase;
   transition: background-color 0.3s, border-color 0.3s;
 }
-.vc-btn:hover, .vc-btn:focus-visible { background-color: var(--vc-primary); border-color: var(--vc-primary); border-radius: 8px; color: var(--vc-white); }
+.vc-btn:hover, .vc-btn:focus-visible { background-color: var(--vc-primary); border-color: var(--vc-primary); color: var(--vc-white); }
 .vc-btn--primary { background-color: var(--vc-primary); border-color: var(--vc-primary); text-transform: none; font-size: 15px; letter-spacing: 0.4px; }
 .vc-btn--primary:hover { background-color: var(--vc-button); border-color: var(--vc-button); }
-.vc-btn--gold { background-color: var(--vc-accent); border-color: var(--vc-primary); color: var(--vc-white); font-size: 14px; font-weight: 700; padding: 15px 30px; }
+.vc-btn--gold { background-color: var(--vc-accent); border-color: var(--vc-primary); color: var(--vc-white); font-size: 14px; font-weight: 700; padding: var(--btn-pad-y) var(--btn-pad-x); }
 .vc-btn--gold:hover { background-color: var(--vc-primary); color: var(--vc-white); }
 .vc-btn--block { display: block; width: 100%; }
 .vc-btn[disabled], .vc-btn.is-disabled { background-color: var(--vc-state-disabled); border-color: var(--vc-state-disabled); cursor: default; }
@@ -70,7 +73,7 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-header { position: sticky; top: 0; z-index: 50; background-color: var(--vc-primary); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); }
 .vc-header__inner { display: flex; align-items: center; min-height: var(--vc-header-h); max-width: var(--vc-container); margin-inline: auto; padding-inline: 10px; gap: 20px; }
 .vc-header__logo { flex: 0 0 10%; display: flex; justify-content: center; }
-.vc-header__logo img { width: 47px; height: 47px; border-radius: 8px; background: var(--vc-white); object-fit: contain; }
+.vc-header__logo img { width: 47px; height: 47px; border-radius: var(--radius-md); background: var(--vc-white); object-fit: contain; }
 .vc-nav { flex: 1 1 70%; display: flex; align-items: center; }
 .vc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
 .vc-nav__link {
@@ -97,12 +100,12 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-lang ul a:hover { color: var(--vc-accent); }
 
 .vc-social { flex: 0 0 20%; display: flex; justify-content: center; gap: 5px; }
-.vc-social a { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 3px; color: var(--vc-white); }
+.vc-social a { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: var(--radius-sm); color: var(--vc-white); }
 .vc-social a svg { width: 12px; height: 12px; fill: currentColor; }
 .vc-social .is-facebook { background: #3b5998; }
 .vc-social .is-instagram { background: #262626; }
 
-.vc-burger { display: none; margin-inline-start: auto; background: var(--vc-primary); border: 0; color: var(--vc-white); padding: 0.25em; cursor: pointer; box-shadow: none; border-radius: 3px; }
+.vc-burger { display: none; margin-inline-start: auto; background: var(--vc-primary); border: 0; color: var(--vc-white); padding: 0.25em; cursor: pointer; box-shadow: none; border-radius: var(--radius-sm); }
 .vc-burger svg { width: 22px; height: 22px; fill: currentColor; display: block; }
 .vc-mobile-menu { display: none; }
 
@@ -123,7 +126,7 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-footer { background-color: var(--vc-text); color: var(--vc-secondary); }
 .vc-footer__inner { display: flex; align-items: center; max-width: var(--vc-container); margin-inline: auto; padding: 20px 10px; gap: 20px; }
 .vc-footer__logo { flex: 0 0 15%; display: flex; justify-content: center; }
-.vc-footer__logo img { width: 76px; height: 76px; border-radius: 8px; background: var(--vc-white); object-fit: contain; }
+.vc-footer__logo img { width: 76px; height: 76px; border-radius: var(--radius-md); background: var(--vc-white); object-fit: contain; }
 .vc-footer__col { flex: 0 0 25%; }
 .vc-footer__col ul { list-style: none; margin: 0; padding: 0; }
 .vc-footer__col a {
@@ -140,7 +143,7 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-footer__col a:hover, .vc-footer__col a[aria-current='page'] { color: var(--vc-primary); }
 .vc-footer__col a:hover::after, .vc-footer__col a[aria-current='page']::after { opacity: 1; }
 .vc-footer__social { flex: 1 1 auto; display: flex; justify-content: center; gap: 5px; }
-.vc-footer__social a { display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 3px; color: var(--vc-white); }
+.vc-footer__social a { display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: var(--radius-sm); color: var(--vc-white); }
 .vc-footer__social a svg { width: 25px; height: 25px; fill: currentColor; }
 .vc-footer__social .is-facebook { background: #3b5998; }
 .vc-footer__social .is-instagram { background: #262626; }
@@ -191,7 +194,7 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-features { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding-inline: 10px; margin-top: -120px; }
 .vc-feature { display: flex; align-items: flex-start; gap: 15px; padding: 30px 20px; min-height: 240px; background: var(--vc-primary); color: var(--vc-secondary); }
 .vc-feature:nth-child(3) { grid-column: 4; }
-.vc-feature img { width: 68px; height: 68px; flex: 0 0 68px; border-radius: 6px; object-fit: cover; }
+.vc-feature img { width: 68px; height: 68px; flex: 0 0 68px; border-radius: var(--radius-md); object-fit: cover; }
 .vc-feature h3 { color: var(--vc-secondary); font-size: 28px; font-weight: 400; line-height: 1.25; margin: 0 0 15px; }
 .vc-feature p { color: var(--vc-secondary); font-size: 16px; margin: 0; }
 
@@ -239,25 +242,26 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-events-head { text-align: center; padding: 30px 10px 10px; }
 .vc-events-head h1 { margin: 0 0 40px; }
 .vc-events-head p { font-size: 18px; }
-.vc-events { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 20px; max-width: var(--vc-container); margin-inline: auto; padding: 20px 10px 40px; }
+.vc-events { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--list-gap) 20px; max-width: var(--vc-container); margin-inline: auto; padding: 20px 10px 40px; }
 .vc-events--carousel { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 1000px; padding-block: 80px; }
 .vc-events__empty { grid-column: 1 / -1; text-align: center; color: var(--vc-muted); }
 
 .vc-card { display: flex; flex-direction: column; cursor: pointer; }
-.vc-card__poster { position: relative; display: block; overflow: hidden; container-type: inline-size; }
-.vc-card__poster img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 0; }
+.vc-card__poster { position: relative; display: block; overflow: hidden; container-type: inline-size; border-radius: var(--radius-md); }
+.vc-card__poster img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--radius-md); }
 .vc-card__title { margin: 10px 0 0; padding-inline-start: 10px; color: var(--vc-text); font-size: 18px; font-weight: 400; line-height: 1.3em; }
 .vc-card__title a { color: inherit; font: inherit; }
 .vc-card__meta { display: flex; flex-wrap: wrap; gap: 5px; padding: 10px 0 0 10px; font-size: 16px; line-height: 1.6em; }
 [dir='rtl'] .vc-card__meta { padding: 10px 10px 0 0; }
 .vc-card__meta + .vc-card__meta { padding-top: 0; }
-.vc-card__meta span { white-space: nowrap; }
+/* One fact per chip; a fact longer than the row wraps inside itself instead of widening the page (a nowrap address made a phone zoom the whole page out to 401 px, mobile audit 2026-11-07). */
+.vc-card__meta span, .vc-event__facts span { min-width: 0; overflow-wrap: anywhere; }
 .vc-card__btn {
   display: block;
   align-self: stretch;
   margin-top: 12px;
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: var(--btn-pad-y) var(--btn-pad-x);
+  border-radius: var(--radius-md);
   background: var(--vc-primary);
   color: #fff;
   text-align: center;
@@ -301,9 +305,9 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 /* Past events: posters only, as on /past-events/ */
 .vc-past { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin-inline: auto; padding: 60px 10px 80px; }
 .vc-past__item { display: block; position: relative; }
-.vc-past__item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px; }
+.vc-past__item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--radius-md); }
 .vc-past__item span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-.vc-past__item--noimg { display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; padding: 20px; border-radius: 8px; background: var(--vc-primary); color: #fff; text-align: center; text-decoration: none; }
+.vc-past__item--noimg { display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; padding: 20px; border-radius: var(--radius-md); background: var(--vc-primary); color: #fff; text-align: center; text-decoration: none; }
 .vc-past__item--noimg span { position: static; width: auto; height: auto; overflow: visible; clip: auto; font-size: 18px; }
 .vc-event__back { margin-top: 30px; }
 
@@ -318,21 +322,20 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-event { max-width: 1140px; margin-inline: auto; padding: 70px 10px 100px; }
 .vc-event__inner { max-width: 690px; margin-inline: auto; }
 .vc-event__poster { display: inline-block; max-width: 450px; }
-.vc-event__poster img { display: block; width: 100%; border-radius: 10px; }
+.vc-event__poster img { display: block; width: 100%; border-radius: var(--radius-md); }
 .vc-event__title { margin: 50px 0 40px; font-size: 32px; font-weight: 700; line-height: 1.2; color: var(--vc-text); }
 .vc-event__facts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 40px; font-size: 16px; }
-.vc-event__facts span { white-space: nowrap; }
 .vc-event__buy { margin: 20px 0; }
-.vc-event__buy .vc-btn { display: block; width: 100%; max-width: 608px; padding: 14px; font-size: 16px; }
+.vc-event__buy .vc-btn { display: block; width: 100%; max-width: 608px; font-size: 16px; }
 .vc-event__desc { font-size: 14px; line-height: 1.4; }
 .vc-event__desc p { margin-bottom: 14px; }
 .vc-event__sessions { list-style: none; margin: 0 0 30px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.vc-event__sessions a { display: inline-block; padding: 8px 14px; border: 1px solid var(--vc-primary); border-radius: 8px; font-size: 15px; }
+.vc-event__sessions a { display: inline-block; padding: var(--space-2) var(--space-4); border: 1px solid var(--vc-primary); border-radius: var(--radius-md); font-size: 15px; }
 .vc-event__sessions a[aria-current='true'] { background: var(--vc-primary); color: #fff; }
 .vc-event__sessions .is-cancelled { text-decoration: line-through; opacity: 0.6; }
 .vc-event__map { margin: 30px 0; }
-.vc-event__map iframe { width: 100%; height: 320px; border: 0; border-radius: 10px; }
-.vc-event__past-note { margin: 20px 0; padding: 14px 18px; background: rgba(130, 33, 33, 0.08); border-radius: 8px; }
+.vc-event__map iframe { width: 100%; height: 320px; border: 0; border-radius: var(--radius-md); }
+.vc-event__past-note { margin: 20px 0; padding: 14px 18px; background: rgba(130, 33, 33, 0.08); border-radius: var(--radius-md); }
 
 /* ---------- Legal and plain text pages (Hello Elementor page template) ---------- */
 .vc-legal { max-width: 1140px; margin-inline: auto; padding: 30px 30px 60px; font-size: 14px; line-height: 1.6; }
@@ -352,14 +355,15 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 .vc-form .is-required::after { content: '*'; color: #ff0000; padding-inline-start: 0.4em; }
 .vc-form input[type='text'], .vc-form input[type='email'], .vc-form input[type='tel'], .vc-form textarea {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid #69727d;
-  border-radius: 3px;
+  height: var(--control-h);
+  padding: 0 var(--control-pad-x);
+  border: var(--control-border);
+  border-radius: var(--radius-sm);
   background: #fff;
   color: var(--vc-text);
   font: 16px/1.4 var(--vc-font);
 }
-.vc-form textarea { min-height: 115px; resize: vertical; }
+.vc-form textarea { height: auto; min-height: 115px; padding-block: var(--space-3); resize: vertical; }
 .vc-form__consent { font-size: 16px; line-height: 1.6; }
 .vc-form__consent a { font-size: 14px; font-weight: 700; }
 .vc-form__actions .vc-btn { width: 100%; }
@@ -368,9 +372,9 @@ h6 { color: var(--vc-muted); font-size: var(--vc-accent-size); font-weight: var(
 /* ---------- Personal pages (order status, my tickets) ---------- */
 .vc-personal { max-width: 720px; margin-inline: auto; padding: 60px 20px 100px; text-align: center; min-height: 50vh; }
 .vc-personal h1 { margin-bottom: 20px; }
-.vc-personal__box { margin-top: 30px; padding: 30px; background: #fff; border-radius: 16px; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08); text-align: start; }
+.vc-personal__box { margin-top: 30px; padding: 30px; background: #fff; border-radius: var(--radius-md); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08); text-align: start; }
 .vc-personal__box label { display: block; margin-bottom: 6px; }
-.vc-personal__box input { width: 100%; padding: 12px 16px; border: 1px solid #69727d; border-radius: 3px; font: 16px var(--vc-font); margin-bottom: 16px; }
+.vc-personal__box input { width: 100%; height: var(--control-h); padding: 0 var(--control-pad-x); border: var(--control-border); border-radius: var(--radius-sm); font: 16px var(--vc-font); margin-bottom: 16px; }
 .vc-personal__status { font-size: 18px; }
 
 /* ---------- 404 (Elementor template 1224) ---------- */
@@ -430,7 +434,7 @@ html.age-gate-open body { overflow: hidden; }
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100000;
+  z-index: 9999; /* under the age gate (10000): the visitor answers the gate first, then sees the banner */
   background-color: var(--cn-bar);
   color: var(--cn-text);
   font: 400 13px/20px -apple-system, BlinkMacSystemFont, Arial, Roboto, 'Helvetica Neue', sans-serif;
@@ -440,11 +444,13 @@ html.age-gate-open body { overflow: hidden; }
 .cn-bar__text { display: inline-block; margin: 0 0 6px; }
 .cn-bar__buttons { display: inline-block; }
 .cn-bar__button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
   margin-inline-start: 10px;
-  padding: 8.5px 10px;
+  padding: 0 var(--control-pad-x);
   border: none;
-  border-radius: 2rem;
+  border-radius: var(--radius-md);
   background-color: var(--cn-button);
   color: inherit;
   font: inherit;
@@ -456,7 +462,7 @@ html.age-gate-open body { overflow: hidden; }
   cursor: pointer;
   box-shadow: none;
 }
-.cn-bar__button:hover { background-color: var(--cn-button); color: inherit; border-radius: 2rem; }
+.cn-bar__button:hover { background-color: var(--cn-button); color: inherit; border-radius: var(--radius-md); }
 .cn-bar__button--decline { background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.5); }
 .cn-bar__button--decline:hover { background-color: transparent; border: 1px solid #fff; }
 
@@ -465,42 +471,42 @@ html.age-gate-open body { overflow: hidden; }
  * Copied rule by rule; the WordPress !important overrides against the theme are not needed here. */
 #vino-booking-modal { position: fixed; inset: 0; z-index: 999999; }
 .vino-modal-overlay { position: absolute; inset: 0; background: rgba(44, 44, 44, 0.72); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
-.vino-modal-box { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; border-radius: 20px; width: 92%; max-width: 460px; max-height: 92vh; overflow-y: auto; padding: 28px 28px 24px; box-shadow: 0 24px 64px rgba(44, 44, 44, 0.22); color: #2c2c2c; font-family: var(--vc-font); text-align: start; }
+.vino-modal-box { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; border-radius: var(--radius-lg); width: 92%; max-width: 460px; max-height: 92vh; overflow-y: auto; padding: 28px 28px 24px; box-shadow: 0 24px 64px rgba(44, 44, 44, 0.22); color: #2c2c2c; font-family: var(--vc-font); text-align: start; }
 .vino-modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; gap: 12px; }
 #vino-modal-title { font-size: 20px; font-weight: 700; color: #2c2c2c; margin: 0; line-height: 1.3; }
-.vino-modal-close { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: #f0e6dc; border: none; cursor: pointer; font-size: 16px; color: #822121; display: flex; align-items: center; justify-content: center; transition: background 0.15s; padding: 0; }
+.vino-modal-close { position: relative; flex-shrink: 0; width: 32px; height: 32px; border-radius: var(--radius-md); background: #f0e6dc; border: none; cursor: pointer; font-size: 16px; color: #822121; display: flex; align-items: center; justify-content: center; transition: background 0.15s; padding: 0; }
 .vino-modal-close:hover { background: #e8d8cc; }
-.vino-booking-summary { font-size: 14px; color: #822121; background: #f0e6dc; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-weight: 600; }
+.vino-booking-summary { font-size: 14px; color: #822121; background: #f0e6dc; border-radius: var(--radius-md); padding: 10px 14px; margin-bottom: 14px; font-weight: 600; }
 .vino-modal-field { margin-bottom: 14px; }
 .vino-modal-field label { display: block; font-size: 12px; font-weight: 600; color: #888; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
 .vino-req { color: #c0392b; }
-.vino-modal-field input, .vino-modal-field select { width: 100%; height: 50px; border: 1.5px solid #e8ddd6; border-radius: 12px; padding: 0 14px; font-size: 16px; color: #2c2c2c; background: #fff; transition: border-color 0.15s, box-shadow 0.15s; box-sizing: border-box; appearance: none; -webkit-appearance: none; font-family: inherit; }
-.vino-modal-field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23822121' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
-[dir='rtl'] .vino-modal-field select { background-position: left 14px center; padding-right: 14px; padding-left: 36px; }
+.vino-modal-field input, .vino-modal-field select { width: 100%; height: var(--control-h); border: var(--control-border); border-radius: var(--radius-sm); padding: 0 var(--control-pad-x); font-size: 16px; color: #2c2c2c; background: #fff; transition: border-color 0.15s, box-shadow 0.15s; box-sizing: border-box; appearance: none; -webkit-appearance: none; font-family: inherit; }
+.vino-modal-field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23822121' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right var(--control-pad-x) center; padding-right: 40px; }
+[dir='rtl'] .vino-modal-field select { background-position: left var(--control-pad-x) center; padding-right: var(--control-pad-x); padding-left: 40px; }
 .vino-modal-field input:focus, .vino-modal-field select:focus { outline: none; border-color: #822121; box-shadow: 0 0 0 3px rgba(130, 33, 33, 0.08); }
 .vino-modal-field .vino-input-error, .vino-input-error { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1); }
 .vino-field-error { font-size: 12px; color: #c0392b; margin-top: 4px; }
 .vino-qty-row { display: flex; align-items: center; gap: 10px; }
-.vino-qty-btn { width: 48px; height: 48px; border-radius: 12px; border: none; background: #f0e6dc; color: #822121; font-size: 22px; font-weight: 500; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; padding: 0; }
+.vino-qty-btn { width: var(--control-h); height: var(--control-h); border-radius: var(--radius-md); border: none; background: #f0e6dc; color: #822121; font-size: 22px; font-weight: 500; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; padding: 0; }
 .vino-qty-btn:hover { background: #e5d5c5; }
 .vino-qty-btn:disabled { opacity: 0.5; cursor: default; }
-.vino-modal-field #vino-modal-qty { width: 60px; min-width: 60px; max-width: 60px; height: 48px; text-align: center; font-size: 18px; font-weight: 700; padding: 0; border-radius: 10px; flex-shrink: 0; -moz-appearance: textfield; }
+.vino-modal-field #vino-modal-qty { width: 60px; min-width: 60px; max-width: 60px; height: var(--control-h); text-align: center; font-size: 18px; font-weight: 700; padding: 0; border-radius: var(--radius-sm); flex-shrink: 0; -moz-appearance: textfield; }
 #vino-modal-qty::-webkit-outer-spin-button, #vino-modal-qty::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.vino-modal-btn-primary { display: block; width: 100%; height: 54px; border: none; border-radius: 14px; background: #822121; color: #fff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; margin-top: 12px; transition: background 0.15s, transform 0.1s; font-family: inherit; }
+.vino-modal-btn-primary { display: block; width: 100%; padding: var(--btn-pad-y) var(--btn-pad-x); line-height: 1.5; border: none; border-radius: var(--radius-md); background: #822121; color: #fff; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; margin-top: 12px; transition: background 0.15s, transform 0.1s; font-family: inherit; }
 .vino-modal-btn-primary:hover:not(:disabled) { background: #a02828; }
 .vino-modal-btn-primary:active { transform: scale(0.98); }
 .vino-modal-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
 .vino-modal-back-link { display: block; text-align: center; font-size: 13px; color: #aaa; cursor: pointer; background: none; border: none; width: 100%; padding: 10px 0 4px; font-family: inherit; line-height: 1.4; }
 .vino-modal-back-link:hover { color: #822121; }
 .vino-promo-section { border-top: 1px solid #f0e6dc; padding-top: 14px; margin-top: 6px; margin-bottom: 14px; }
-.vino-promo-toggle { background: none; border: none; padding: 0; font-size: 14px; color: #888; cursor: pointer; display: flex; align-items: center; justify-content: space-between; width: 100%; font-family: inherit; line-height: 1.4; }
+.vino-promo-toggle { position: relative; background: none; border: none; padding: 0; font-size: 14px; color: #888; cursor: pointer; display: flex; align-items: center; justify-content: space-between; width: 100%; font-family: inherit; line-height: 1.4; }
 .vino-promo-toggle:hover { color: #822121; }
 .vino-promo-arrow { display: inline-block; transition: transform 0.2s; font-size: 12px; color: #822121; }
 .vino-promo-arrow.is-open { transform: rotate(180deg); }
 .vino-promo-row { display: flex; gap: 8px; margin-top: 10px; }
-.vino-promo-row input { flex: 1; height: 44px; border: 1.5px solid #e8ddd6; border-radius: 10px; padding: 0 12px; font-size: 15px; box-sizing: border-box; font-family: inherit; min-width: 0; }
+.vino-promo-row input { flex: 1; height: var(--control-h); border: var(--control-border); border-radius: var(--radius-sm); padding: 0 var(--control-pad-x); font-size: 16px; box-sizing: border-box; font-family: inherit; min-width: 0; }
 .vino-promo-row input:focus { outline: none; border-color: #822121; }
-.vino-promo-apply { height: 44px; padding: 0 16px; border: none; border-radius: 10px; background: #f0e6dc; color: #822121; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; font-family: inherit; }
+.vino-promo-apply { height: var(--control-h); padding: 0 var(--control-pad-x); border: none; border-radius: var(--radius-md); background: #f0e6dc; color: #822121; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; font-family: inherit; }
 .vino-promo-apply:hover { background: #e8d8cc; }
 .vino-promo-apply:disabled { opacity: 0.6; }
 .vino-promo-result { font-size: 13px; margin-top: 7px; min-height: 18px; }
@@ -509,7 +515,7 @@ html.age-gate-open body { overflow: hidden; }
 .vino-promo-line { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 600; color: #2a7a2a; margin: 4px 0 10px; }
 .vino-promo-remove { border: none; background: none; box-shadow: none; padding: 0 4px; font-size: 18px; line-height: 1; color: #8a7a6e; cursor: pointer; }
 .vino-promo-remove:hover { color: #c0392b; }
-.vino-step-errors { background: #fff5f5; border: 1px solid #fcc; border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; font-size: 14px; color: #c0392b; }
+.vino-step-errors { background: #fff5f5; border: 1px solid #fcc; border-radius: var(--radius-md); padding: 10px 14px; margin-bottom: 10px; font-size: 14px; color: #c0392b; }
 .vino-modal-timer { font-size: 12px; color: #888; text-align: center; margin-bottom: 14px; font-weight: 400; }
 .vino-modal-check { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: #555; margin: 0 0 14px; cursor: pointer; line-height: 1.4; }
 .vino-modal-check input { margin-top: 2px; flex-shrink: 0; width: 18px; height: 18px; accent-color: #822121; }
@@ -519,25 +525,23 @@ body.vino-modal-open { overflow: hidden; }
 #vino-booking-modal *, #vino-booking-modal *::before, #vino-booking-modal *::after { box-sizing: border-box; }
 /* Mobile: bottom sheet (iPhone SE 375 px to iPhone 15 430 px), as on WordPress. */
 @media (max-width: 600px) {
-  .vino-modal-box { top: auto; bottom: 0; left: 0; right: 0; transform: none; width: 100%; max-width: 100%; border-radius: 20px 20px 0 0; padding: 20px 16px 32px; overflow-x: hidden; -webkit-overflow-scrolling: touch; position: fixed; }
+  .vino-modal-box { top: auto; bottom: 0; left: 0; right: 0; transform: none; width: 100%; max-width: 100%; border-radius: var(--radius-lg) var(--radius-lg) 0 0; padding: var(--space-5) var(--gutter) var(--space-6); overflow-x: hidden; -webkit-overflow-scrolling: touch; position: fixed; }
   #vino-modal-title { font-size: 18px; }
   .vino-booking-summary { font-size: 13px; padding: 8px 12px; }
   .vino-modal-field { margin-bottom: 12px; }
-  .vino-modal-field input, .vino-modal-field select { height: 52px; }
   .vino-qty-row { gap: 8px; }
   .vino-qty-btn { font-size: 20px; min-width: 48px; }
   .vino-modal-field #vino-modal-qty { width: 56px; min-width: 56px; max-width: 56px; }
   .vino-promo-section { padding-top: 12px; margin-top: 4px; margin-bottom: 12px; }
   .vino-promo-toggle { padding: 8px 0; min-height: 36px; }
   .vino-promo-row { flex-direction: column; align-items: stretch; }
-  .vino-promo-row input { height: 48px; font-size: 16px; flex: none; width: 100%; }
-  .vino-promo-apply { width: 100%; height: 48px; font-size: 15px; border-radius: 12px; }
-  .vino-modal-btn-primary { height: 56px; margin-top: 4px; }
-  .vino-modal-back-link { padding: 12px 0 4px; font-size: 14px; }
+  .vino-promo-row input { flex: none; width: 100%; }
+  .vino-promo-apply { width: 100%; }
+  /* the promo block ends with the air WordPress leaves before PAY, so the two full-width buttons do not stack edge to edge */
+  .vino-promo-box { padding-bottom: var(--space-5); }
+  .vino-modal-btn-primary { margin-top: 4px; }
+  .vino-modal-back-link { padding: 12px 0 4px; font-size: 13px; }
   .vino-modal-timer { margin-bottom: 12px; }
-}
-@media (max-width: 380px) {
-  .vino-modal-box { padding: 16px 14px 28px; }
 }
 html.age-gate-passed .age-gate__wrapper { display: none; }
 
@@ -565,12 +569,12 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-order__number { font-size: 17px; }
 .vc-order__tickets { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 8px; }
 .vc-order__tickets a { color: var(--vc-primary); font-weight: 600; }
-.vc-order__event { display: grid; gap: 2px; margin: 0 0 16px; padding: 12px 16px; background: var(--vc-bg-soft, #f6f1ee); border-radius: 12px; }
+.vc-order__event { display: grid; gap: 2px; margin: 0 0 16px; padding: 12px 16px; background: var(--vc-bg-soft, #f6f1ee); border-radius: var(--radius-md); }
 .vc-order__event-name { font-size: 18px; }
 .vc-order__event-when, .vc-order__event-venue { font-size: 15px; }
 .vc-order__share-title { font-size: 18px; margin: 24px 0 12px; }
 .vc-order__share { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.vc-share { display: inline-block; padding: 8px 14px; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; background: #555; }
+.vc-share { display: inline-block; padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; background: #555; }
 .vc-share--facebook { background: #3b5998; }
 .vc-share--linkedin { background: #0077b5; }
 .vc-share--reddit { background: #ff4500; }
@@ -579,7 +583,7 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-share--email { background: #ea4335; }
 .vc-share--threads { background: #000; }
 .vc-share:hover, .vc-share:focus-visible { filter: brightness(0.9); color: #fff; }
-.vc-order__referral { margin: 24px 0; padding: 18px; border: 1px dashed var(--vc-primary); border-radius: 12px; }
+.vc-order__referral { margin: 24px 0; padding: 18px; border: 1px dashed var(--vc-primary); border-radius: var(--radius-md); }
 .vc-order__referral h3 { margin: 0 0 10px; }
 .vc-order__code { font-size: 20px; letter-spacing: 0.06em; }
 .vc-order__error { color: #c0392b; }
@@ -588,7 +592,7 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 @media (prefers-reduced-motion: reduce) { .vc-order__spinner { animation: none; } }
 
 /* My tickets (personal page) */
-.vc-mt__order { margin: 0 0 22px; padding: 16px 18px; border: 1px solid #e3d9d0; border-radius: 12px; }
+.vc-mt__order { margin: 0 0 22px; padding: 16px 18px; border: 1px solid #e3d9d0; border-radius: var(--radius-md); }
 .vc-mt__event { font-size: 20px; margin: 0 0 6px; color: var(--vc-primary); }
 .vc-mt__when, .vc-mt__meta { margin: 0 0 8px; font-size: 15px; }
 .vc-mt__state { margin-inline-start: 10px; color: #c0392b; }
@@ -638,7 +642,7 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-split__text p { margin: 0 0 20px; }
 .vc-split__text--karla { font-size: 18px; line-height: 1.8; }
 .vc-split__text--karla p { font-size: 18px; line-height: 1.8; }
-.vc-btn--gold { font-weight: 600; line-height: 21px; padding: 16px 30px; }
+.vc-btn--gold { font-weight: 600; line-height: 21px; padding: var(--btn-pad-y) var(--btn-pad-x); }
 .vc-split--home .vc-btn--gold { color: var(--vc-primary); }
 .vc-split--home .vc-btn--gold:hover { color: var(--vc-white); }
 .vc-split--about { --sh: 920px; --pw: 41.65%; --ph: 740px; --tw: 34.63%; --pl: 5.49%; --tl: 52.86%; }
@@ -657,13 +661,14 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
   .vc-split--private .vc-split__body { height: auto; }
 }
 @media (max-width: 767px) {
-  .vc-split { display: flex; flex-direction: column; padding: 0 10px; min-height: var(--mh, 0); gap: 0; box-sizing: border-box; }
+  /* a section ends with the shared gap, so a section's button never touches the next section's photo (home, 375 px) */
+  .vc-split { display: flex; flex-direction: column; padding: 0 var(--gutter) var(--section-gap); min-height: var(--mh, 0); gap: 0; box-sizing: border-box; }
   .vc-hero + .vc-split { margin-top: 90px; }
   .vc-split__media, [dir='rtl'] .vc-split__media { order: 0; width: 100%; height: 390px; padding: 0; }
   .vc-split--reverse .vc-split__media { order: 0; }
   .vc-split__media::before { top: -22px; inset-inline-start: -18px; width: 60px; height: 60px; }
   .vc-split__media img { height: 100%; aspect-ratio: auto; }
-  .vc-split__body { padding: 78px 16px 0; }
+  .vc-split__body { padding: 78px 0 0; }
   .vc-split__eyebrow { margin-bottom: 20px; }
   .vc-split__title { font-size: 20px; line-height: 1.2; }
   .vc-split--home .vc-split__actions .vc-btn { display: block; }
@@ -709,7 +714,7 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-home-hero__body { padding-inline: 10px; }
 .vc-home-hero h1 { margin-bottom: 20px; }
 .vc-home-hero .vc-btn { margin-top: 19px; }
-.vc-btn--primary { font-size: 14px; line-height: 21px; padding: 16px 32px; color: var(--vc-secondary); }
+.vc-btn--primary { font-size: 14px; line-height: 21px; padding: var(--btn-pad-y) var(--btn-pad-x); color: var(--vc-secondary); }
 .vc-features { margin-top: -121px; }
 .vc-feature { min-height: 254px; }
 .vc-feature img { width: 63px; height: 63px; flex-basis: 63px; }
@@ -722,14 +727,15 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
   /* WordPress hides the three feature cards on a phone and lists the event cards one under another. */
   .vc-features { display: none; }
   .vc-home-hero { min-height: 382px; padding: 61px 0 0; }
-  .vc-home-hero__body { padding-inline: 10px; }
+  .vc-home-hero__body { padding-inline: var(--gutter); }
   .vc-home-hero h1 { font-size: 60px; line-height: 72px; margin-bottom: 0; }
   .vc-home-hero h2 { margin-bottom: 16px; }
-  .vc-home-hero__text p { margin-inline: -6px 0; max-width: 370px; }
+  .vc-home-hero__text p { margin-inline: 0; max-width: 370px; }
   .vc-home-hero .vc-btn { display: block; width: 224px; margin: 19px auto 0; padding-inline: 0; }
-  .vc-carousel { margin-top: 20px; padding: 0 10px; }
+  .vc-carousel { margin-top: 20px; padding: 0 var(--gutter); }
   .vc-carousel__track { display: block; overflow: visible; }
-  .vc-carousel__track > .vc-card { padding: 0; padding-inline: 20px 10px; margin-bottom: 20px; }
+  .vc-carousel__track > .vc-card { padding: 0; margin-bottom: var(--list-gap); }
+  .vc-carousel { margin-bottom: var(--section-gap); }
   .vc-carousel .vc-card__title { margin-top: 33px; }
   .vc-carousel__arrow, .vc-carousel__dots { display: none; }
 }
@@ -740,9 +746,9 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-gallery img:nth-child(1) { flex: 1.336 1 0; }
 .vc-gallery img:nth-child(2), .vc-gallery img:nth-child(3) { flex: 1.5 1 0; }
 @media (max-width: 767px) {
-  .vc-gallery { display: grid; grid-template-columns: 1.336fr 1.5fr; gap: 10px; padding: 84px 10px 30px; }
+  .vc-gallery { display: grid; grid-template-columns: 1.336fr 1.5fr; gap: 10px; padding: 84px var(--gutter) var(--page-bottom); }
   .vc-gallery img { height: 127px; width: 100%; }
-  .vc-gallery img:nth-child(3) { grid-column: 1; width: 225px; max-width: none; height: 150px; }
+  .vc-gallery img:nth-child(3) { grid-column: 1; width: 225px; max-width: 100%; height: 150px; }
 }
 
 /* ---------- Event page: geometry of the WooCommerce product template 442 (measured at 1366 and 390 px) ---------- */
@@ -754,17 +760,18 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-event__facts { gap: 0 12px; margin: 70px 20px 0; font-size: 18px; line-height: 28.8px; }
 .vc-event__facts + .vc-event__facts { margin-top: 60px; }
 .vc-event__buy { margin: 63px 0 0; max-width: 810px; }
-.vc-event__buy .vc-btn { max-width: none; padding: 16px; font-size: 18px; line-height: 27px; }
+.vc-event__buy .vc-btn { max-width: none; padding: var(--btn-pad-y); font-size: 18px; line-height: 27px; }
 .vc-event__desc { margin-top: 24px; font-size: 16px; line-height: 1.6; }
 .vc-event__desc p { margin: 0 0 20px; }
 .vc-event__sessions, .vc-event__past-note { margin-inline: 20px; }
 @media (max-width: 767px) {
-  .vc-event { padding: 31px 10px 70px; }
-  .vc-event__poster { width: 333px; margin: 0 10px; }
-  .vc-event__title { margin: 7px 10px 0; font-size: 18px; line-height: 21.6px; }
-  .vc-event__facts { margin: 12px 10px 0; }
+  .vc-event { padding: var(--page-top) var(--gutter) var(--page-bottom); }
+  .vc-event__poster { width: 333px; max-width: 100%; margin: 0; }
+  .vc-event__title { margin: 7px 0 0; font-size: 18px; line-height: 21.6px; text-align: center; } /* centred under the poster, as WordPress' product title on a phone */
+  .vc-event__facts { margin: 12px 0 0; }
   .vc-event__facts + .vc-event__facts { margin-top: 20px; }
-  .vc-event__buy { margin: 14px 10px 0; max-width: 333px; }
+  .vc-event__buy { margin: 14px 0 0; max-width: none; }
+  .vc-event__sessions, .vc-event__past-note { margin-inline: 0; }
   .vc-event__desc { margin-top: 24px; }
 }
 
@@ -789,7 +796,7 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .vc-legal { max-width: 1100px; padding: 30px 0 60px; font-size: 16px; line-height: 1.6; }
 .vc-legal h2 { font-size: 18px; line-height: 1.3; margin: 0 0 16px; }
 .vc-legal p { margin: 0 0 20px; }
-@media (max-width: 767px) { .vc-legal { padding-inline: 10px; } }
+@media (max-width: 767px) { .vc-legal { padding: var(--page-top) var(--gutter) var(--page-bottom); } }
 .vc-legal--privacy { line-height: 1.5; }
 .vc-legal--privacy ul { padding-inline-start: 40px; margin: 0 0 20px; }
 .vc-legal--privacy li { margin: 0; }
@@ -797,13 +804,16 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 
 /* ---------- Event lists: grid copied from the Elementor loop grids (past 3 x 353 px, upcoming 3 x 350 px) ---------- */
 .vc-past { max-width: 1120px; gap: 30px; padding: 100px 0 80px; }
-.vc-past__item img, .vc-past__item--noimg { border-radius: 10px; }
-.vc-events:not(.vc-events--carousel) { grid-template-columns: repeat(3, 350px); justify-content: center; column-gap: 60px; position: relative; inset-inline-start: 5px; max-width: none; }
+.vc-past__item img, .vc-past__item--noimg { border-radius: var(--radius-md); }
+.vc-events:not(.vc-events--carousel) { grid-template-columns: repeat(3, 350px); justify-content: center; column-gap: 60px; padding-inline: 20px 10px; max-width: none; }
 .vc-events:not(.vc-events--carousel) .vc-card__title { margin-top: 21px; }
-@media (max-width: 1024px) { .vc-events:not(.vc-events--carousel) { grid-template-columns: repeat(2, 350px); inset-inline-start: 0; } }
+@media (max-width: 1024px) { .vc-events:not(.vc-events--carousel) { grid-template-columns: repeat(2, 350px); padding-inline: 10px; } }
 @media (max-width: 767px) {
-  .vc-past { padding: 131px 20px 80px; grid-template-columns: 1fr; }
-  .vc-events:not(.vc-events--carousel) { grid-template-columns: minmax(0, 350px); inset-inline-start: 0; padding-inline: 20px; }
+  .vc-past { padding: 131px var(--gutter) var(--page-bottom); grid-template-columns: 1fr; }
+  .vc-events:not(.vc-events--carousel) { grid-template-columns: minmax(0, 350px); padding-inline: var(--gutter); padding-bottom: var(--page-bottom); }
+  /* WordPress sets the upcoming list title like the past one on a phone: 30/36 */
+  .vc-events-head { padding: var(--page-top) var(--gutter) 10px; }
+  .vc-events-head h1 { font-size: 30px; line-height: 36px; }
 }
 
 /* ---------- Age gate: sizes of the plugin's markup on WordPress (measured at 1366 and 390 px) ---------- */
@@ -812,7 +822,7 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .age-gate__subheadline { margin: 0 0 20px; }
 .age-gate__fields { width: 100%; }
 .age-gate__challenge { margin: 0 0 20px; }
-.age-gate__submit { font-size: 18px; line-height: 27px; padding: 16px 32px; border: 1px solid transparent; border-radius: 10px; margin: 0 0 16px; }
+.age-gate__submit { font-size: 18px; line-height: 27px; padding: var(--btn-pad-y) var(--btn-pad-x); border: 1px solid transparent; border-radius: var(--radius-md); margin: 0 0 16px; }
 .age-gate__submit--yes:focus { background-color: #2e7d32; }
 .age-gate__submit--no:focus { background-color: #e0e0e0; }
 .age-gate__submit--yes:hover { background-color: #256628; }
@@ -823,23 +833,19 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
 .age-gate__errors { min-height: 20px; }
 
 /* ---------- Purchase modal: the plugin's buttons and fields as the WordPress theme styled them (measured at 1366 and 390 px) ---------- */
-.vino-modal-close { width: 66px; height: 34px; border-radius: 10px; background: #a02828; color: #fff; font: 600 18px/1 var(--vc-font); letter-spacing: 0.5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+.vino-modal-close { width: 66px; height: 34px; border-radius: var(--radius-md); background: #a02828; color: #fff; font: 600 18px/1 var(--vc-font); letter-spacing: 0.5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
 .vino-modal-close:hover { background: #822121; }
-.vino-modal-field input, .vino-modal-field select { border: 1px solid #666; }
 .vino-modal-field input:focus, .vino-modal-field select:focus { border-color: #822121; }
 .vino-modal-field .vino-input-error, .vino-input-error { border-color: #c0392b; }
-.vino-modal-btn-primary { background: #a02828; border-radius: 10px; font-size: 18px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+.vino-modal-btn-primary { background: #a02828; font-size: 18px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
 .vino-modal-btn-primary:hover:not(:disabled) { background: #822121; }
 .vino-modal-timer { margin-bottom: 20px; }
-@media (min-width: 768px) {
-  .vino-modal-field input, .vino-modal-field select { border-radius: 3px; padding: 8px 16px; }
-  .vino-qty-row input { padding: 0; }
-}
 @media (max-width: 767px) { .vc-bg-home { background-image: url('/_site/img/dsc06725-m.jpg'); } }
 
 /* ---------- Phone: transparent header over the hero and the footer as one link list (Elementor mobile layouts) ---------- */
 .vc-footer__mobile { display: none; }
 @media (max-width: 767px) {
+  .vc-personal { padding: var(--page-top) var(--gutter) var(--page-bottom); }
   .vc-header { position: absolute; inset-inline: 0; top: 0; background: transparent; box-shadow: none; }
   .vc-header__inner { min-height: 75px; padding-inline: 20px; }
   .vc-header__logo img { width: 31px; height: 31px; border-radius: 10px; }
@@ -859,4 +865,13 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
   .vc-footer__social a { width: 50px; height: 50px; border-radius: 0; }
   .vc-footer__social a svg { width: 25px; height: 25px; }
 }
-@media (max-width: 767px) { .vc-hero--about, .vc-hero--past, .vc-hero--contact, .vc-hero--private { padding-inline: 10px; } }
+@media (max-width: 767px) { .vc-hero--about, .vc-hero--past, .vc-hero--contact, .vc-hero--private { padding-inline: var(--gutter); } }
+
+/* ---------- Touch targets (mobile audit 2026-11-07): invisible hit areas of at least 44 px, the drawn size stays WordPress' ---------- */
+.vc-header__logo, .vc-burger, .vino-modal-close { position: relative; }
+.vc-header__logo::after, .vc-burger::after { content: ''; position: absolute; inset: -7px -6px; }
+.vino-modal-close::after { content: ''; position: absolute; inset: -5px 0; }
+.vino-promo-toggle::after { content: ''; position: absolute; inset: -4px 0; }
+
+/* Purchase sheet on a phone: WordPress sets PAY / NEXT at 16 px there (18 px from 768 px up); with the shared 16 px button padding the button is WordPress' 56 px. */
+@media (max-width: 600px) { .vino-modal-btn-primary { font-size: 16px; } }

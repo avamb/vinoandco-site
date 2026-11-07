@@ -44,15 +44,59 @@
 
   /* Layout */
   --vc-container: 1140px;
-  --vc-radius-img: 10px;
-  --vc-radius-btn: 10px;
+  --vc-radius-img: var(--radius-md);
+  --vc-radius-btn: var(--radius-md);
   --vc-gap: 20px;
   --vc-header-h: 92px;
+
+  /*
+   * One scale for the whole site (consistency pass 2026-11-07, docs/acceptance/2026-11-07/mobile/report_ru.md).
+   * Equal things take equal values: every component below reads these instead of its own number.
+   * Where WordPress itself was inconsistent the value it uses most often won.
+   */
+  --radius-sm: 4px;          /* text fields, selects, small square icon links (WP Elementor form fields) */
+  --radius-md: 10px;         /* buttons, cards, images, chips, panels (Elementor kit radius) */
+  --radius-lg: 20px;         /* the purchase bottom sheet / dialog box */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 30px;
+  --space-7: 40px;
+  --space-8: 60px;
+
+  --btn-pad-y: 16px;         /* every text button: kit 16px 32px */
+  --btn-pad-x: 32px;
+  --control-h: 48px;         /* text fields, selects, qty stepper, promo / banner buttons */
+  --control-pad-x: 16px;
+  --control-border: 1px solid #69727d;
+  --target-min: 44px;        /* smallest touch target (WCAG 2.5.5) */
+
+  --gutter: 10px;            /* page content inset from the screen edge */
+  --page-top: 30px;          /* first block of a page without a photo hero */
+  --page-bottom: 100px;      /* last block before the footer */
+  --section-gap: 100px;     /* air between two stacked content sections */
+  --list-gap: 40px;         /* between two cards of an event list */
 }
 
 @media (max-width: 1024px) {
   :root { --vc-container: 1024px; }
 }
 @media (max-width: 767px) {
-  :root { --vc-container: 767px; --vc-header-h: 64px; }
+  /* Phone: content lines up with the logo and the footer links, 20 px from the edge. */
+  :root { --vc-container: 767px; --vc-header-h: 64px; --gutter: 20px; --page-bottom: 60px; --section-gap: 60px; }
+}
+
+/*
+ * Russian pages: one typeface for the whole text. Neither Assistant nor Karla has Cyrillic, so a
+ * mixed line ("Вход с 19:30", "Einat Winery в Тель-Авиве") drew Latin letters and digits in
+ * Assistant and Cyrillic in the system sans, two different fonts side by side (mobile audit
+ * 2026-11-07). WordPress never loaded the web fonts at all, so the system sans for everything is
+ * exactly what the original showed. English and Hebrew keep Assistant: it covers both scripts.
+ */
+:root:lang(ru) {
+  --vc-font: sans-serif;
+  --vc-font-alt: sans-serif;
 }
