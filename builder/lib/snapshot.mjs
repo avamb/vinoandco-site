@@ -52,14 +52,24 @@ export function contentHash(snapshot) {
   const removed = (snapshot?.removed_events ?? [])
     .map((r) => ({ id: r.id, status: r.status, slug: r.slug ?? null, n: r.display_number ?? null }))
     .sort((a, b) => String(a.id).localeCompare(String(b.id)));
-  const payload = removed.length ? { events: stable, removed } : stable;
+  // Staging test-channel events change the site too; left out when there are none (hash unchanged).
+  const tests = [...(snapshot?.test_events ?? [])].sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  const extra = {};
+  if (removed.length) extra.removed = removed;
+  if (tests.length) {
+    extra.test = mapStrings(tests, (s) => {
+      const id = mediaIdOf(s);
+      return id ? `media:${id}` : s;
+    });
+  }
+  const payload = Object.keys(extra).length ? { events: stable, ...extra } : stable;
   return createHash('sha256').update(JSON.stringify(canonical(payload))).digest('hex');
 }
 
 /** Every platform media file the snapshot links to: [{ id, url }]. */
 export function mediaRefs(snapshot) {
   const found = new Map();
-  mapStrings(snapshot?.events ?? [], (s) => {
+  mapStrings([...(snapshot?.events ?? []), ...(snapshot?.test_events ?? [])], (s) => {
     const id = mediaIdOf(s);
     if (id && !found.has(id)) found.set(id, s);
     return s;
@@ -73,14 +83,14 @@ export function mediaRefs(snapshot) {
  * downloaded — a signed link expires in a day, a broken image is worse than none.
  */
 export function rewriteMedia(snapshot, files) {
-  return {
-    ...snapshot,
-    events: mapStrings(snapshot.events ?? [], (s) => {
-      const id = mediaIdOf(s);
-      if (!id) return s;
-      return files[id] ?? null;
-    }),
+  const swap = (s) => {
+    const id = mediaIdOf(s);
+    if (!id) return s;
+    return files[id] ?? null;
   };
+  const out = { ...snapshot, events: mapStrings(snapshot.events ?? [], swap) };
+  if (snapshot.test_events) out.test_events = mapStrings(snapshot.test_events, swap);
+  return out;
 }
 
 /** Events the platform marked as taken down (П-6, explicit). */

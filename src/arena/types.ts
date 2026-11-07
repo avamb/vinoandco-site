@@ -178,6 +178,11 @@ export interface EventsSnapshot {
   events: FeedEventDetail[];
   /** Events that left the feed in the last 30 days (`include_removed=true`); absent on older platforms. */
   removed_events?: FeedRemovedEvent[];
+  /**
+   * Staging only: events of the TEST channel (own feed token), built under the normal
+   * /event/<slug>/ address but never listed, never in the sitemap and never 410.
+   */
+  test_events?: FeedEventDetail[];
 }
 
 /** An event that left the feed: its page is removed and its address answers 410. */

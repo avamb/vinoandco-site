@@ -82,6 +82,8 @@ docker compose --profile builder up --build -d   # plus the builder: real events
 Build settings come from the environment (see `.env.example`); all of them are public.
 Without `PUBLIC_FEED_TOKEN` / `EVENTS_SNAPSHOT` the site builds from the sample events.
 
+**Test channel (staging only).** With `PUBLIC_TEST_FEED_TOKEN` (the test channel's public feed token) and `TEST_EVENT_IDS` (comma-separated event UUIDs and/or display numbers) set, the builder also reads those events from the test feed in the same 2-minute poll and builds them as normal event pages (ru/en/he, purchase modal included) with `noindex, nofollow`, left out of every list, the carousel, `sitemap.xml` and the 410 logic. Their checkout calls use the test token, so orders land in the test channel. If the test feed fails, the previous test events stay in the build and the main release is not affected. Both variables are empty in production and nothing changes.
+
 ## Ownership
 
 The code belongs to Vino&Co's site and can be built and hosted anywhere a Docker

@@ -117,3 +117,17 @@ describe('purge', () => {
     ]);
   });
 });
+
+describe('test channel events in the snapshot', () => {
+  it('a test event changes the hash, no test events keeps the old hash', () => {
+    const plain = { events: [event('e1')] };
+    expect(contentHash({ ...plain, test_events: [] })).toBe(contentHash(plain));
+    expect(contentHash({ ...plain, test_events: [event('t1')] })).not.toBe(contentHash(plain));
+  });
+  it('test event media is fetched and rewritten like any other', () => {
+    const snap = { events: [event('e1')], test_events: [event('t1', { poster: signed('m-t', 'aaa') })] };
+    expect(mediaRefs(snap).map((r) => r.id)).toContain('m-t');
+    const out = rewriteMedia(snap, { 'm-t': '/_site/media/m-t.jpg' });
+    expect(out.test_events[0].poster_url).toBe('/_site/media/m-t.jpg');
+  });
+});

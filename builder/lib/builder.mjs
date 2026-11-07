@@ -141,7 +141,8 @@ export function createBuilder(o) {
         last_build_at: at,
         published_hash: hash,
         published_events: snap.events?.length ?? 0,
-        published_pages: check.pages,
+        // Staging test pages (3 per test event) are left out of the baseline: a test event may vanish.
+        published_pages: Math.max(0, check.pages - 3 * (snap.test_events?.length ?? 0)),
         current_release: staged,
         oldest_unprocessed_change_at: contentHash(latest) === hash ? null : state.oldest_unprocessed_change_at,
         consecutive_failures: 0,

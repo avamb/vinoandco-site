@@ -18,7 +18,7 @@ import LegacyEventPage from '../components/pages/LegacyEventPage.astro';
 import NotFoundPage from '../components/pages/NotFoundPage.astro';
 import { languages, type LanguageCode } from '../../site.config.ts';
 import { eventPath, notFoundPath, pagePaths, toParam, type PageKey } from '../lib/routes.ts';
-import { siteEvents, type SiteEvent } from '../lib/events.ts';
+import { routeEvents, type SiteEvent } from '../lib/events.ts';
 import { legacyEvents, type LegacyEvent } from '../lib/legacy.ts';
 
 type Route =
@@ -32,7 +32,7 @@ export const getStaticPaths = (() => {
   for (const [key, paths] of Object.entries(pagePaths) as [PageKey, Record<LanguageCode, string>][]) {
     for (const l of languages) out.push({ params: { path: toParam(paths[l.code]) }, props: { route: { kind: 'page', key, lang: l.code } } });
   }
-  for (const event of siteEvents()) {
+  for (const event of routeEvents()) {
     for (const l of languages) out.push({ params: { path: toParam(eventPath(event.slug, l.code)) }, props: { route: { kind: 'event', event, lang: l.code } } });
   }
   // Bil24-era past events keep their WordPress addresses (a platform event with the same slug wins).

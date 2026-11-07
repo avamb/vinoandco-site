@@ -6,6 +6,9 @@
 //
 // Environment (public values only in the repository, see .env.example):
 //   PUBLIC_ARENA_API, PUBLIC_FEED_TOKEN   feed to poll (required)
+//   PUBLIC_TEST_FEED_TOKEN, TEST_EVENT_IDS   staging only: the test channel's feed token and the
+//                                         event ids (UUID or display number, comma separated) to build
+//                                         from it. Both empty in production.
 //   SITE_URL                              origin of the published site (purge URLs)
 //   BUILDER_DATA_DIR   (/data)            snapshots, media, state.json   — volume builder-data
 //   BUILDER_SITE_DIR   (/site)            releases/ and `current`        — volume shared with web
@@ -23,6 +26,8 @@ import { eventSlug } from '../src/arena/lifecycle.ts';
 import { createBuilder } from './lib/builder.mjs';
 import { removedPaths } from '../scripts/removed-events.mjs';
 import { run } from './lib/release.mjs';
+import { testChannelConfig } from '../src/arena/test-channel.ts';
+import { testEventPaths } from './lib/test-events.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const env = process.env;
@@ -40,6 +45,14 @@ if (!feedToken) {
 
 const client = createArenaClient({ apiBase, feedToken, timeoutMs: 30_000 });
 const knownSlugs = JSON.parse(readFileSync(join(appDir, 'src', 'data', 'event-slugs.json'), 'utf8'));
+const testCfg = testChannelConfig(env);
+const testClient = testCfg.enabled ? createArenaClient({ apiBase, feedToken: testCfg.token, timeoutMs: 30_000 }) : null;
+let lastTestEvents = [];
+try {
+  lastTestEvents = JSON.parse(readFileSync(join(dataDir, 'snapshots', 'latest.json'), 'utf8')).test_events ?? [];
+} catch {
+  /* first run */
+}
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
 /** Every page an event must have in the build: ru, en, he. */
@@ -49,6 +62,7 @@ function eventPaths(snapshot) {
     const slug = eventSlug(e, knownSlugs);
     out.push(`/event/${slug}/`, `/en/event/${slug}/`, `/he/event/${slug}/`);
   }
+  out.push(...testEventPaths(snapshot, knownSlugs, eventSlug));
   return out;
 }
 
@@ -63,7 +77,20 @@ const builder = createBuilder({
   cfToken: env.CF_API_TOKEN || '',
   cfZoneId: env.CF_ZONE_ID || '',
   log,
-  fetchSnapshot: () => client.fetchSnapshot(),
+  async fetchSnapshot() {
+    // The main feed decides everything: its failure fails the poll. The test feed is
+    // best effort: on any failure the previous test events stay in the snapshot.
+    const snap = await client.fetchSnapshot();
+    if (!testClient) return snap;
+    try {
+      const { events, missing } = await testClient.fetchEventsByIds(testCfg.ids);
+      if (missing.length) log(`test feed does not list: ${missing.join(', ')} (not built)`);
+      lastTestEvents = events;
+    } catch (e) {
+      log(`test feed failed, keeping the previous ${lastTestEvents.length} test event(s): ${e?.message ?? e}`);
+    }
+    return { ...snap, test_events: lastTestEvents };
+  },
   eventPaths,
   removedPaths: removedEventPaths,
   async buildSite(snapshotPath) {
@@ -86,6 +113,11 @@ if (args.has('--poll')) {
     console.log(`${e.display_number}\t${eventSlug(e, knownSlugs)}\t${e.name}\t${sessions.join(' | ')}`);
   }
   console.log(`${snap.events.length} event(s)`);
+  if (testClient) {
+    const t = await testClient.fetchEventsByIds(testCfg.ids);
+    for (const e of t.events) console.log(`TEST	${e.display_number}	${eventSlug(e, knownSlugs)}	${e.name}`);
+    console.log(`${t.events.length} test event(s)${t.missing.length ? `, not listed: ${t.missing.join(', ')}` : ''}`);
+  }
   process.exit(0);
 }
 

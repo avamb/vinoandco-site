@@ -183,3 +183,5 @@ Still to add: link check, JSON-LD and hreflang check, axe, Lighthouse.
   both so the retry replays. Bump `CLUB_TEXT_VERSION` in `src/lib/forms.ts` when the club tick text changes.
 - Success texts of the forms are the site's own (Elementor messages were not in the saved HTML).
 - In the Bash tool a heredoc with apostrophes or backticks may fail to parse: write such files with the editor tool.
+
+- Test channel (staging only): `snapshot.test_events` (separate from `events`, so the completeness and 410 rules never see it) is built only when `PUBLIC_TEST_FEED_TOKEN` is set. `siteEvents()` (lists, sitemap) never returns them, only `routeEvents()` (the router) does, and each `SiteEvent` carries its own `feedToken` for the modal and funnel. A public event keeps its address on a slug clash.

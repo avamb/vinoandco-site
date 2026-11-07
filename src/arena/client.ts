@@ -6,6 +6,7 @@
  * Written so Node can run it with type stripping only (the builder imports it
  * without a bundler): no enums, no parameter properties, no namespaces.
  */
+import { selectTestEvents } from './test-channel.ts';
 import type {
   EventsSnapshot,
   FeedEvent,
@@ -172,6 +173,21 @@ export function createArenaClient(opts: ArenaClientOptions) {
     return { fetched_at: new Date().toISOString(), source: 'feed', events, removed_events: removedEvents };
   }
 
+  /**
+   * Staging test channel: the detail of the listed events named in `ids` (UUID or
+   * display number). Ids the feed does not list are returned in `missing`.
+   */
+  async function fetchEventsByIds(ids: string[], perPage = 100): Promise<{ events: FeedEventDetail[]; missing: string[] }> {
+    const first = await listEvents(1, perPage);
+    const list: FeedEvent[] = [...first.events];
+    for (let p = 2; p <= first.pagination.total_pages; p++) list.push(...(await listEvents(p, perPage)).events);
+    const picked = selectTestEvents(list, ids);
+    const events: FeedEventDetail[] = [];
+    for (const e of picked) events.push(await getEvent(e.id));
+    const found = new Set(picked.flatMap((e) => [String(e.id).toLowerCase(), String(e.display_number)]));
+    return { events, missing: ids.filter((i) => !found.has(i.toLowerCase())) };
+  }
+
   // ── Checkout (browser) ──────────────────────────────────────────────────
 
   /** Read-only price quote of a cart (no hold, no order). */
@@ -269,7 +285,7 @@ export function createArenaClient(opts: ArenaClientOptions) {
     }
   }
 
-  return { listEvents, getEvent, fetchSnapshot, quote, startCheckout, checkoutStatus, recoverCheckout, referral, funnel, absolute, requestMyTicketsLink, exchangeMyTicketsToken, myTicketsOrders, myTicketsPdf, revokeMyTicketsSession, sendOrganizerContact, subscribeMarketing };
+  return { listEvents, getEvent, fetchSnapshot, fetchEventsByIds, quote, startCheckout, checkoutStatus, recoverCheckout, referral, funnel, absolute, requestMyTicketsLink, exchangeMyTicketsToken, myTicketsOrders, myTicketsPdf, revokeMyTicketsSession, sendOrganizerContact, subscribeMarketing };
 }
 
 export type ArenaClient = ReturnType<typeof createArenaClient>;

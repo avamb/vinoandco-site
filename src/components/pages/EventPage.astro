@@ -42,8 +42,8 @@ function sessionState(s: (typeof sessions)[number]) {
   return s.sales_state || 'open';
 }
 ---
-<Base lang={lang} title={`${event.name} — Vino&Co`} description={description} alternates={alternates} noindex={!event.listed} image={event.poster}>
-  <article class="vc-event" data-event-page data-primary-session={primaryId} data-event-id={event.raw.id} data-event-name={event.name} data-api={arena.apiBase} data-feed={arena.feedToken} data-past={event.past ? '1' : undefined} data-price={from?.amount} data-currency={from?.currency}>
+<Base lang={lang} title={`${event.name} — Vino&Co`} description={description} alternates={alternates} noindex={!event.listed || event.test} image={event.poster}>
+  <article class="vc-event" data-event-page data-primary-session={primaryId} data-event-id={event.raw.id} data-event-name={event.name} data-api={arena.apiBase} data-feed={event.feedToken} data-past={event.past ? '1' : undefined} data-price={from?.amount} data-currency={from?.currency}>
     <div class="vc-event__inner">
       {event.poster && (
         <div class:list={['vc-event__poster', { 'vc-soldout-ribbon': soldOut }]}>
@@ -124,7 +124,7 @@ function sessionState(s: (typeof sessions)[number]) {
       eventPath={eventPath(event.slug, lang)}
       sessions={event.sessions}
       apiBase={arena.apiBase}
-      feedToken={arena.feedToken}
+      feedToken={event.feedToken}
       returnUrl={returnUrl}
       sessionId={primaryId}
     />

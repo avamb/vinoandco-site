@@ -44,6 +44,11 @@ export const indexing: boolean = env.SITE_INDEXING === 'true';
 export const arena = {
   apiBase: env.PUBLIC_ARENA_API || 'https://api.arenasoldout.com',
   feedToken: env.PUBLIC_FEED_TOKEN || '',
+  /**
+   * Staging only: feed token of the TEST channel. Empty in production, and then no test event
+   * is ever built, whatever a snapshot says. Used for that event's checkout calls.
+   */
+  testFeedToken: (env.PUBLIC_TEST_FEED_TOKEN || '').trim(),
   /** Path to an events snapshot written by the builder; empty = sample snapshot. */
   snapshotPath: env.EVENTS_SNAPSHOT || '',
 };

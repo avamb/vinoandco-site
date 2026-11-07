@@ -44,6 +44,10 @@ export interface SiteEvent {
   name: string;
   past: boolean;
   listed: boolean;
+  /** Staging test-channel event: noindex, in no list and no sitemap. */
+  test: boolean;
+  /** Feed token for this event's browser calls (checkout, funnel): the test channel's for a test event. */
+  feedToken: string;
   state: SalesState;
   poster: string | null;
   descriptionHtml: string;
@@ -59,34 +63,81 @@ export interface SiteEvent {
   ageRating: string | null;
 }
 
+export interface ShapeOptions {
+  now?: Date;
+  /** slug table of known events (display number -> slug) */
+  known?: Record<string, string>;
+  /** Feed token of the main channel. */
+  mainToken?: string;
+  /** Feed token of the staging test channel; empty = test events are not built at all. */
+  testToken?: string;
+}
+
+function shape(e: FeedEventDetail, o: Required<ShapeOptions>, test: boolean): SiteEvent {
+  const past = isPast(e, o.now);
+  const next = upcomingSessions(e, o.now);
+  const sorted = [...e.sessions].sort((a, b) => a.start_at.localeCompare(b.start_at));
+  const primary = past ? sorted[sorted.length - 1] ?? null : next[0] ?? sorted[0] ?? null;
+  const venue = e.venues.find((v) => primary && v.session_starts.includes(primary.start_at)) ?? e.venues[0];
+  return {
+    raw: e,
+    // TODO(П-5): the platform slug; until the feed has it, the known-slug table or e<display_number>.
+    slug: eventSlug(e, o.known),
+    name: e.name,
+    past,
+    // A test event is never listed: not on home / upcoming / past / carousel, not in the sitemap.
+    listed: test ? false : isListed(e),
+    test,
+    feedToken: test ? o.testToken : o.mainToken,
+    state: past ? 'ended' : eventSalesState(e, o.now),
+    poster: primary?.poster_url ?? e.poster_url ?? e.image_url,
+    descriptionHtml: sanitizeHtml(e.description_html ?? ''),
+    descriptionText: e.description_text ?? '',
+    primary,
+    sessions: sorted,
+    venueName: venue?.name ?? e.venue_names[0] ?? '',
+    venueCity: venue?.city ?? '',
+    venueAddress: venue?.address ?? '',
+    timezone: primary?.timezone || venue?.timezone || brand.defaultTimezone,
+    priceFrom: priceFrom(past ? [] : next),
+    ageRating: e.age_rating ?? null,
+  };
+}
+
+/**
+ * Pure: the events a snapshot yields. `events` are the public ones (lists, sitemap);
+ * `testEvents` get a page only (see `routeEvents`). Test events are dropped without a
+ * test token, and one whose slug a public event already uses (the public one wins).
+ */
+export function buildSiteEvents(snapshot: EventsSnapshot, opts: ShapeOptions = {}): { events: SiteEvent[]; testEvents: SiteEvent[] } {
+  const o: Required<ShapeOptions> = { now: opts.now ?? buildNow, known: opts.known ?? {}, mainToken: opts.mainToken ?? '', testToken: opts.testToken ?? '' };
+  const events = snapshot.events.map((e) => shape(e, o, false));
+  const taken = new Set(events.map((e) => e.slug));
+  const testEvents: SiteEvent[] = [];
+  if (o.testToken) {
+    for (const e of snapshot.test_events ?? []) {
+      const t = shape(e, o, true);
+      if (taken.has(t.slug)) continue;
+      taken.add(t.slug);
+      testEvents.push(t);
+    }
+  }
+  return { events, testEvents };
+}
+
+function shaped() {
+  return buildSiteEvents(loadSnapshot(), { known: knownSlugs as Record<string, string>, mainToken: arena.feedToken, testToken: arena.testFeedToken });
+}
+
+/** Public events: every list, the carousel and the sitemap read these (never test events). */
 export function siteEvents(): SiteEvent[] {
-  return loadSnapshot().events.map((e) => {
-    const past = isPast(e, buildNow);
-    const next = upcomingSessions(e, buildNow);
-    const sorted = [...e.sessions].sort((a, b) => a.start_at.localeCompare(b.start_at));
-    const primary = past ? sorted[sorted.length - 1] ?? null : next[0] ?? sorted[0] ?? null;
-    const venue = e.venues.find((v) => primary && v.session_starts.includes(primary.start_at)) ?? e.venues[0];
-    return {
-      raw: e,
-      // TODO(П-5): the platform slug; until the feed has it, the known-slug table or e<display_number>.
-      slug: eventSlug(e, knownSlugs as Record<string, string>),
-      name: e.name,
-      past,
-      listed: isListed(e),
-      state: past ? 'ended' : eventSalesState(e, buildNow),
-      poster: primary?.poster_url ?? e.poster_url ?? e.image_url,
-      descriptionHtml: sanitizeHtml(e.description_html ?? ''),
-      descriptionText: e.description_text ?? '',
-      primary,
-      sessions: sorted,
-      venueName: venue?.name ?? e.venue_names[0] ?? '',
-      venueCity: venue?.city ?? '',
-      venueAddress: venue?.address ?? '',
-      timezone: primary?.timezone || venue?.timezone || brand.defaultTimezone,
-      priceFrom: priceFrom(past ? [] : next),
-      ageRating: e.age_rating ?? null,
-    };
-  });
+  return shaped().events;
+}
+
+/** Every event that gets a page: public and test. Only the router uses this. */
+export function routeEvents(): SiteEvent[] {
+  const s = shaped();
+  return [...s.events, ...s.testEvents];
 }
 
 export function upcomingEvents(): SiteEvent[] {
