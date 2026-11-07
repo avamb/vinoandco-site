@@ -744,3 +744,26 @@ html.age-gate-passed .age-gate__wrapper { display: none; }
   .vc-gallery img { height: 127px; width: 100%; }
   .vc-gallery img:nth-child(3) { grid-column: 1; width: 225px; max-width: none; height: 150px; }
 }
+
+/* ---------- Event page: geometry of the WooCommerce product template 442 (measured at 1366 and 390 px) ---------- */
+.vc-event { max-width: 900px; padding: 68px 0 100px; }
+.vc-event__inner { max-width: none; }
+.vc-event__poster { display: block; width: 600px; max-width: calc(100% - 40px); margin: 20px 20px 0; }
+.vc-event__poster img { aspect-ratio: 640 / 670; object-fit: cover; height: auto; }
+.vc-event__title { margin: 67px 20px 0; font-size: 40px; font-weight: 600; line-height: 48px; }
+.vc-event__facts { gap: 0 12px; margin: 70px 20px 0; font-size: 18px; line-height: 28.8px; }
+.vc-event__facts + .vc-event__facts { margin-top: 60px; }
+.vc-event__buy { margin: 63px 0 0; max-width: 810px; }
+.vc-event__buy .vc-btn { max-width: none; padding: 16px; font-size: 18px; line-height: 27px; }
+.vc-event__desc { margin-top: 24px; font-size: 16px; line-height: 1.6; }
+.vc-event__desc p { margin: 0 0 20px; }
+.vc-event__sessions, .vc-event__past-note { margin-inline: 20px; }
+@media (max-width: 767px) {
+  .vc-event { padding: 31px 10px 70px; }
+  .vc-event__poster { width: 333px; margin: 0 10px; }
+  .vc-event__title { margin: 7px 10px 0; font-size: 18px; line-height: 21.6px; }
+  .vc-event__facts { margin: 12px 10px 0; }
+  .vc-event__facts + .vc-event__facts { margin-top: 20px; }
+  .vc-event__buy { margin: 14px 10px 0; max-width: 333px; }
+  .vc-event__desc { margin-top: 24px; }
+}
