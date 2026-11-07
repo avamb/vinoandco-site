@@ -2,7 +2,7 @@
 /**
  * Event page (WooCommerce product template 442): poster, title, 📅 date 🕖 time
  * ⌛ days to start 🔞 age, "doors open", 🏛 venue 📍 address, "Buy ticket",
- * description, map. Dates are in the venue's zone. One page per event; with
+ * description. Dates are in the venue's zone. One page per event; with
  * several sessions the buyer picks one (?session=<id> preselects it, spec 62 §4).
  * A finished event keeps its address, loses the purchase button and shows the
  * after-event materials (§6.1).
@@ -30,9 +30,6 @@ const sessions = event.sessions;
 const primaryId = event.primary?.id ?? '';
 const soldOut = event.state === 'sold_out';
 const materials = event.raw.materials;
-const map = materials.map_point;
-const mapQuery = map ? `${map.latitude},${map.longitude}` : event.venueAddress || event.venueName;
-const mapSrc = mapQuery ? `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed` : null;
 const description = event.descriptionText.slice(0, 160);
 const returnUrl = new URL(pagePath('orderStatus', lang), siteUrl).href;
 const from = event.priceFrom;
@@ -114,11 +111,6 @@ function sessionState(s: (typeof sessions)[number]) {
         </div>
       ))}
 
-      {mapSrc && event.past && (
-        <div class="vc-event__map">
-          <iframe src={mapSrc} title={`${t.map}: ${event.venueName}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      )}
     </div>
   </article>
 

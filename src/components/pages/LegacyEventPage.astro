@@ -6,6 +6,7 @@
  */
 import Base from '../../layouts/Base.astro';
 import { ui } from '../../lib/i18n.ts';
+import { directionsLinks } from '../../lib/directions.ts';
 import { eventPath, pagePath } from '../../lib/routes.ts';
 import type { LegacyEvent } from '../../lib/legacy.ts';
 import { languages, type LanguageCode } from '../../../site.config.ts';
@@ -17,6 +18,7 @@ interface Props {
 const { lang, event } = Astro.props;
 const t = ui(lang).event;
 const title = event.title[lang];
+const directions = directionsLinks({ address: event.address });
 const alternates = Object.fromEntries(languages.map((l) => [l.code, eventPath(event.slug[l.code], l.code)])) as Record<LanguageCode, string>;
 const html = event.description_html[lang];
 const description = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160);
@@ -41,6 +43,13 @@ const [day, time] = event.date ? event.date.split('T') : [null, null];
         <div class="vc-event__facts">
           {event.venue && <span>🏛 {t.place} {event.venue}</span>}
           {event.city && <span>📍 {event.city}</span>}
+          {directions && (
+            <span class="vc-event__directions">
+              🧭 {t.directions}{' '}
+              <a href={directions.google} target="_blank" rel="noopener">Google Maps</a>{' · '}
+              <a href={directions.waze} target="_blank" rel="noopener">Waze</a>
+            </span>
+          )}
         </div>
       )}
       <div class="vc-event__buy">
