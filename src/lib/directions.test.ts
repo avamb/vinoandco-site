@@ -14,6 +14,14 @@ describe('directionsLinks', () => {
   it('uses the address alone when the city is missing', () => {
     expect(directionsLinks({ address: 'Herzl 5', city: null })?.waze).toBe('https://waze.com/ul?q=Herzl%205&navigate=yes');
   });
+  it('does not repeat a city the address already names', () => {
+    expect(directionsLinks({ address: 'Chaim Levanon St 2, Tel Aviv-Yafo, Israel', city: 'Tel Aviv' })?.waze).toBe(
+      'https://waze.com/ul?q=Chaim%20Levanon%20St%202%2C%20Tel%20Aviv-Yafo%2C%20Israel&navigate=yes',
+    );
+    expect(directionsLinks({ address: 'Herzl 5, haifa', city: 'Haifa' })?.google).toBe(
+      'https://www.google.com/maps/search/?api=1&query=Herzl%205%2C%20haifa',
+    );
+  });
   it('returns null without an address', () => {
     expect(directionsLinks({ address: null, city: 'Haifa' })).toBeNull();
     expect(directionsLinks({ address: '  ', city: 'Haifa' })).toBeNull();

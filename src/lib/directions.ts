@@ -34,7 +34,10 @@ export function directionsLinks(venue: DirectionsVenue | null | undefined): Dire
   const address = (venue.address ?? '').trim();
   if (!address) return null;
   const city = (venue.city ?? '').trim();
-  const q = encodeURIComponent(city ? `${address}, ${city}` : address);
+  // The city is appended only when the address does not name it already
+  // ("Chaim Levanon St 2, Tel Aviv-Yafo, Israel" + "Tel Aviv" would repeat it).
+  const withCity = city && !address.toLowerCase().includes(city.toLowerCase());
+  const q = encodeURIComponent(withCity ? `${address}, ${city}` : address);
   return {
     google: `https://www.google.com/maps/search/?api=1&query=${q}`,
     waze: `https://waze.com/ul?q=${q}&navigate=yes`,
