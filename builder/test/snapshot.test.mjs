@@ -131,3 +131,20 @@ describe('test channel events in the snapshot', () => {
     expect(out.test_events[0].poster_url).toBe('/_site/media/m-t.jpg');
   });
 });
+
+describe('report photos', () => {
+  const signedUrl = (id) => `https://api.example/v1/media-files/${id}?expires=1&sig=abc`;
+  const snap = () => ({
+    events: [{ id: 'e1', materials: { gallery: [], videos: [], partner_links: [], map_point: null, report_photos: [{ media_id: 'r-1', url: signedUrl('r-1') }, { media_id: 'r-2', url: signedUrl('r-2') }] } }],
+  });
+  it('downloads report photos and swaps their links for site files', () => {
+    expect(mediaRefs(snap()).map((r) => r.id)).toEqual(['r-1', 'r-2']);
+    const out = rewriteMedia(snap(), { 'r-1': '/_site/media/r-1.jpg' });
+    expect(out.events[0].materials.report_photos.map((p) => p.url)).toEqual(['/_site/media/r-1.jpg', null]);
+  });
+  it('a new report photo changes the content hash', () => {
+    const more = snap();
+    more.events[0].materials.report_photos.push({ media_id: 'r-3', url: signedUrl('r-3') });
+    expect(contentHash(more)).not.toBe(contentHash(snap()));
+  });
+});

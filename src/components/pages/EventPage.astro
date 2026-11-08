@@ -12,7 +12,7 @@ import BuyModal from '../islands/BuyModal.svelte';
 import { ui } from '../../lib/i18n.ts';
 import { directionsLinks } from '../../lib/directions.ts';
 import { eventPath, pagePath } from '../../lib/routes.ts';
-import { buildNow, daysUntil, formatDate, formatSessionChip, formatTime, type SiteEvent } from '../../lib/events.ts';
+import { buildNow, daysUntil, formatDate, formatSessionChip, formatTime, reportPhotos, type SiteEvent } from '../../lib/events.ts';
 import { sessionEndsAt } from '../../arena/index.ts';
 import { arena, languages, siteUrl, type LanguageCode } from '../../../site.config.ts';
 import { language } from '../../lib/i18n.ts';
@@ -30,6 +30,7 @@ const sessions = event.sessions;
 const primaryId = event.primary?.id ?? '';
 const soldOut = event.state === 'sold_out';
 const materials = event.raw.materials;
+const photos = reportPhotos(event);
 const description = event.descriptionText.slice(0, 160);
 const returnUrl = new URL(pagePath('orderStatus', lang), siteUrl).href;
 const from = event.priceFrom;
@@ -104,6 +105,21 @@ function sessionState(s: (typeof sessions)[number]) {
       })}
 
       <div class="vc-event__desc" set:html={event.descriptionHtml} />
+
+      {photos.length > 0 && (
+        <section class="vc-event__report" data-photo-report aria-labelledby="vc-report-title">
+          <h2 id="vc-report-title" class="vc-event__report-title">{t.photoReport}</h2>
+          <ul class="vc-report">
+            {photos.map((p, i) => (
+              <li>
+                <a href={p.url} target="_blank" rel="noopener" aria-label={`${t.photoOpen} ${i + 1}`}>
+                  <img src={p.url} alt={p.caption || `${event.name} – ${t.photoReport} ${i + 1}`} width={p.width ?? 400} height={p.height ?? 300} loading="lazy" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {materials.videos.filter((v) => v.provider === 'youtube' && v.video_id).map((v) => (
         <div class="vc-event__map">
