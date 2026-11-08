@@ -43,7 +43,21 @@ server {
         add_header Cache-Control "public, max-age=31536000, immutable" always;
         try_files $uri =404;
     }
-    # Fonts, images, plain scripts of the site.
+    # Platform posters and photos, named by media id: a media id never changes
+    # its bytes (builder/lib/media.mjs), so the file can be kept for a year.
+    location ^~ /_site/media/ {
+        include /etc/nginx/snippets/headers.conf;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        try_files $uri =404;
+    }
+    # Self-hosted fonts: replaced only with a site release, 30 days.
+    location ^~ /_site/fonts/ {
+        include /etc/nginx/snippets/headers.conf;
+        add_header Cache-Control "public, max-age=2592000" always;
+        try_files $uri =404;
+    }
+    # Images and plain scripts of the site: their names do not change when a
+    # file is replaced, so a day.
     location ^~ /_site/ {
         include /etc/nginx/snippets/headers.conf;
         add_header Cache-Control "public, max-age=86400" always;
