@@ -152,6 +152,23 @@ export function pastEvents(): SiteEvent[] {
     .sort((a, b) => (b.primary?.start_at ?? '').localeCompare(a.primary?.start_at ?? ''));
 }
 
+/**
+ * Photos shown under "Photo report" on a finished event: the report photos,
+ * then the gallery, each media once. A photo whose file could not be
+ * downloaded by the builder (url null) is dropped, never shown broken.
+ */
+export function reportPhotos(e: SiteEvent): { url: string; caption: string; width: number | null; height: number | null }[] {
+  if (!e.past) return [];
+  const seen = new Set<string>();
+  const out: { url: string; caption: string; width: number | null; height: number | null }[] = [];
+  for (const p of [...(e.raw.materials?.report_photos ?? []), ...(e.raw.materials?.gallery ?? [])]) {
+    if (!p?.url || seen.has(p.media_id || p.url)) continue;
+    seen.add(p.media_id || p.url);
+    out.push({ url: p.url, caption: p.caption ?? '', width: p.width ?? null, height: p.height ?? null });
+  }
+  return out;
+}
+
 /** Date as on WordPress cards: 2026-11-21, in the venue's zone. */
 export function formatDate(iso: string, tz: string): string {
   return new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(iso));

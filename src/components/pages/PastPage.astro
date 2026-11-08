@@ -6,8 +6,9 @@
  */
 import Base from '../../layouts/Base.astro';
 import PageHero from '../PageHero.astro';
+import { ui } from '../../lib/i18n.ts';
 import { blocksContent } from '../../lib/content.ts';
-import { formatDate, formatTime, pastEvents } from '../../lib/events.ts';
+import { formatDate, formatTime, pastEvents, reportPhotos } from '../../lib/events.ts';
 import { legacyEvents, legacySortKey } from '../../lib/legacy.ts';
 import { eventPath, pagePaths } from '../../lib/routes.ts';
 import type { LanguageCode } from '../../../site.config.ts';
@@ -23,8 +24,9 @@ const items = [
     href: eventPath(e.slug, lang),
     poster: e.poster,
     title: e.name,
+    report: reportPhotos(e).length > 0,
   })),
-  ...legacyEvents().map((e) => ({ key: legacySortKey(e), href: eventPath(e.slug[lang], lang), poster: e.poster, title: e.title[lang] })),
+  ...legacyEvents().map((e) => ({ key: legacySortKey(e), href: eventPath(e.slug[lang], lang), poster: e.poster, title: e.title[lang], report: false })),
 ].sort((a, b) => b.key.localeCompare(a.key));
 ---
 <Base lang={lang} title={c.title} description={c.description} alternates={pagePaths.past}>
@@ -36,6 +38,7 @@ const items = [
       <a class:list={['vc-past__item', { 'vc-past__item--noimg': !e.poster }]} href={e.href}>
         {e.poster && <img src={e.poster} alt={`${e.title} – Poster`} width="450" height="450" loading="lazy" />}
         <span>{e.title}</span>
+        {e.report && <em class="vc-past__badge" data-photo-report-badge>{ui(lang).event.photoReport}</em>}
       </a>
     ))}
   </div>
