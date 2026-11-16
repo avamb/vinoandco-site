@@ -12,7 +12,7 @@ const sent = new Set<string>();
 
 function utm(): { utm_source?: string; utm_campaign?: string } {
   try {
-    const a = readAttribution(sessionStorage);
+    const a = readAttribution(sessionStorage, localStorage);
     return { ...(a?.utm_source ? { utm_source: a.utm_source } : {}), ...(a?.utm_campaign ? { utm_campaign: a.utm_campaign } : {}) };
   } catch {
     return {};

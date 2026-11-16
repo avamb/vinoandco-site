@@ -297,7 +297,7 @@
 
   function buildRequest(): CheckoutStartRequest {
     const c = readConsent();
-    const attribution = readAttribution(sessionStorage) ?? undefined;
+    const attribution = readAttribution(sessionStorage, localStorage) ?? undefined;
     const body: CheckoutStartRequest = {
       session_id: session!.id,
       ga_items: gaItems(tier!, qty),
