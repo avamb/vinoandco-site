@@ -1,10 +1,10 @@
 /**
  * Browser events of the purchase path (spec 62 §8.2). Meta and GA4 calls go
- * out only when their scripts exist, and tracking.ts loads them only after the
- * visitor accepted cookies — so without consent these are no-ops. Purchase is
+ * out only when their scripts exist, and tracking.ts loads them unless the
+ * visitor declined cookies — so after a decline these are no-ops. Purchase is
  * never sent from the browser: the platform sends it from the server (§8.3).
  */
-import { readConsent } from './consent.ts';
+import { trackingAllowed } from './consent.ts';
 
 export interface AnalyticsItem {
   id: string;
@@ -13,13 +13,7 @@ export interface AnalyticsItem {
   quantity: number;
 }
 
-function consented(): boolean {
-  try {
-    return readConsent()?.granted === true;
-  } catch {
-    return false;
-  }
-}
+const consented = trackingAllowed;
 
 function meta(event: string, params: Record<string, unknown>) {
   if (consented() && typeof window.fbq === 'function') window.fbq('track', event, params);

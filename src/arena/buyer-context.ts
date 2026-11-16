@@ -1,7 +1,7 @@
 /**
  * Browser tracking context sent with checkout/start (spec 62 §8.1, §8.3): the
  * click ids of the landing URL, the Meta cookies, the GA4 client id and the
- * cookie banner's answer. The platform uses it for server-side Meta CAPI and
+ * cookie banner's answer (notice mode: allowed unless declined). The platform uses it for server-side Meta CAPI and
  * GA4 conversions and sends nothing without `tracking_consent: true`.
  *
  * Pure functions over a URL, a Storage-like object and a cookie string.
@@ -9,6 +9,8 @@
 import type { BuyerContext } from './types.ts';
 import type { KeyValueStore } from './attribution.ts';
 
+/** Sent as the text version while the visitor made no explicit choice (notice mode). */
+export const NOTICE_TEXT_VERSION = 'notice-2026-11-16';
 export const CLICK_IDS_KEY = 'arena_click_ids';
 
 export interface ClickIds {
@@ -82,7 +84,7 @@ export interface BuyerContextInput {
   store: KeyValueStore;
   /** `document.cookie`. */
   cookies: string;
-  /** The cookie banner's choice; null = not asked yet (counts as not granted). */
+  /** The cookie banner's choice; null = no explicit choice (notice mode: tracking allowed). */
   consent: { granted: boolean; version: string } | null;
 }
 
@@ -94,7 +96,8 @@ export interface BuyerContextInput {
  * ignores them without `tracking_consent`.
  */
 export function buildBuyerContext(i: BuyerContextInput): BuyerContext {
-  const granted = Boolean(i.consent?.granted);
+  // Notice mode: allowed unless the visitor explicitly declined.
+  const granted = i.consent?.granted !== false;
   const ids = readClickIds(i.store);
   const ctx: BuyerContext = { tracking_consent: granted };
   if (ids.fbclid) ctx.fbclid = ids.fbclid;
@@ -109,6 +112,7 @@ export function buildBuyerContext(i: BuyerContextInput): BuyerContext {
   }
   const page = clean(i.pageUrl, 2048);
   if (page) ctx.page_url = page;
-  if (i.consent?.version) ctx.tracking_consent_text_version = clean(i.consent.version, 64);
+  const version = clean(i.consent ? i.consent.version : NOTICE_TEXT_VERSION, 64);
+  if (version) ctx.tracking_consent_text_version = version;
   return ctx;
 }

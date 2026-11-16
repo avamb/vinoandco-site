@@ -32,13 +32,18 @@ describe('buyer context', () => {
     expect(ctx).toEqual({ tracking_consent: true, tracking_consent_text_version: '2026-11-06', fbclid: 'FB1', gclid: 'G1', fbp: 'fb.1.1.2', ga_client_id: '5.6', page_url: 'https://vinoandco.events/event/premera/' });
   });
 
-  it('without consent: no GA id, tracking_consent false; absent cookies are left out', () => {
+  it('explicit decline: no GA id, tracking_consent false; absent cookies are left out', () => {
     const ctx = buildBuyerContext({ pageUrl: 'https://x/', store: store(), cookies: '_ga=GA1.1.5.6', consent: { granted: false, version: '2026-11-06' } });
     expect(ctx.tracking_consent).toBe(false);
     expect(ctx).not.toHaveProperty('ga_client_id');
     expect(ctx).not.toHaveProperty('fbp');
     expect(ctx).not.toHaveProperty('fbc');
-    expect(buildBuyerContext({ pageUrl: 'https://x/', store: store(), cookies: '', consent: null })).toEqual({ tracking_consent: false, page_url: 'https://x/' });
+    expect(ctx.tracking_consent_text_version).toBe('2026-11-06');
+  });
+
+  it('no explicit choice (notice mode): tracking_consent true with the notice version', () => {
+    const ctx = buildBuyerContext({ pageUrl: 'https://x/', store: store(), cookies: '_ga=GA1.1.5.6', consent: null });
+    expect(ctx).toEqual({ tracking_consent: true, tracking_consent_text_version: 'notice-2026-11-16', ga_client_id: '5.6', page_url: 'https://x/' });
   });
 
   it('drops values the platform would drop anyway', () => {

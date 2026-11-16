@@ -3,7 +3,7 @@
    * Cookie banner in the look of the WordPress "Cookie Notice" plugin, same
    * texts, plus a "Decline" button (Р-10). One choice covers analytics and
    * advertising together (spec 62 §8.1). The choice is kept in the necessary
-   * cookie `vc_consent`; tracking loads only on `granted` (src/scripts/tracking.ts).
+   * cookie `vc_consent`; notice mode: tracking runs unless the visitor declines (src/scripts/tracking.ts).
    */
   import { onMount } from 'svelte';
   import { readConsent, writeConsent, CONSENT_EVENT } from '../../scripts/consent.ts';

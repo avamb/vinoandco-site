@@ -23,7 +23,7 @@
     "cookieSettings": "Cookie settings"
   },
   "cookie": {
-    "text": "We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.",
+    "text": "We use cookies for analytics and advertising.",
     "accept": "Ok",
     "decline": "Decline",
     "label": "Cookie Compliance"

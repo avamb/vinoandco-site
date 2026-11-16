@@ -1,10 +1,10 @@
 /**
- * Meta Pixel and GA4, loaded ONLY after the visitor accepts cookies (Р-10,
- * spec 62 §8.1). Never included on personal pages (order status, my tickets).
+ * Meta Pixel and GA4 in notice mode: loaded for every visitor unless they
+ * explicitly declined in the cookie banner (spec 62 §8.1). Never included on personal pages (order status, my tickets).
  * Ids come from the build environment via data attributes on <body>.
- * Google Consent Mode starts as `denied` and is updated to `granted` on consent.
+ * A decline made on the page stops tracking at once (and on later pages).
  */
-import { readConsent, CONSENT_EVENT } from './consent.ts';
+import { trackingAllowed, CONSENT_EVENT } from './consent.ts';
 
 type Gtag = (...args: unknown[]) => void;
 type Fbq = ((...args: unknown[]) => void) & { queue?: unknown[]; loaded?: boolean; version?: string; push?: unknown };
@@ -35,8 +35,7 @@ function loadGa4(id: string) {
     window.dataLayer!.push(arguments);
   };
   window.gtag = gtag;
-  gtag('consent', 'default', { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-  gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+  gtag('consent', 'default', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
   gtag('js', new Date());
   gtag('config', id);
   loadScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`);
@@ -65,7 +64,17 @@ function start() {
   if (metaPixelId) loadPixel(metaPixelId);
 }
 
-if (readConsent()?.granted) start();
+function stop() {
+  const { ga4Id } = document.body.dataset;
+  if (ga4Id) (window as unknown as Record<string, unknown>)[`ga-disable-${ga4Id}`] = true;
+  if (typeof window.gtag === 'function') {
+    window.gtag('consent', 'update', { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  }
+  if (typeof window.fbq === 'function') window.fbq('consent', 'revoke');
+}
+
+if (trackingAllowed()) start();
 window.addEventListener(CONSENT_EVENT, (e) => {
   if ((e as CustomEvent<{ granted: boolean }>).detail.granted) start();
+  else stop();
 });

@@ -1,6 +1,6 @@
 /**
- * Cookie consent state (spec 62 §8.1): one shared choice for analytics and
- * advertising, stored in the necessary cookie `vc_consent`.
+ * Cookie notice state (spec 62 §8.1): one shared choice for analytics and
+ * advertising (decline), stored in the necessary cookie `vc_consent`.
  * The same value is later passed to the platform as `tracking_consent`.
  */
 
@@ -26,6 +26,18 @@ export function readConsent(): Consent | null {
     return c.version === CONSENT_VERSION ? c : null;
   } catch {
     return null;
+  }
+}
+
+/**
+ * Notice mode (owner decision 2026-11-16): tracking is on for everyone unless
+ * the visitor explicitly declined (current-version cookie with granted:false).
+ */
+export function trackingAllowed(): boolean {
+  try {
+    return readConsent()?.granted !== false;
+  } catch {
+    return true;
   }
 }
 

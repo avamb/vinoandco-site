@@ -159,8 +159,8 @@ describe('BuyModal', () => {
     });
     expect(nav.go).toHaveBeenCalledWith('https://allpay.test/pay/1');
     expect(sessionStorage.getItem('vc_checkout_token')).toBe('ct-1');
-    // No banner answer yet: not granted, no GA id, no cookies sent that are not there.
-    expect(start.body.buyer_context).toMatchObject({ tracking_consent: false });
+    // No banner answer (notice mode): allowed, notice text version, no GA id, no cookies sent that are not there.
+    expect(start.body.buyer_context).toMatchObject({ tracking_consent: true, tracking_consent_text_version: 'notice-2026-11-16' });
     expect(start.body.buyer_context.ga_client_id).toBeUndefined();
     expect(start.body.tracking_consent).toBeUndefined();
   });
